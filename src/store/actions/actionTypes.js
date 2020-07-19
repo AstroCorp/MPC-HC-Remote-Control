@@ -1,6 +1,3 @@
-export const INCREMENT = 'INCREMENT';
-export const DECREMENT = 'DECREMENT';
-
-export const GET_REPOS = 'GET_REPOS';
-export const GET_REPOS_SUCCESS = 'GET_REPOS_SUCCESS';
-export const GET_REPOS_FAIL = 'GET_REPOS_FAIL';
+export const SEND_COMMAND = 'SEND_COMMAND';
+export const SEND_COMMAND_SUCCESS = 'SEND_COMMAND_SUCCESS';
+export const SEND_COMMAND_FAIL = 'SEND_COMMAND_FAIL';

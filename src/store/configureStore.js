@@ -4,7 +4,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 import AsyncStorage from '@react-native-community/async-storage';
 import axiosMiddleware from 'redux-axios-middleware';
 import axios from 'axios';
-import exampleReducer from './reducers/example';
+import mainReducer from './reducers/main';
 
 LogBox.ignoreAllLogs();
 
@@ -16,7 +16,7 @@ Text.defaultProps.allowFontScaling = false;
 
 const client = axios.create({
     baseURL: 'https://api.github.com/users/AstroCorp/repos',
-    responseType: 'json'
+    responseType: 'json',
 });
 
 let composeEnhancers = compose;
@@ -27,20 +27,20 @@ if (__DEV__) {
 
 const persistConfig = {
     key: 'example',
-    storage: AsyncStorage
-}
+    storage: AsyncStorage,
+};
 
 const rootReducer = combineReducers({
-    exampleReducer
+    mainReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const configureStore = () => {
-  let store = createStore(persistedReducer, composeEnhancers(applyMiddleware(axiosMiddleware(client))));
-  let persistor = persistStore(store);
+    let store = createStore(persistedReducer, composeEnhancers(applyMiddleware(axiosMiddleware(client))));
+    let persistor = persistStore(store);
 
-  return { store, persistor };
+    return { store, persistor };
 };
 
 export default configureStore;

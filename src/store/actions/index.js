@@ -1,1 +1,1 @@
-export { increment, decrement, listRepos } from "./example";
+export { sendCommand } from "./example";
