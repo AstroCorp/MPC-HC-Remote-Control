@@ -5,6 +5,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import axiosMiddleware from 'redux-axios-middleware';
 import axios from 'axios';
 import mainReducer from './reducers/main';
+import axiosReducer from './reducers/axios';
 
 LogBox.ignoreAllLogs();
 
@@ -26,12 +27,14 @@ if (__DEV__) {
 }
 
 const persistConfig = {
-    key: 'example',
+    key: 'MPC-HC Remote Control',
     storage: AsyncStorage,
+    whitelist: ['mainReducer'],
 };
 
 const rootReducer = combineReducers({
     mainReducer,
+    axiosReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

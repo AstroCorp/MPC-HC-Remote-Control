@@ -1,35 +1,26 @@
-import { SEND_COMMAND, SEND_COMMAND_SUCCESS, SEND_COMMAND_FAIL } from "../actions/actionTypes";
+import { SET_IP, SET_PORT } from '../actions/actionTypes';
 
 const initialState = {
-	loading: false,
-	error: null,
-}
+	ip: '192.168.0.10',
+	port: '13579',
+};
 
 const mainReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case SEND_COMMAND:
+		case SET_IP:
 			return {
 				...state,
-				loading: true,
-				error: null,
+				ip: action.value,
 			};
 
-		case SEND_COMMAND_SUCCESS:
+		case SET_PORT:
 			return {
 				...state,
-				loading: false,
-				error: null,
-			};
-
-		case SEND_COMMAND_FAIL:
-			return {
-				...state,
-				loading: false,
-				error: 'Error al enviar comando',
+				port: action.value,
 			};
 	}
 
 	return state;
-}
+};
 
 export default mainReducer;

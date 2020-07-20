@@ -1,1718 +1,1336 @@
 /**
-* Quick Open File
+* Quick Open File — Command value (969)
 *
-* @return {number} - Command value (969)
+* @const {number}
 */
-export function quickOpenFile() {
-    return 969;
-}
+export const quickOpenFile = 969;
 
 /**
-* Open File/URL
+* Open File/URL — Command value (800)
 *
-* @return {number} - Command value (800)
+* @const {number}
 */
-export function openFileOrUrl() {
-    return 800;
-}
+export const openFileOrUrl = 800;
 
 /**
-* Open DVD/BD
+* Open DVD/BD — Command value (801)
 *
-* @return {number} - Command value (801)
+* @const {number}
 */
-export function openDvdOrBd() {
-    return 801;
-}
+export const openDvdOrBd = 801;
 
 /**
-* Open Device
+* Open Device — Command value (802)
 *
-* @return {number} - Command value (802)
+* @const {number}
 */
-export function openDevice() {
-    return 802;
-}
+export const openDevice = 802;
 
 /**
-* Reopen File
+* Reopen File — Command value (976)
 *
-* @return {number} - Command value (976)
+* @const {number}
 */
-export function reopenFile() {
-    return 976;
-}
+export const reopenFile = 976;
 
 /**
-* Move to Recycle Bin
+* Move to Recycle Bin — Command value (24044)
 *
-* @return {number} - Command value (24044)
+* @const {number}
 */
-export function moveToRecycleBin() {
-    return 24044;
-}
+export const moveToRecycleBin = 24044;
 
 /**
-* Save a Copy
+* Save a Copy — Command value (805)
 *
-* @return {number} - Command value (805)
+* @const {number}
 */
-export function saveACopy() {
-    return 805;
-}
+export const saveACopy = 805;
 
 /**
-* Save Image
+* Save Image — Command value (806)
 *
-* @return {number} - Command value (806)
+* @const {number}
 */
-export function saveImage() {
-    return 806;
-}
+export const saveImage = 806;
 
 /**
-* Save Image (auto)
+* Save Image (auto) — Command value (807)
 *
-* @return {number} - Command value (807)
+* @const {number}
 */
-export function saveImageAuto() {
-    return 807;
-}
+export const saveImageAuto = 807;
 
 /**
-* Save thumbnails
+* Save thumbnails — Command value (808)
 *
-* @return {number} - Command value (808)
+* @const {number}
 */
-export function saveThumbnails() {
-    return 808;
-}
+export const saveThumbnails = 808;
 
 /**
-* Load Subtitles...
+* Load Subtitles... — Command value (809)
 *
-* @return {number} - Command value (809)
+* @const {number}
 */
-export function loadSubtitles() {
-    return 809;
-}
+export const loadSubtitles = 809;
 
 /**
-* Save Subtitles...
+* Save Subtitles... — Command value (810)
 *
-* @return {number} - Command value (810)
+* @const {number}
 */
-export function saveSubtitles() {
-    return 810;
-}
+export const saveSubtitles = 810;
 
 /**
-* Download Subtitles...
+* Download Subtitles... — Command value (812)
 *
-* @return {number} - Command value (812)
+* @const {number}
 */
-export function downloadSubtitles() {
-    return 812;
-}
+export const downloadSubtitles = 812;
 
 /**
-* Upload Subtitles...
+* Upload Subtitles... — Command value (811)
 *
-* @return {number} - Command value (811)
+* @const {number}
 */
-export function uploadSubtitles() {
-    return 811;
-}
+export const uploadSubtitles = 811;
 
 /**
-* Close
+* Close — Command value (804)
 *
-* @return {number} - Command value (804)
+* @const {number}
 */
-export function close() {
-    return 804;
-}
+export const close = 804;
 
 /**
-* Properties
+* Properties — Command value (814)
 *
-* @return {number} - Command value (814)
+* @const {number}
 */
-export function properties() {
-    return 814;
-}
+export const properties = 814;
 
 /**
-* Open File Location
+* Open File Location — Command value (20066)
 *
-* @return {number} - Command value (20066)
+* @const {number}
 */
-export function openFileLocation() {
-    return 20066;
-}
+export const openFileLocation = 20066;
 
 /**
-* Exit
+* Exit — Command value (816)
 *
-* @return {number} - Command value (816)
+* @const {number}
 */
-export function exit() {
-    return 816;
-}
+export const exit = 816;
 
 /**
-* Play/Pause
+* Play/Pause — Command value (889)
 *
-* @return {number} - Command value (889)
+* @const {number}
 */
-export function togglePlayAndPause() {
-    return 889;
-}
+export const togglePlayAndPause = 889;
 
 /**
-* Play
+* Play — Command value (887)
 *
-* @return {number} - Command value (887)
+* @const {number}
 */
-export function play() {
-    return 887;
-}
+export const play = 887;
 
 /**
-* Pause
+* Pause — Command value (888)
 *
-* @return {number} - Command value (888)
+* @const {number}
 */
-export function pause() {
-    return 888;
-}
+export const pause = 888;
 
 /**
-* Stop
+* Stop — Command value (890)
 *
-* @return {number} - Command value (890)
+* @const {number}
 */
-export function stop() {
-    return 890;
-}
+export const stop = 890;
 
 /**
-* Frame-step
+* Frame-step — Command value (891)
 *
-* @return {number} - Command value (891)
+* @const {number}
 */
-export function frameStep() {
-    return 891;
-}
+export const frameStep = 891;
 
 /**
-* Frame-step back
+* Frame-step back — Command value (892)
 *
-* @return {number} - Command value (892)
+* @const {number}
 */
-export function frameStepBack() {
-    return 892;
-}
+export const frameStepBack = 892;
 
 /**
-* Go To
+* Go To — Command value (893)
 *
-* @return {number} - Command value (893)
+* @const {number}
 */
-export function goTo() {
-    return 893;
-}
+export const goTo = 893;
 
 /**
-* Increase Rate
+* Increase Rate — Command value (895)
 *
-* @return {number} - Command value (895)
+* @const {number}
 */
-export function increaseRate() {
-    return 895;
-}
+export const increaseRate = 895;
 
 /**
-* Decrease Rate
+* Decrease Rate — Command value (894)
 *
-* @return {number} - Command value (894)
+* @const {number}
 */
-export function decreaseRate() {
-    return 894;
-}
+export const decreaseRate = 894;
 
 /**
-* Reset Rate
+* Reset Rate — Command value (896)
 *
-* @return {number} - Command value (896)
+* @const {number}
 */
-export function resetRate() {
-    return 896;
-}
+export const resetRate = 896;
 
 /**
-* Audio Delay +10 ms
+* Audio Delay +10 ms — Command value (905)
 *
-* @return {number} - Command value (905)
+* @const {number}
 */
-export function audioDelayAdd10Ms() {
-    return 905;
-}
+export const audioDelayAdd10Ms = 905;
 
 /**
-* Audio Delay -10 ms
+* Audio Delay -10 ms — Command value (906)
 *
-* @return {number} - Command value (906)
+* @const {number}
 */
-export function audioDelaySubtract10Ms() {
-    return 906;
-}
+export const audioDelaySubtract10Ms = 906;
 
 /**
-* Jump Forward (small)
+* Jump Forward (small) — Command value (900)
 *
-* @return {number} - Command value (900)
+* @const {number}
 */
-export function jumpForwardSmall() {
-    return 900;
-}
+export const jumpForwardSmall = 900;
 
 /**
-* Jump Backward (small)
+* Jump Backward (small) — Command value (899)
 *
-* @return {number} - Command value (899)
+* @const {number}
 */
-export function jumpBackwardSmall() {
-    return 899;
-}
+export const jumpBackwardSmall = 899;
 
 /**
-* Jump Forward (medium)
+* Jump Forward (medium) — Command value (902)
 *
-* @return {number} - Command value (902)
+* @const {number}
 */
-export function jumpForwardMedium() {
-    return 902;
-}
+export const jumpForwardMedium = 902;
 
 /**
-* Jump Backward (medium)
+* Jump Backward (medium) — Command value (901)
 *
-* @return {number} - Command value (901)
+* @const {number}
 */
-export function jumpBackwardMedium() {
-    return 901;
-}
+export const jumpBackwardMedium = 901;
 
 /**
-* Jump Forward (large)
+* Jump Forward (large) — Command value (904)
 *
-* @return {number} - Command value (904)
+* @const {number}
 */
-export function jumpForwardLarge() {
-    return 904;
-}
+export const jumpForwardLarge = 904;
 
 /**
-* Jump Backward (large)
+* Jump Backward (large) — Command value (903)
 *
-* @return {number} - Command value (903)
+* @const {number}
 */
-export function jumpBackwardLarge() {
-    return 903;
-}
+export const jumpBackwardLarge = 903;
 
 /**
-* Jump Forward (keyframe)
+* Jump Forward (keyframe) — Command value (898)
 *
-* @return {number} - Command value (898)
+* @const {number}
 */
-export function jumpForwardKeyframe() {
-    return 898;
-}
+export const jumpForwardKeyframe = 898;
 
 /**
-* Jump Backward (keyframe)
+* Jump Backward (keyframe) — Command value (897)
 *
-* @return {number} - Command value (897)
+* @const {number}
 */
-export function jumpBackwardKeyframe() {
-    return 897;
-}
+export const jumpBackwardKeyframe = 897;
 
 /**
-* Jump to Beginning
+* Jump to Beginning — Command value (996)
 *
-* @return {number} - Command value (996)
+* @const {number}
 */
-export function jumpToBeginning() {
-    return 996;
-}
+export const jumpToBeginning = 996;
 
 /**
-* Repeat Forever
+* Repeat Forever — Command value (33449)
 *
-* @return {number} - Command value (33449)
+* @const {number}
 */
-export function repeatForever() {
-    return 33449;
-}
+export const repeatForever = 33449;
 
 /**
-* Repeat Mode: File
+* Repeat Mode: File — Command value (33450)
 *
-* @return {number} - Command value (33450)
+* @const {number}
 */
-export function repeatModeFile() {
-    return 33450;
-}
+export const repeatModeFile = 33450;
 
 /**
-* Repeat Mode: Playlist
+* Repeat Mode: Playlist — Command value (33451)
 *
-* @return {number} - Command value (33451)
+* @const {number}
 */
-export function repeatModePlaylist() {
-    return 33451;
-}
+export const repeatModePlaylist = 33451;
 
 /**
-* A-B Repeat: Reset Positions
+* A-B Repeat: Reset Positions — Command value (33453)
 *
-* @return {number} - Command value (33453)
+* @const {number}
 */
-export function _A_B_Repeat_ResetPositions() {
-    return 33453;
-}
+export const _A_B_Repeat_ResetPositions = 33453;
 
 /**
-* A-B Repeat: Mark A Position
+* A-B Repeat: Mark A Position — Command value (33454)
 *
-* @return {number} - Command value (33454)
+* @const {number}
 */
-export function _A_B_Repeat_markAPosition() {
-    return 33454;
-}
+export const _A_B_Repeat_markAPosition = 33454;
 
 /**
-* A-B Repeat: Mark B Position
+* A-B Repeat: Mark B Position — Command value (33455)
 *
-* @return {number} - Command value (33455)
+* @const {number}
 */
-export function _A_B_Repeat_markBPosition() {
-    return 33455;
-}
+export const _A_B_Repeat_markBPosition = 33455;
 
 /**
-* Next
+* Next — Command value (922)
 *
-* @return {number} - Command value (922)
+* @const {number}
 */
-export function next() {
-    return 922;
-}
+export const next = 922;
 
 /**
-* Previous
+* Previous — Command value (921)
 *
-* @return {number} - Command value (921)
+* @const {number}
 */
-export function previous() {
-    return 921;
-}
+export const previous = 921;
 
 /**
-* Next File
+* Next File — Command value (920)
 *
-* @return {number} - Command value (920)
+* @const {number}
 */
-export function nextFile() {
-    return 920;
-}
+export const nextFile = 920;
 
 /**
-* Previous File
+* Previous File — Command value (919)
 *
-* @return {number} - Command value (919)
+* @const {number}
 */
-export function previousFile() {
-    return 919;
-}
+export const previousFile = 919;
 
 /**
-* Tuner scan
+* Tuner scan — Command value (974)
 *
-* @return {number} - Command value (974)
+* @const {number}
 */
-export function tunerScan() {
-    return 974;
-}
+export const tunerScan = 974;
 
 /**
-* Quick add favorite
+* Quick add favorite — Command value (975)
 *
-* @return {number} - Command value (975)
+* @const {number}
 */
-export function quickAddFavorite() {
-    return 975;
-}
+export const quickAddFavorite = 975;
 
 /**
-* Toggle Caption and Menu
+* Toggle Caption and Menu — Command value (817)
 *
-* @return {number} - Command value (817)
+* @const {number}
 */
-export function toggleCaptionAndMenu() {
-    return 817;
-}
+export const toggleCaptionAndMenu = 817;
 
 /**
-* Toggle Seek Bar
+* Toggle Seek Bar — Command value (818)
 *
-* @return {number} - Command value (818)
+* @const {number}
 */
-export function toggleSeekBar() {
-    return 818;
-}
+export const toggleSeekBar = 818;
 
 /**
-* Toggle Controls
+* Toggle Controls — Command value (819)
 *
-* @return {number} - Command value (819)
+* @const {number}
 */
-export function toggleControls() {
-    return 819;
-}
+export const toggleControls = 819;
 
 /**
-* Toggle Information
+* Toggle Information — Command value (820)
 *
-* @return {number} - Command value (820)
+* @const {number}
 */
-export function toggleInformation() {
-    return 820;
-}
+export const toggleInformation = 820;
 
 /**
-* Toggle Statistics
+* Toggle Statistics — Command value (821)
 *
-* @return {number} - Command value (821)
+* @const {number}
 */
-export function toggleStatistics() {
-    return 821;
-}
+export const toggleStatistics = 821;
 
 /**
-* Toggle Status
+* Toggle Status — Command value (822)
 *
-* @return {number} - Command value (822)
+* @const {number}
 */
-export function toggleStatus() {
-    return 822;
-}
+export const toggleStatus = 822;
 
 /**
-* Toggle Subresync Bar
+* Toggle Subresync Bar — Command value (823)
 *
-* @return {number} - Command value (823)
+* @const {number}
 */
-export function toggleSubresyncBar() {
-    return 823;
-}
+export const toggleSubresyncBar = 823;
 
 /**
-* Toggle Playlist Bar
+* Toggle Playlist Bar — Command value (824)
 *
-* @return {number} - Command value (824)
+* @const {number}
 */
-export function togglePlaylistBar() {
-    return 824;
-}
+export const togglePlaylistBar = 824;
 
 /**
-* Toggle Capture Bar
+* Toggle Capture Bar — Command value (825)
 *
-* @return {number} - Command value (825)
+* @const {number}
 */
-export function toggleCaptureBar() {
-    return 825;
-}
+export const toggleCaptureBar = 825;
 
 /**
-* Toggle Navigation Bar
+* Toggle Navigation Bar — Command value (33415)
 *
-* @return {number} - Command value (33415)
+* @const {number}
 */
-export function toggleNavigationBar() {
-    return 33415;
-}
+export const toggleNavigationBar = 33415;
 
 /**
-* Toggle Debug Shaders
+* Toggle Debug Shaders — Command value (826)
 *
-* @return {number} - Command value (826)
+* @const {number}
 */
-export function toggleDebugShaders() {
-    return 826;
-}
+export const toggleDebugShaders = 826;
 
 /**
-* Toggle Dark Theme
+* Toggle Dark Theme — Command value (24045)
 *
-* @return {number} - Command value (24045)
+* @const {number}
 */
-export function toggleDarkTheme() {
-    return 24045;
-}
+export const toggleDarkTheme = 24045;
 
 /**
-* Toggle Default Subtitle Style
+* Toggle Default Subtitle Style — Command value (24051)
 *
-* @return {number} - Command value (24051)
+* @const {number}
 */
-export function toggleDefaultSubtitleStyle() {
-    return 24051;
-}
+export const toggleDefaultSubtitleStyle = 24051;
 
 /**
-* View Minimal
+* View Minimal — Command value (827)
 *
-* @return {number} - Command value (827)
+* @const {number}
 */
-export function viewMinimal() {
-    return 827;
-}
+export const viewMinimal = 827;
 
 /**
-* View Compact
+* View Compact — Command value (828)
 *
-* @return {number} - Command value (828)
+* @const {number}
 */
-export function viewCompact() {
-    return 828;
-}
+export const viewCompact = 828;
 
 /**
-* View Normal
+* View Normal — Command value (829)
 *
-* @return {number} - Command value (829)
+* @const {number}
 */
-export function viewNormal() {
-    return 829;
-}
+export const viewNormal = 829;
 
 /**
-* Fullscreen
+* Fullscreen — Command value (830)
 *
-* @return {number} - Command value (830)
+* @const {number}
 */
-export function fullscreen() {
-    return 830;
-}
+export const fullscreen = 830;
 
 /**
-* Fullscreen (w/o res.change)
+* Fullscreen (w/o res.change) — Command value (831)
 *
-* @return {number} - Command value (831)
+* @const {number}
 */
-export function fullscreen_W_O_ResChange() {
-    return 831;
-}
+export const fullscreen_W_O_ResChange = 831;
 
 /**
-* Zoom 25%
+* Zoom 25% — Command value (813)
 *
-* @return {number} - Command value (813)
+* @const {number}
 */
-export function zoom25() {
-    return 813;
-}
+export const zoom25 = 813;
 
 /**
-* Zoom 50%
+* Zoom 50% — Command value (832)
 *
-* @return {number} - Command value (832)
+* @const {number}
 */
-export function zoom50() {
-    return 832;
-}
+export const zoom50 = 832;
 
 /**
-* Zoom 100%
+* Zoom 100% — Command value (833)
 *
-* @return {number} - Command value (833)
+* @const {number}
 */
-export function zoom100() {
-    return 833;
-}
+export const zoom100 = 833;
 
 /**
-* Zoom 200%
+* Zoom 200% — Command value (834)
 *
-* @return {number} - Command value (834)
+* @const {number}
 */
-export function zoom200() {
-    return 834;
-}
+export const zoom200 = 834;
 
 /**
-* Zoom Auto Fit
+* Zoom Auto Fit — Command value (968)
 *
-* @return {number} - Command value (968)
+* @const {number}
 */
-export function zoomAutoFit() {
-    return 968;
-}
+export const zoomAutoFit = 968;
 
 /**
-* Zoom Auto Fit (Larger Only)
+* Zoom Auto Fit (Larger Only) — Command value (4900)
 *
-* @return {number} - Command value (4900)
+* @const {number}
 */
-export function zoomAutoFitLargerOnly() {
-    return 4900;
-}
+export const zoomAutoFitLargerOnly = 4900;
 
 /**
-* Next AR Preset
+* Next AR Preset — Command value (859)
 *
-* @return {number} - Command value (859)
+* @const {number}
 */
-export function nextArPreset() {
-    return 859;
-}
+export const nextArPreset = 859;
 
 /**
-* VidFrm Half
+* VidFrm Half — Command value (835)
 *
-* @return {number} - Command value (835)
+* @const {number}
 */
-export function vidFrmHalf() {
-    return 835;
-}
+export const vidFrmHalf = 835;
 
 /**
-* VidFrm Normal
+* VidFrm Normal — Command value (836)
 *
-* @return {number} - Command value (836)
+* @const {number}
 */
-export function vidFrmNormal() {
-    return 836;
-}
+export const vidFrmNormal = 836;
 
 /**
-* VidFrm Double
+* VidFrm Double — Command value (837)
 *
-* @return {number} - Command value (837)
+* @const {number}
 */
-export function vidFrmDouble() {
-    return 837;
-}
+export const vidFrmDouble = 837;
 
 /**
-* VidFrm Stretch
+* VidFrm Stretch — Command value (838)
 *
-* @return {number} - Command value (838)
+* @const {number}
 */
-export function vidFrmStretch() {
-    return 838;
-}
+export const vidFrmStretch = 838;
 
 /**
-* VidFrm Inside
+* VidFrm Inside — Command value (839)
 *
-* @return {number} - Command value (839)
+* @const {number}
 */
-export function vidFrmInside() {
-    return 839;
-}
+export const vidFrmInside = 839;
 
 /**
-* VidFrm Zoom 1
+* VidFrm Zoom 1 — Command value (841)
 *
-* @return {number} - Command value (841)
+* @const {number}
 */
-export function vidFrmZoom1() {
-    return 841;
-}
+export const vidFrmZoom1 = 841;
 
 /**
-* VidFrm Zoom 2
+* VidFrm Zoom 2 — Command value (842)
 *
-* @return {number} - Command value (842)
+* @const {number}
 */
-export function vidFrmZoom2() {
-    return 842;
-}
+export const vidFrmZoom2 = 842;
 
 /**
-* VidFrm Outside
+* VidFrm Outside — Command value (840)
 *
-* @return {number} - Command value (840)
+* @const {number}
 */
-export function vidFrmOutside() {
-    return 840;
-}
+export const vidFrmOutside = 840;
 
 /**
-* VidFrm Switch Zoom
+* VidFrm Switch Zoom — Command value (843)
 *
-* @return {number} - Command value (843)
+* @const {number}
 */
-export function vidFrmSwitchZoom() {
-    return 843;
-}
+export const vidFrmSwitchZoom = 843;
 
 /**
-* Always On Top
+* Always On Top — Command value (884)
 *
-* @return {number} - Command value (884)
+* @const {number}
 */
-export function alwaysOnTop() {
-    return 884;
-}
+export const alwaysOnTop = 884;
 
 /**
-* PnS Reset
+* PnS Reset — Command value (861)
 *
-* @return {number} - Command value (861)
+* @const {number}
 */
-export function pnsReset() {
-    return 861;
-}
+export const pnsReset = 861;
 
 /**
-* PnS Inc Size
+* PnS Inc Size — Command value (862)
 *
-* @return {number} - Command value (862)
+* @const {number}
 */
-export function pnsIncSize() {
-    return 862;
-}
+export const pnsIncSize = 862;
 
 /**
-* PnS Inc Width
+* PnS Inc Width — Command value (864)
 *
-* @return {number} - Command value (864)
+* @const {number}
 */
-export function pnsIncWidth() {
-    return 864;
-}
+export const pnsIncWidth = 864;
 
 /**
-* PnS Inc Height
+* PnS Inc Height — Command value (866)
 *
-* @return {number} - Command value (866)
+* @const {number}
 */
-export function pnsIncHeight() {
-    return 866;
-}
+export const pnsIncHeight = 866;
 
 /**
-* PnS Dec Size
+* PnS Dec Size — Command value (863)
 *
-* @return {number} - Command value (863)
+* @const {number}
 */
-export function pnsDecSize() {
-    return 863;
-}
+export const pnsDecSize = 863;
 
 /**
-* PnS Dec Width
+* PnS Dec Width — Command value (865)
 *
-* @return {number} - Command value (865)
+* @const {number}
 */
-export function pnsDecWidth() {
-    return 865;
-}
+export const pnsDecWidth = 865;
 
 /**
-* PnS Dec Height
+* PnS Dec Height — Command value (867)
 *
-* @return {number} - Command value (867)
+* @const {number}
 */
-export function pnsDecHeight() {
-    return 867;
-}
+export const pnsDecHeight = 867;
 
 /**
-* PnS Center
+* PnS Center — Command value (876)
 *
-* @return {number} - Command value (876)
+* @const {number}
 */
-export function pnsCenter() {
-    return 876;
-}
+export const pnsCenter = 876;
 
 /**
-* PnS Left
+* PnS Left — Command value (868)
 *
-* @return {number} - Command value (868)
+* @const {number}
 */
-export function pnsLeft() {
-    return 868;
-}
+export const pnsLeft = 868;
 
 /**
-* PnS Right
+* PnS Right — Command value (869)
 *
-* @return {number} - Command value (869)
+* @const {number}
 */
-export function pnsRight() {
-    return 869;
-}
+export const pnsRight = 869;
 
 /**
-* PnS Up
+* PnS Up — Command value (870)
 *
-* @return {number} - Command value (870)
+* @const {number}
 */
-export function pnsUp() {
-    return 870;
-}
+export const pnsUp = 870;
 
 /**
-* PnS Down
+* PnS Down — Command value (871)
 *
-* @return {number} - Command value (871)
+* @const {number}
 */
-export function pnsDown() {
-    return 871;
-}
+export const pnsDown = 871;
 
 /**
-* PnS Up/Left
+* PnS Up/Left — Command value (872)
 *
-* @return {number} - Command value (872)
+* @const {number}
 */
-export function pnsUpLeft() {
-    return 872;
-}
+export const pnsUpLeft = 872;
 
 /**
-* PnS Up/Right
+* PnS Up/Right — Command value (873)
 *
-* @return {number} - Command value (873)
+* @const {number}
 */
-export function pnsUpRight() {
-    return 873;
-}
+export const pnsUpRight = 873;
 
 /**
-* PnS Down/Left
+* PnS Down/Left — Command value (874)
 *
-* @return {number} - Command value (874)
+* @const {number}
 */
-export function pnsDownLeft() {
-    return 874;
-}
+export const pnsDownLeft = 874;
 
 /**
-* PnS Down/Right
+* PnS Down/Right — Command value (875)
 *
-* @return {number} - Command value (875)
+* @const {number}
 */
-export function pnsDownRight() {
-    return 875;
-}
+export const pnsDownRight = 875;
 
 /**
-* PnS Rotate X+
+* PnS Rotate X+ — Command value (877)
 *
-* @return {number} - Command value (877)
+* @const {number}
 */
-export function pnsAddRotateX() {
-    return 877;
-}
+export const pnsAddRotateX = 877;
 
 /**
-* PnS Rotate X-
+* PnS Rotate X- — Command value (878)
 *
-* @return {number} - Command value (878)
+* @const {number}
 */
-export function pnsSubtractRotateX() {
-    return 878;
-}
+export const pnsSubtractRotateX = 878;
 
 /**
-* PnS Rotate Y+
+* PnS Rotate Y+ — Command value (879)
 *
-* @return {number} - Command value (879)
+* @const {number}
 */
-export function pnsAddRotateY() {
-    return 879;
-}
+export const pnsAddRotateY = 879;
 
 /**
-* PnS Rotate Y-
+* PnS Rotate Y- — Command value (880)
 *
-* @return {number} - Command value (880)
+* @const {number}
 */
-export function pnsSubtractRotateY() {
-    return 880;
-}
+export const pnsSubtractRotateY = 880;
 
 /**
-* PnS Rotate Z+
+* PnS Rotate Z+ — Command value (881)
 *
-* @return {number} - Command value (881)
+* @const {number}
 */
-export function pnsAddRotateZ() {
-    return 881;
-}
+export const pnsAddRotateZ = 881;
 
 /**
-* PnS Rotate Z-
+* PnS Rotate Z- — Command value (882)
 *
-* @return {number} - Command value (882)
+* @const {number}
 */
-export function pnsSubtractRotateZ() {
-    return 882;
-}
+export const pnsSubtractRotateZ = 882;
 
 /**
-* Volume Up
+* Volume Up — Command value (907)
 *
-* @return {number} - Command value (907)
+* @const {number}
 */
-export function volumeUp() {
-    return 907;
-}
+export const volumeUp = 907;
 
 /**
-* Volume Down
+* Volume Down — Command value (908)
 *
-* @return {number} - Command value (908)
+* @const {number}
 */
-export function volumeDown() {
-    return 908;
-}
+export const volumeDown = 908;
 
 /**
-* Volume Mute
+* Volume Mute — Command value (909)
 *
-* @return {number} - Command value (909)
+* @const {number}
 */
-export function volumeMute() {
-    return 909;
-}
+export const volumeMute = 909;
 
 /**
-* Volume boost increase
+* Volume boost increase — Command value (970)
 *
-* @return {number} - Command value (970)
+* @const {number}
 */
-export function volumeBoostIncrease() {
-    return 970;
-}
+export const volumeBoostIncrease = 970;
 
 /**
-* Volume boost decrease
+* Volume boost decrease — Command value (971)
 *
-* @return {number} - Command value (971)
+* @const {number}
 */
-export function volumeBoostDecrease() {
-    return 971;
-}
+export const volumeBoostDecrease = 971;
 
 /**
-* Volume boost Min
+* Volume boost Min — Command value (972)
 *
-* @return {number} - Command value (972)
+* @const {number}
 */
-export function volumeBoostMin() {
-    return 972;
-}
+export const volumeBoostMin = 972;
 
 /**
-* Volume boost Max
+* Volume boost Max — Command value (973)
 *
-* @return {number} - Command value (973)
+* @const {number}
 */
-export function volumeBoostMax() {
-    return 973;
-}
+export const volumeBoostMax = 973;
 
 /**
-* Toggle custom channel mapping
+* Toggle custom channel mapping — Command value (993)
 *
-* @return {number} - Command value (993)
+* @const {number}
 */
-export function toggleCustomChannelMapping() {
-    return 993;
-}
+export const toggleCustomChannelMapping = 993;
 
 /**
-* Toggle normalization
+* Toggle normalization — Command value (994)
 *
-* @return {number} - Command value (994)
+* @const {number}
 */
-export function toggleNormalization() {
-    return 994;
-}
+export const toggleNormalization = 994;
 
 /**
-* Toggle regain volume
+* Toggle regain volume — Command value (995)
 *
-* @return {number} - Command value (995)
+* @const {number}
 */
-export function toggleRegainVolume() {
-    return 995;
-}
+export const toggleRegainVolume = 995;
 
 /**
-* Brightness increase
+* Brightness increase — Command value (984)
 *
-* @return {number} - Command value (984)
+* @const {number}
 */
-export function brightnessIncrease() {
-    return 984;
-}
+export const brightnessIncrease = 984;
 
 /**
-* Brightness decrease
+* Brightness decrease — Command value (985)
 *
-* @return {number} - Command value (985)
+* @const {number}
 */
-export function brightnessDecrease() {
-    return 985;
-}
+export const brightnessDecrease = 985;
 
 /**
-* Contrast increase
+* Contrast increase — Command value (986)
 *
-* @return {number} - Command value (986)
+* @const {number}
 */
-export function contrastIncrease() {
-    return 986;
-}
+export const contrastIncrease = 986;
 
 /**
-* Contrast decrease
+* Contrast decrease — Command value (987)
 *
-* @return {number} - Command value (987)
+* @const {number}
 */
-export function contrastDecrease() {
-    return 987;
-}
+export const contrastDecrease = 987;
 
 /**
-* Hue increase
+* Hue increase — Command value (988)
 *
-* @return {number} - Command value (988)
+* @const {number}
 */
-export function hueIncrease() {
-    return 988;
-}
+export const hueIncrease = 988;
 
 /**
-* Hue decrease
+* Hue decrease — Command value (989)
 *
-* @return {number} - Command value (989)
+* @const {number}
 */
-export function hueDecrease() {
-    return 989;
-}
+export const hueDecrease = 989;
 
 /**
-* Saturation increase
+* Saturation increase — Command value (990)
 *
-* @return {number} - Command value (990)
+* @const {number}
 */
-export function saturationIncrease() {
-    return 990;
-}
+export const saturationIncrease = 990;
 
 /**
-* Saturation decrease
+* Saturation decrease — Command value (991)
 *
-* @return {number} - Command value (991)
+* @const {number}
 */
-export function saturationDecrease() {
-    return 991;
-}
+export const saturationDecrease = 991;
 
 /**
-* Reset color settings
+* Reset color settings — Command value (992)
 *
-* @return {number} - Command value (992)
+* @const {number}
 */
-export function resetColorSettings() {
-    return 992;
-}
+export const resetColorSettings = 992;
 
 /**
-* DVD Title Menu
+* DVD Title Menu — Command value (923)
 *
-* @return {number} - Command value (923)
+* @const {number}
 */
-export function dvdTitleMenu() {
-    return 923;
-}
+export const dvdTitleMenu = 923;
 
 /**
-* DVD Root Menu
+* DVD Root Menu — Command value (924)
 *
-* @return {number} - Command value (924)
+* @const {number}
 */
-export function dvdRootMenu() {
-    return 924;
-}
+export const dvdRootMenu = 924;
 
 /**
-* DVD Subtitle Menu
+* DVD Subtitle Menu — Command value (925)
 *
-* @return {number} - Command value (925)
+* @const {number}
 */
-export function dvdSubtitleMenu() {
-    return 925;
-}
+export const dvdSubtitleMenu = 925;
 
 /**
-* DVD Audio Menu
+* DVD Audio Menu — Command value (926)
 *
-* @return {number} - Command value (926)
+* @const {number}
 */
-export function dvdAudioMenu() {
-    return 926;
-}
+export const dvdAudioMenu = 926;
 
 /**
-* DVD Angle Menu
+* DVD Angle Menu — Command value (927)
 *
-* @return {number} - Command value (927)
+* @const {number}
 */
-export function dvdAngleMenu() {
-    return 927;
-}
+export const dvdAngleMenu = 927;
 
 /**
-* DVD Chapter Menu
+* DVD Chapter Menu — Command value (928)
 *
-* @return {number} - Command value (928)
+* @const {number}
 */
-export function dvdChapterMenu() {
-    return 928;
-}
+export const dvdChapterMenu = 928;
 
 /**
-* DVD Menu Left
+* DVD Menu Left — Command value (929)
 *
-* @return {number} - Command value (929)
+* @const {number}
 */
-export function dvdMenuLeft() {
-    return 929;
-}
+export const dvdMenuLeft = 929;
 
 /**
-* DVD Menu Right
+* DVD Menu Right — Command value (930)
 *
-* @return {number} - Command value (930)
+* @const {number}
 */
-export function dvdMenuRight() {
-    return 930;
-}
+export const dvdMenuRight = 930;
 
 /**
-* DVD Menu Up
+* DVD Menu Up — Command value (931)
 *
-* @return {number} - Command value (931)
+* @const {number}
 */
-export function dvdMenuUp() {
-    return 931;
-}
+export const dvdMenuUp = 931;
 
 /**
-* DVD Menu Down
+* DVD Menu Down — Command value (932)
 *
-* @return {number} - Command value (932)
+* @const {number}
 */
-export function dvdMenuDown() {
-    return 932;
-}
+export const dvdMenuDown = 932;
 
 /**
-* DVD Menu Activate
+* DVD Menu Activate — Command value (933)
 *
-* @return {number} - Command value (933)
+* @const {number}
 */
-export function dvdMenuActivate() {
-    return 933;
-}
+export const dvdMenuActivate = 933;
 
 /**
-* DVD Menu Back
+* DVD Menu Back — Command value (934)
 *
-* @return {number} - Command value (934)
+* @const {number}
 */
-export function dvdMenuBack() {
-    return 934;
-}
+export const dvdMenuBack = 934;
 
 /**
-* DVD Menu Leave
+* DVD Menu Leave — Command value (935)
 *
-* @return {number} - Command value (935)
+* @const {number}
 */
-export function dvdMenuLeave() {
-    return 935;
-}
+export const dvdMenuLeave = 935;
 
 /**
-* Boss key
+* Boss key — Command value (944)
 *
-* @return {number} - Command value (944)
+* @const {number}
 */
-export function bossKey() {
-    return 944;
-}
+export const bossKey = 944;
 
 /**
-* Player Menu
+* Player Menu — Command value (949)
 *
-* @return {number} - Command value (949)
+* @const {number}
 */
-export function playerMenu() {
-    return 949;
-}
+export const playerMenu = 949;
 
 /**
-* Player Menu (full)
+* Player Menu (full) — Command value (950)
 *
-* @return {number} - Command value (950)
+* @const {number}
 */
-export function playerMenu(Full)() {
-    return 950;
-}
+export const playerMenuFull = 950;
 
 /**
-* Filters Menu
+* Filters Menu — Command value (951)
 *
-* @return {number} - Command value (951)
+* @const {number}
 */
-export function filtersMenu() {
-    return 951;
-}
+export const filtersMenu = 951;
 
 /**
-* Options
+* Options — Command value (815)
 *
-* @return {number} - Command value (815)
+* @const {number}
 */
-export function options() {
-    return 815;
-}
+export const options = 815;
 
 /**
-* Next Audio Track
+* Next Audio Track — Command value (952)
 *
-* @return {number} - Command value (952)
+* @const {number}
 */
-export function nextAudioTrack() {
-    return 952;
-}
+export const nextAudioTrack = 952;
 
 /**
-* Prev Audio Track
+* Prev Audio Track — Command value (953)
 *
-* @return {number} - Command value (953)
+* @const {number}
 */
-export function prevAudioTrack() {
-    return 953;
-}
+export const prevAudioTrack = 953;
 
 /**
-* Next Subtitle Track
+* Next Subtitle Track — Command value (954)
 *
-* @return {number} - Command value (954)
+* @const {number}
 */
-export function nextSubtitleTrack() {
-    return 954;
-}
+export const nextSubtitleTrack = 954;
 
 /**
-* Prev Subtitle Track
+* Prev Subtitle Track — Command value (955)
 *
-* @return {number} - Command value (955)
+* @const {number}
 */
-export function prevSubtitleTrack() {
-    return 955;
-}
+export const prevSubtitleTrack = 955;
 
 /**
-* On/Off Subtitle
+* On/Off Subtitle — Command value (956)
 *
-* @return {number} - Command value (956)
+* @const {number}
 */
-export function toggleSubtitle() {
-    return 956;
-}
+export const toggleSubtitle = 956;
 
 /**
-* Reload Subtitles
+* Reload Subtitles — Command value (2302)
 *
-* @return {number} - Command value (2302)
+* @const {number}
 */
-export function reloadSubtitles() {
-    return 2302;
-}
+export const reloadSubtitles = 2302;
 
 /**
-* Next Angle (DVD)
+* Next Angle (DVD) — Command value (961)
 *
-* @return {number} - Command value (961)
+* @const {number}
 */
-export function nextAngleDvd() {
-    return 961;
-}
+export const nextAngleDvd = 961;
 
 /**
-* Prev Angle (DVD)
+* Prev Angle (DVD) — Command value (962)
 *
-* @return {number} - Command value (962)
+* @const {number}
 */
-export function prevAngleDvd() {
-    return 962;
-}
+export const prevAngleDvd = 962;
 
 /**
-* Next Audio Track (DVD)
+* Next Audio Track (DVD) — Command value (963)
 *
-* @return {number} - Command value (963)
+* @const {number}
 */
-export function nextAudioTrackDvd() {
-    return 963;
-}
+export const nextAudioTrackDvd = 963;
 
 /**
-* Prev Audio Track (DVD)
+* Prev Audio Track (DVD) — Command value (964)
 *
-* @return {number} - Command value (964)
+* @const {number}
 */
-export function prevAudioTrackDvd() {
-    return 964;
-}
+export const prevAudioTrackDvd = 964;
 
 /**
-* Next Subtitle Track (DVD)
+* Next Subtitle Track (DVD) — Command value (965)
 *
-* @return {number} - Command value (965)
+* @const {number}
 */
-export function nextSubtitleTrackDvd() {
-    return 965;
-}
+export const nextSubtitleTrackDvd = 965;
 
 /**
-* Prev Subtitle Track (DVD)
+* Prev Subtitle Track (DVD) — Command value (966)
 *
-* @return {number} - Command value (966)
+* @const {number}
 */
-export function prevSubtitleTrackDvd() {
-    return 966;
-}
+export const prevSubtitleTrackDvd = 966;
 
 /**
-* On/Off Subtitle (DVD)
+* On/Off Subtitle (DVD) — Command value (967)
 *
-* @return {number} - Command value (967)
+* @const {number}
 */
-export function toggleSubtitleDvd() {
-    return 967;
-}
+export const toggleSubtitleDvd = 967;
 
 /**
-* Tearing Test
+* Tearing Test — Command value (32769)
 *
-* @return {number} - Command value (32769)
+* @const {number}
 */
-export function tearingTest() {
-    return 32769;
-}
+export const tearingTest = 32769;
 
 /**
-* OSD: Display Current Time
+* OSD: Display Current Time — Command value (32778)
 *
-* @return {number} - Command value (32778)
+* @const {number}
 */
-export function osdDisplayCurrentTime() {
-    return 32778;
-}
+export const osdDisplayCurrentTime = 32778;
 
 /**
-* OSD: Show File Name
+* OSD: Show File Name — Command value (32777)
 *
-* @return {number} - Command value (32777)
+* @const {number}
 */
-export function osdShowFileName() {
-    return 32777;
-}
+export const osdShowFileName = 32777;
 
 /**
-* Next Shader Preset
+* Next Shader Preset — Command value (57382)
 *
-* @return {number} - Command value (57382)
+* @const {number}
 */
-export function nextShaderPreset() {
-    return 57382;
-}
+export const nextShaderPreset = 57382;
 
 /**
-* Prev Shader Preset
+* Prev Shader Preset — Command value (57384)
 *
-* @return {number} - Command value (57384)
+* @const {number}
 */
-export function prevShaderPreset() {
-    return 57384;
-}
+export const prevShaderPreset = 57384;
 
 /**
-* Toggle Direct3D fullscreen
+* Toggle Direct3D fullscreen — Command value (32779)
 *
-* @return {number} - Command value (32779)
+* @const {number}
 */
-export function toggleDirect3dFullscreen() {
-    return 32779;
-}
+export const toggleDirect3dFullscreen = 32779;
 
 /**
-* Goto Prev Subtitle
+* Goto Prev Subtitle — Command value (32780)
 *
-* @return {number} - Command value (32780)
+* @const {number}
 */
-export function gotoPrevSubtitle() {
-    return 32780;
-}
+export const gotoPrevSubtitle = 32780;
 
 /**
-* Goto Next Subtitle
+* Goto Next Subtitle — Command value (32781)
 *
-* @return {number} - Command value (32781)
+* @const {number}
 */
-export function gotoNextSubtitle() {
-    return 32781;
-}
+export const gotoNextSubtitle = 32781;
 
 /**
-* Shift Subtitle Left
+* Shift Subtitle Left — Command value (32782)
 *
-* @return {number} - Command value (32782)
+* @const {number}
 */
-export function shiftSubtitleLeft() {
-    return 32782;
-}
+export const shiftSubtitleLeft = 32782;
 
 /**
-* Shift Subtitle Right
+* Shift Subtitle Right — Command value (32783)
 *
-* @return {number} - Command value (32783)
+* @const {number}
 */
-export function shiftSubtitleRight() {
-    return 32783;
-}
+export const shiftSubtitleRight = 32783;
 
 /**
-* OSD: Display Renderer Statistics
+* OSD: Display Renderer Statistics — Command value (32784)
 *
-* @return {number} - Command value (32784)
+* @const {number}
 */
-export function osdDisplayRendererStatistics() {
-    return 32784;
-}
+export const osdDisplayRendererStatistics = 32784;
 
 /**
-* OSD: Reset Renderer Statistics
+* OSD: Reset Renderer Statistics — Command value (32785)
 *
-* @return {number} - Command value (32785)
+* @const {number}
 */
-export function osdResetRendererStatistics() {
-    return 32785;
-}
+export const osdResetRendererStatistics = 32785;
 
 /**
-* VSync
+* VSync — Command value (33243)
 *
-* @return {number} - Command value (33243)
+* @const {number}
 */
-export function vsync() {
-    return 33243;
-}
+export const vsync = 33243;
 
 /**
-* Enable Frame Time Correction
+* Enable Frame Time Correction — Command value (33265)
 *
-* @return {number} - Command value (33265)
+* @const {number}
 */
-export function enableFrameTimeCorrection() {
-    return 33265;
-}
+export const enableFrameTimeCorrection = 33265;
 
 /**
-* Accurate VSync
+* Accurate VSync — Command value (33260)
 *
-* @return {number} - Command value (33260)
+* @const {number}
 */
-export function accurateVsync() {
-    return 33260;
-}
+export const accurateVsync = 33260;
 
 /**
-* Decrease VSync Offset
+* Decrease VSync Offset — Command value (33246)
 *
-* @return {number} - Command value (33246)
+* @const {number}
 */
-export function decreaseVsyncOffset() {
-    return 33246;
-}
+export const decreaseVsyncOffset = 33246;
 
 /**
-* Increase VSync Offset
+* Increase VSync Offset — Command value (33247)
 *
-* @return {number} - Command value (33247)
+* @const {number}
 */
-export function increaseVsyncOffset() {
-    return 33247;
-}
+export const increaseVsyncOffset = 33247;
 
 /**
-* Subtitle Delay -
+* Subtitle Delay - — Command value (24000)
 *
-* @return {number} - Command value (24000)
+* @const {number}
 */
-export function subtitleSubtractDelay() {
-    return 24000;
-}
+export const subtitleSubtractDelay = 24000;
 
 /**
-* Subtitle Delay +
+* Subtitle Delay + — Command value (24001)
 *
-* @return {number} - Command value (24001)
+* @const {number}
 */
-export function subtitleAddDelay() {
-    return 24001;
-}
+export const subtitleAddDelay = 24001;
 
 /**
-* After Playback: Do nothing
+* After Playback: Do nothing — Command value (948)
 *
-* @return {number} - Command value (948)
+* @const {number}
 */
-export function afterPlaybackDoNothing() {
-    return 948;
-}
+export const afterPlaybackDoNothing = 948;
 
 /**
-* After Playback: Play next file in the folder Folder
+* After Playback: Play next file in the folder Folder — Command value (947)
 *
-* @return {number} - Command value (947)
+* @const {number}
 */
-export function afterPlaybackPlayNextFileInTheFolder() {
-    return 947;
-}
+export const afterPlaybackPlayNextFileInTheFolder = 947;
 
 /**
-* After Playback: Turn off the monitor
+* After Playback: Turn off the monitor — Command value (918)
 *
-* @return {number} - Command value (918)
+* @const {number}
 */
-export function afterPlaybackTurnOffTheMonitor() {
-    return 918;
-}
+export const afterPlaybackTurnOffTheMonitor = 918;
 
 /**
-* After Playback: Exit
+* After Playback: Exit — Command value (912)
 *
-* @return {number} - Command value (912)
+* @const {number}
 */
-export function afterPlaybackExit() {
-    return 912;
-}
+export const afterPlaybackExit = 912;
 
 /**
-* After Playback: Stand By
+* After Playback: Stand By — Command value (913)
 *
-* @return {number} - Command value (913)
+* @const {number}
 */
-export function afterPlaybackStandBy() {
-    return 913;
-}
+export const afterPlaybackStandBy = 913;
 
 /**
-* After Playback: Hibernate
+* After Playback: Hibernate — Command value (914)
 *
-* @return {number} - Command value (914)
+* @const {number}
 */
-export function afterPlaybackHibernate() {
-    return 914;
-}
+export const afterPlaybackHibernate = 914;
 
 /**
-* After Playback: Shutdown
+* After Playback: Shutdown — Command value (915)
 *
-* @return {number} - Command value (915)
+* @const {number}
 */
-export function afterPlaybackShutdown() {
-    return 915;
-}
+export const afterPlaybackShutdown = 915;
 
 /**
-* After Playback: Log Off
+* After Playback: Log Off — Command value (916)
 *
-* @return {number} - Command value (916)
+* @const {number}
 */
-export function afterPlaybackLogOff() {
-    return 916;
-}
+export const afterPlaybackLogOff = 916;
 
 /**
-* After Playback: Lock
+* After Playback: Lock — Command value (917)
 *
-* @return {number} - Command value (917)
+* @const {number}
 */
-export function afterPlaybackLock() {
-    return 917;
-}
+export const afterPlaybackLock = 917;
 
 /**
-* Toggle EDL window
+* Toggle EDL window — Command value (846)
 *
-* @return {number} - Command value (846)
+* @const {number}
 */
-export function toggleEdlWindow() {
-    return 846;
-}
+export const toggleEdlWindow = 846;
 
 /**
-* EDL set In
+* EDL set In — Command value (847)
 *
-* @return {number} - Command value (847)
+* @const {number}
 */
-export function edlSetIn() {
-    return 847;
-}
+export const edlSetIn = 847;
 
 /**
-* EDL set Out
+* EDL set Out — Command value (848)
 *
-* @return {number} - Command value (848)
+* @const {number}
 */
-export function edlSetOut() {
-    return 848;
-}
+export const edlSetOut = 848;
 
 /**
-* EDL new clip
+* EDL new clip — Command value (849)
 *
-* @return {number} - Command value (849)
+* @const {number}
 */
-export function edlNewClip() {
-    return 849;
-}
+export const edlNewClip = 849;
 
 /**
-* EDL save
+* EDL save — Command value (860)
 *
-* @return {number} - Command value (860)
+* @const {number}
 */
-export function edlSave() {
-    return 860;
-}
+export const edlSave = 860;

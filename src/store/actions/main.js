@@ -1,12 +1,15 @@
-import { SEND_COMMAND } from './actionTypes';
+import { SET_IP, SET_PORT } from './actionTypes';
 
-export function sendCommand(url) {
+export const setIp = (value) => {
     return {
-        type: SEND_COMMAND,
-        payload: {
-            request: {
-                url
-            }
-        }
+        type: SET_IP,
+        value
     };
-}
+};
+
+export const setPort = (value) => {
+    return {
+        type: SET_PORT,
+        value
+    };
+};
