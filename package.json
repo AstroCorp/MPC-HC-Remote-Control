@@ -44,7 +44,7 @@
     "@react-native-community/eslint-config": "^2.0.0",
     "babel-jest": "^26.1.0",
     "eslint": "^7.5.0",
-    "jest": "^26.1.0",
+    "jest": "^26.4.2",
     "metro-react-native-babel-preset": "^0.60.0",
     "react-native-rename": "^2.4.1",
     "react-native-rename-next": "^2.5.3",
