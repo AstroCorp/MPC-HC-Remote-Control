@@ -4,7 +4,6 @@ import { Text, Button, ImageBackground, View, StyleSheet } from 'react-native';
 import Header from '../components/Header';
 import SafeAreaView from 'react-native-safe-area-view';
 import { WebView } from 'react-native-webview';
-import axios from "axios";
 import { sendCommand } from '../store/actions';
 import { volumeUp, volumeDown } from '../utils/commands';
 import { getVariables } from '../utils/variables';
@@ -29,6 +28,7 @@ const Home = (props) => {
                 source={{ 
                     uri: 'http://' + props.ip + ':' + props.port + '/variables.html'
                 }}
+                androidLayerType={'software'}
                 javaScriptEnabled={true}
                 injectedJavaScript={INJECTED_JAVASCRIPT}
                 onMessage={event => {
