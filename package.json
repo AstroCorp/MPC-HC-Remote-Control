@@ -12,7 +12,8 @@
     "clean": "rm -rf node_modules/ && rm yarn.lock && yarn cache clean && yarn install",
     "clean-android": "cd android && ./gradlew clean && cd ..",
     "clean-all": "yarn clean && yarn clean-android",
-    "android": "react-native run-android"
+    "android": "react-native run-android",
+    "nox-player": "adb connect 127.0.0.1:62001"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.12.1",
