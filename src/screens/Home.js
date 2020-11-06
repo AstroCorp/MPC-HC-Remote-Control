@@ -11,6 +11,8 @@ import { getVariables } from '../utils/variables';
 const Home = (props) => {
     const webview = useRef(null);
     const [mpcInfo, setMpcInfo] = useState(null);
+
+    // Para enviar el contenido del webview a react native
     const INJECTED_JAVASCRIPT =  `
         window.check = setInterval(() => {
             if(document.querySelector(".page-variables") !== null) {
@@ -22,7 +24,7 @@ const Home = (props) => {
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
-            <WebView 
+            <WebView
                 ref={webview}
                 containerStyle={{ display: 'none' }}
                 source={{ 
@@ -32,11 +34,22 @@ const Home = (props) => {
                 javaScriptEnabled={true}
                 injectedJavaScript={INJECTED_JAVASCRIPT}
                 onMessage={event => {
+                    // Recibimos el contenido del webview
                     setMpcInfo(getVariables(event.nativeEvent.data));
                     webview.current.reload();
                 }}
-                onError={() => {
-                    webview.current.reload();
+                onLoadEnd={(syntheticEvent) => {
+                    const { nativeEvent } = syntheticEvent;
+
+                    // Si ocurre un error al cargar eliminamos los datos
+                    if(nativeEvent.description === "net::ERR_CONNECTION_REFUSED") {
+                        setMpcInfo(null);
+                    }
+                    
+                    // Volvemos a intentar cargar
+                    setTimeout(() => {
+                        webview.current.reload();
+                    }, 500);
                 }}
             />
 
