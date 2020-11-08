@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, TouchableWithoutFeedback, Text, StyleSheet, StatusBar } from 'react-native';
-import { BackArrow, Settings } from '../assets/icons';
+import { BackArrowIcon, SettingsIcon } from '../assets/icons';
 
 const Header = (props) => (
     <View style={{ height: 60 }}>
@@ -9,7 +9,7 @@ const Header = (props) => (
             {props.title === 'Settings' && (
                 <TouchableWithoutFeedback onPress={() => props.navigation.goBack()}>
                     <View>
-                        <BackArrow color="#FFF" size="28" />
+                        <BackArrowIcon color="#FFF" size="28" />
                     </View>
                 </TouchableWithoutFeedback>
             )}
@@ -19,7 +19,7 @@ const Header = (props) => (
             {props.title !== 'Settings' && (
                 <TouchableWithoutFeedback onPress={() => props.navigation.navigate('Settings')}>
                     <View>
-                        <Settings color="#FFF" size="28" />
+                        <SettingsIcon color="#FFF" size="28" />
                     </View>
                 </TouchableWithoutFeedback>
             )}

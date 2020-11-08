@@ -1,12 +1,14 @@
 import React, { useRef, useState } from 'react';
+import Slider from '@react-native-community/slider';
 import { connect } from 'react-redux';
-import { Text, Button, ImageBackground, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, TouchableNativeFeedback, Dimensions } from 'react-native';
 import Header from '../components/Header';
 import SafeAreaView from 'react-native-safe-area-view';
 import { WebView } from 'react-native-webview';
 import { sendCommand } from '../store/actions';
 import { volumeUp, volumeDown } from '../utils/commands';
 import { getVariables } from '../utils/variables';
+import { VolumeDownIcon, VolumeUpIcon } from '../assets/icons';
 
 const Home = (props) => {
     const webview = useRef(null);
@@ -53,34 +55,88 @@ const Home = (props) => {
                 }}
             />
 
-            <Header title={props.ip + ' : ' + props.port} navigation={props.navigation} />
-            {/*
-            <ImageBackground source={image} style={styles.image}>
-                <View>
-                    <Text style={styles.text}>file.mp4</Text>
-                </View>
-            </ImageBackground>
-            */}
+            <Header title={props.ip + ':' + props.port} navigation={props.navigation} />
 
-            <Text>{JSON.stringify(mpcInfo)}</Text>
+            <View style={styles.infoPanel}>
+            {
+                mpcInfo && (
+                    <View style={styles.infoPanelContent}>
+                        <Text style={styles.textBold}>{ mpcInfo.file }</Text>
+                        <Text style={styles.text}>Vol - { mpcInfo.volumeLevel }%</Text>
+                    </View>
+                )
+            }
+            </View>
 
-            <Button title="Subir volumen" onPress={() => props.sendCommand(props.ip, props.port, volumeUp)} />
-            <Button title="Bajar volumen" onPress={() => props.sendCommand(props.ip, props.port, volumeDown)} />
+            <View style={styles.volumePanel}>
+                <TouchableNativeFeedback onPress={() => props.sendCommand(props.ip, props.port, volumeDown)}>
+                    <View style={styles.volumeButton}>
+                        <VolumeDownIcon color="#000000" size="28" />
+                    </View>
+                </TouchableNativeFeedback>
+
+                <Slider
+                    style={styles.slider}
+                    minimumValue={0}
+                    maximumValue={1}
+                    thumbTintColor="#346998"
+                    minimumTrackTintColor="#346998"
+                    maximumTrackTintColor="#000000"
+                />
+
+                <TouchableNativeFeedback onPress={() => props.sendCommand(props.ip, props.port, volumeUp)}>
+                    <View style={styles.volumeButton}>
+                        <VolumeUpIcon color="#000000" size="28" />
+                    </View>
+                </TouchableNativeFeedback>
+            </View>
         </SafeAreaView>
     );
 }
 
 const styles = StyleSheet.create({
-    image: {
-        flex: 1,
-        resizeMode: "cover",
-        justifyContent: "center"
+    infoPanel: {
+        height: '30%',
+        backgroundColor: 'red',
+        justifyContent: 'flex-end'
+    },
+
+    infoPanelContent: {
+        alignSelf: 'center',
+        marginBottom: 15,
     },
 
     text: {
         color: "#FFFFFF",
+        fontSize: 12,
+        textAlign: 'center',
+    },
+
+    textBold: {
+        color: "#FFFFFF",
         fontSize: 16,
-    }
+        fontWeight: 'bold',
+        textAlign: 'center',
+    },
+
+    volumePanel: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        marginTop: 10,
+    },
+
+    volumeButton: {
+        backgroundColor: 'red',
+        height: 48,
+        padding: 10,
+    },
+
+    slider: {
+        marginTop: 10,
+        height: 30,
+        width: Dimensions.get('window').width - 136,
+    },
 });
 
 const mapStateToProps = (state) => {
