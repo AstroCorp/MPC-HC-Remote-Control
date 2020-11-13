@@ -1,13 +1,13 @@
 import React, { useRef, useState } from 'react';
-import Slider from '@react-native-community/slider';
-import { connect } from 'react-redux';
 import { Text, View, StyleSheet, TouchableNativeFeedback, Dimensions } from 'react-native';
-import Header from '../components/Header';
+import { connect } from 'react-redux';
 import SafeAreaView from 'react-native-safe-area-view';
+import Slider from '@react-native-community/slider';
 import { WebView } from 'react-native-webview';
+import Header from '../components/Header';
 import { sendCommand } from '../store/actions';
-import { volumeUp, volumeDown } from '../utils/commands';
 import { getVariables } from '../utils/variables';
+import { volumeUp, volumeDown, volumeCustom } from '../utils/commands';
 import { VolumeDownIcon, VolumeUpIcon } from '../assets/icons';
 
 const Home = (props) => {
@@ -21,12 +21,13 @@ const Home = (props) => {
                 window.ReactNativeWebView.postMessage(document.querySelector(".page-variables").innerHTML);
                 clearInterval(window.check);
             }
-        }, 250);
+        }, 100);
     `;
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <WebView
+                key={props.ip + ':' + props.port}
                 ref={webview}
                 containerStyle={{ display: 'none' }}
                 source={{ 
@@ -44,57 +45,83 @@ const Home = (props) => {
                     const { nativeEvent } = syntheticEvent;
 
                     // Si ocurre un error al cargar eliminamos los datos
-                    if(nativeEvent.description === "net::ERR_CONNECTION_REFUSED") {
+                    if(nativeEvent.description === "net::ERR_CONNECTION_REFUSED" || !nativeEvent.title.length) {
                         setMpcInfo(null);
                     }
                     
                     // Volvemos a intentar cargar
                     setTimeout(() => {
                         webview.current.reload();
-                    }, 500);
+                    }, 100);
                 }}
             />
 
             <Header title={props.ip + ':' + props.port} navigation={props.navigation} />
 
-            <View style={styles.infoPanel}>
-            {
-                mpcInfo && (
-                    <View style={styles.infoPanelContent}>
-                        <Text style={styles.textBold}>{ mpcInfo.file }</Text>
-                        <Text style={styles.text}>Vol - { mpcInfo.volumeLevel }%</Text>
-                    </View>
-                )
-            }
-            </View>
+            <View style={styles.content}>
+                <View style={styles.infoPanel}>
+                {
+                    mpcInfo && (
+                        <View style={styles.infoPanelContent}>
+                            <Text style={styles.textBold}>{ mpcInfo.file }</Text>
+                            <Text style={styles.text}>Vol - { mpcInfo.volumeLevel }%</Text>
+                        </View>
+                    )
+                }
+                </View>
 
-            <View style={styles.volumePanel}>
-                <TouchableNativeFeedback onPress={() => props.sendCommand(props.ip, props.port, volumeDown)}>
-                    <View style={styles.volumeButton}>
-                        <VolumeDownIcon color="#000000" size="28" />
-                    </View>
-                </TouchableNativeFeedback>
+                <View style={styles.volumePanel}>
+                    <TouchableNativeFeedback onPress={() => props.sendCommand(
+                        { ip: props.ip, port: props.port}, 
+                        { code: volumeDown }
+                    )}>
+                        <View style={styles.volumeButton}>
+                            <VolumeDownIcon color="#000000" size="28" />
+                        </View>
+                    </TouchableNativeFeedback>
 
-                <Slider
-                    style={styles.slider}
-                    minimumValue={0}
-                    maximumValue={1}
-                    thumbTintColor="#346998"
-                    minimumTrackTintColor="#346998"
-                    maximumTrackTintColor="#000000"
-                />
+                    <Slider
+                        style={styles.slider}
+                        minimumValue={0}
+                        maximumValue={100}
+                        step={1}
+                        value={mpcInfo?.volumeLevel || 0}
+                        thumbTintColor="#346998"
+                        minimumTrackTintColor="#346998"
+                        maximumTrackTintColor="#000000"
+                        onSlidingComplete={(value) => props.sendCommand(
+                            { ip: props.ip, port: props.port}, 
+                            { code: volumeCustom, param: { name: 'volume', value } }
+                        )}
+                    />
 
-                <TouchableNativeFeedback onPress={() => props.sendCommand(props.ip, props.port, volumeUp)}>
-                    <View style={styles.volumeButton}>
-                        <VolumeUpIcon color="#000000" size="28" />
-                    </View>
-                </TouchableNativeFeedback>
+                    <TouchableNativeFeedback onPress={() => props.sendCommand(
+                        { ip: props.ip, port: props.port}, 
+                        { code: volumeUp }
+                    )}>
+                        <View style={styles.volumeButton}>
+                            <VolumeUpIcon color="#000000" size="28" />
+                        </View>
+                    </TouchableNativeFeedback>
+                </View>
+
+                {!mpcInfo && (
+				<View style={styles.syncView}>
+			    		<View style={styles.syncBox}>
+                            <Text style={styles.syncText}>Sincronizando con MPC-HC...</Text>
+                        </View>
+			    	</View>
+			    )}
             </View>
         </SafeAreaView>
     );
 }
 
 const styles = StyleSheet.create({
+    content: {
+        flex: 1
+    },
+
     infoPanel: {
         height: '30%',
         backgroundColor: 'red',
@@ -137,6 +164,26 @@ const styles = StyleSheet.create({
         height: 30,
         width: Dimensions.get('window').width - 136,
     },
+
+    syncView: {
+		position: 'absolute',
+		height: '100%',
+		width: '100%',
+		flex: 1,
+		backgroundColor: 'rgba(0, 0, 0, 0.5)',
+		justifyContent: 'center',
+		alignItems: 'center',
+    },
+    
+    syncBox: {
+        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+        padding: 20,
+        borderRadius: 5,
+    },
+
+	syncText: {
+		color: '#FFFFFF',
+	},
 });
 
 const mapStateToProps = (state) => {

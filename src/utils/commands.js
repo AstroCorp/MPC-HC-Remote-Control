@@ -755,6 +755,13 @@ export const pnsAddRotateZ = 881;
 export const pnsSubtractRotateZ = 882;
 
 /**
+* Volume Custom — Command value (-2)
+*
+* @const {number}
+*/
+export const volumeCustom = -2;
+
+/**
 * Volume Up — Command value (907)
 *
 * @const {number}

@@ -1,11 +1,10 @@
 import 'react-native-gesture-handler';
 
-import React, { useState, useEffect } from 'react';
-import { StatusBar, View, Text, StyleSheet } from 'react-native';
+import React, { useEffect } from 'react';
+import { StatusBar, StyleSheet } from 'react-native';
 import { Provider } from 'react-redux';
 import configureStore from './src/store/configureStore';
 import { PersistGate } from 'redux-persist/integration/react';
-import NetInfo from '@react-native-community/netinfo';
 
 import SplashScreen from 'react-native-splash-screen';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -22,18 +21,9 @@ const store = configureStore();
 const Stack = createNativeStackNavigator();
 
 const App = () => {
-	const [isConnected, setIsConnected] = useState(true);
-
 	useEffect(() => {
 		SplashScreen.hide();
-		toggleInternetStatus();
-
-		return () => toggleInternetStatus();
 	});
-
-	const toggleInternetStatus = () => {
-		NetInfo.addEventListener(state => setIsConnected(state.isConnected));
-	};
 
 	return (
 		<SafeAreaProvider>
@@ -47,12 +37,6 @@ const App = () => {
 							<Stack.Screen name="Settings" component={Settings} />
 						</Stack.Navigator>
 					</NavigationContainer>
-
-					{!isConnected && (
-						<View style={styles.bg}>
-							<Text style={styles.text}>Sin conexión</Text>
-						</View>
-					)}
 				</PersistGate>
 			</Provider>
 		</SafeAreaProvider>
@@ -60,20 +44,3 @@ const App = () => {
 };
 
 export default App;
-
-const styles = StyleSheet.create({
-	bg: {
-		position: 'absolute',
-		height: '100%',
-		width: '100%',
-		flex: 1,
-		backgroundColor: 'rgba(0,0,0,0.1)',
-		justifyContent: 'flex-end',
-		alignItems: 'center',
-	},
-
-	text: {
-		color: '#E51212',
-		marginBottom: 35,
-	},
-});
