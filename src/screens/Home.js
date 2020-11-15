@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Text, View, StyleSheet, TouchableNativeFeedback, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import SafeAreaView from 'react-native-safe-area-view';
@@ -12,7 +12,15 @@ import { VolumeDownIcon, VolumeUpIcon } from '../assets/icons';
 
 const Home = (props) => {
     const webview = useRef(null);
+    const [sync, setSync] = useState(false);
     const [mpcInfo, setMpcInfo] = useState(null);
+    
+    // Al desactivar la sincronización eliminamos los datos de MPC-HC
+    useEffect(() => {
+        if(!sync) {
+            setMpcInfo(null);
+        }
+    }, [sync]);
 
     // Para enviar el contenido del webview a react native
     const INJECTED_JAVASCRIPT =  `
@@ -26,37 +34,52 @@ const Home = (props) => {
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
-            <WebView
-                key={props.ip + ':' + props.port}
-                ref={webview}
-                containerStyle={{ display: 'none' }}
-                source={{ 
-                    uri: 'http://' + props.ip + ':' + props.port + '/variables.html'
-                }}
-                androidLayerType={'software'}
-                javaScriptEnabled={true}
-                injectedJavaScript={INJECTED_JAVASCRIPT}
-                onMessage={event => {
-                    // Recibimos el contenido del webview
-                    setMpcInfo(getVariables(event.nativeEvent.data));
-                    webview.current.reload();
-                }}
-                onLoadEnd={(syntheticEvent) => {
-                    const { nativeEvent } = syntheticEvent;
+            {
+                sync && (
+                    <WebView
+                        key={props.ip + ':' + props.port}
+                        ref={webview}
+                        containerStyle={{ display: 'none' }}
+                        source={{ 
+                            uri: 'http://' + props.ip + ':' + props.port + '/variables.html'
+                        }}
+                        androidLayerType={'software'}
+                        javaScriptEnabled={true}
+                        injectedJavaScript={INJECTED_JAVASCRIPT}
+                        onMessage={event => {
+                            // Recibimos el contenido del webview
+                            setMpcInfo(getVariables(event.nativeEvent.data));
+                            
+                            // Recargamos para obtener nuevos datos
+                            if(webview.current !== null && sync) {
+                                webview.current.reload();
+                            }
+                        }}
+                        onLoadEnd={(syntheticEvent) => {
+                            const { nativeEvent } = syntheticEvent;
+                            
+                            // Si ocurre un error al cargar eliminamos los datos
+                            if(nativeEvent.description === "net::ERR_CONNECTION_REFUSED" || !nativeEvent.title.length) {
+                                setMpcInfo(null);
+                            }
 
-                    // Si ocurre un error al cargar eliminamos los datos
-                    if(nativeEvent.description === "net::ERR_CONNECTION_REFUSED" || !nativeEvent.title.length) {
-                        setMpcInfo(null);
-                    }
-                    
-                    // Volvemos a intentar cargar
-                    setTimeout(() => {
-                        webview.current.reload();
-                    }, 100);
-                }}
+                            // Volvemos a intentar cargar los datos
+                            setTimeout(() => {
+                                if(webview.current !== null && sync) {
+                                    webview.current.reload();
+                                }
+                            }, 100);
+                        }}
+                    />
+                )
+            }
+
+            <Header 
+                title={props.ip + ':' + props.port} 
+                sync={sync}
+                setSync={setSync}
+                navigation={props.navigation} 
             />
-
-            <Header title={props.ip + ':' + props.port} navigation={props.navigation} />
 
             <View style={styles.content}>
                 <View style={styles.infoPanel}>
@@ -105,10 +128,18 @@ const Home = (props) => {
                     </TouchableNativeFeedback>
                 </View>
 
-                {!mpcInfo && (
+                {!mpcInfo && sync && (
 				<View style={styles.syncView}>
 			    		<View style={styles.syncBox}>
                             <Text style={styles.syncText}>Sincronizando con MPC-HC...</Text>
+                        </View>
+			    	</View>
+			    )}
+
+                {!sync && (
+				<View style={styles.syncView}>
+			    		<View style={styles.syncBox}>
+                            <Text style={styles.syncText}>Sincronización desactivada</Text>
                         </View>
 			    	</View>
 			    )}

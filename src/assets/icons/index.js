@@ -1,4 +1,6 @@
 export { default as BackArrowIcon } from "./BackArrowIcon";
+export { default as DisableSyncIcon } from "./DisableSyncIcon";
+export { default as EnableSyncIcon } from "./EnableSyncIcon";
 export { default as FastForwardIcon } from "./FastForwardIcon";
 export { default as FastRewindIcon } from "./FastRewindIcon";
 export { default as PauseIcon } from "./PauseIcon";
