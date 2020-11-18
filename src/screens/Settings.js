@@ -1,19 +1,25 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Text, Button, TextInput } from 'react-native';
-import Header from '../components/Header';
 import SafeAreaView from 'react-native-safe-area-view';
-import { setIp, setPort } from '../store/actions';
+import { Header } from '../components';
+import { setIp, setPort, setMpcHcInfo, setSyncEnabled } from '../store/actions';
 
 const Settings = (props) => {
-    const [ip, onChangeIp] = useState(props.ip);
-    const [port, onChangePort] = useState(props.port);
+    const [ ip, onChangeIp ] = useState(props.ip);
+    const [ port, onChangePort ] = useState(props.port);
 
     const submit = () => {
-        props.setIp(ip);
-        props.setPort(port);
+        if(props.ip !== ip || props.port !== port)
+        {
+            props.setMpcHcInfo(null);
+            props.setSyncEnabled(false);
 
-        alert('Updated ip and port'); // Temporal
+            props.setIp(ip);
+            props.setPort(port);
+            
+            alert('Updated ip and port'); // Temporal
+        }
     };
 
     return (
@@ -44,6 +50,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         setIp: (value) => dispatch(setIp(value)),
         setPort: (value) => dispatch(setPort(value)),
+        setMpcHcInfo: (value) => dispatch(setMpcHcInfo(value)),
+        setSyncEnabled: (value) => dispatch(setSyncEnabled(value)),
     };
 }
 

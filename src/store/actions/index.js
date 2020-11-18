@@ -1,2 +1,3 @@
-export { setIp, setPort } from "./main";
-export { sendCommand } from "./axios";
+export { setIp, setPort } from './main';
+export { setMpcHcInfo, setSyncEnabled } from './temp';
+export { sendCommand } from './axios';

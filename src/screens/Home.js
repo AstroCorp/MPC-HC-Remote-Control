@@ -1,26 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Text, View, StyleSheet, TouchableNativeFeedback, Dimensions } from 'react-native';
+import React, { useRef } from 'react';
+import { Text, View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import SafeAreaView from 'react-native-safe-area-view';
-import Slider from '@react-native-community/slider';
 import { WebView } from 'react-native-webview';
-import Header from '../components/Header';
-import { sendCommand } from '../store/actions';
+import { Header, VolumeController } from '../components';
+import { setMpcHcInfo } from '../store/actions';
 import { getVariables } from '../utils/variables';
-import { volumeUp, volumeDown, volumeCustom } from '../utils/commands';
-import { VolumeDownIcon, VolumeUpIcon } from '../assets/icons';
 
 const Home = (props) => {
     const webview = useRef(null);
-    const [sync, setSync] = useState(false);
-    const [mpcInfo, setMpcInfo] = useState(null);
-    
-    // Al desactivar la sincronización eliminamos los datos de MPC-HC
-    useEffect(() => {
-        if(!sync) {
-            setMpcInfo(null);
-        }
-    }, [sync]);
 
     // Para enviar el contenido del webview a react native
     const INJECTED_JAVASCRIPT =  `
@@ -29,13 +17,13 @@ const Home = (props) => {
                 window.ReactNativeWebView.postMessage(document.querySelector(".page-variables").innerHTML);
                 clearInterval(window.check);
             }
-        }, 100);
+        }, 50);
     `;
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
             {
-                sync && (
+                props.sync_enabled && (
                     <WebView
                         key={props.ip + ':' + props.port}
                         ref={webview}
@@ -48,10 +36,10 @@ const Home = (props) => {
                         injectedJavaScript={INJECTED_JAVASCRIPT}
                         onMessage={event => {
                             // Recibimos el contenido del webview
-                            setMpcInfo(getVariables(event.nativeEvent.data));
+                            props.setMpcHcInfo(getVariables(event.nativeEvent.data));
                             
                             // Recargamos para obtener nuevos datos
-                            if(webview.current !== null && sync) {
+                            if(webview.current !== null && props.sync_enabled) {
                                 webview.current.reload();
                             }
                         }}
@@ -60,75 +48,37 @@ const Home = (props) => {
                             
                             // Si ocurre un error al cargar eliminamos los datos
                             if(nativeEvent.description === "net::ERR_CONNECTION_REFUSED" || !nativeEvent.title.length) {
-                                setMpcInfo(null);
+                                props.setMpcHcInfo(null);
                             }
 
                             // Volvemos a intentar cargar los datos
                             setTimeout(() => {
-                                if(webview.current !== null && sync) {
+                                if(webview.current !== null && props.sync_enabled) {
                                     webview.current.reload();
                                 }
-                            }, 100);
+                            }, 50);
                         }}
                     />
                 )
             }
 
-            <Header 
-                title={props.ip + ':' + props.port} 
-                sync={sync}
-                setSync={setSync}
-                navigation={props.navigation} 
-            />
+            <Header navigation={props.navigation} />
 
             <View style={styles.content}>
                 <View style={styles.infoPanel}>
                 {
-                    mpcInfo && (
+                    props.mpc_hc_info && (
                         <View style={styles.infoPanelContent}>
-                            <Text style={styles.textBold}>{ mpcInfo.file }</Text>
-                            <Text style={styles.text}>Vol - { mpcInfo.volumeLevel }%</Text>
+                            <Text style={styles.textBold}>{ props.mpc_hc_info.file }</Text>
+                            <Text style={styles.text}>Vol - { props.mpc_hc_info.volumeLevel }%</Text>
                         </View>
                     )
                 }
                 </View>
 
-                <View style={styles.volumePanel}>
-                    <TouchableNativeFeedback onPress={() => props.sendCommand(
-                        { ip: props.ip, port: props.port}, 
-                        { code: volumeDown }
-                    )}>
-                        <View style={styles.volumeButton}>
-                            <VolumeDownIcon color="#000000" size="28" />
-                        </View>
-                    </TouchableNativeFeedback>
+                <VolumeController />
 
-                    <Slider
-                        style={styles.slider}
-                        minimumValue={0}
-                        maximumValue={100}
-                        step={1}
-                        value={mpcInfo?.volumeLevel || 0}
-                        thumbTintColor="#346998"
-                        minimumTrackTintColor="#346998"
-                        maximumTrackTintColor="#000000"
-                        onSlidingComplete={(value) => props.sendCommand(
-                            { ip: props.ip, port: props.port}, 
-                            { code: volumeCustom, param: { name: 'volume', value } }
-                        )}
-                    />
-
-                    <TouchableNativeFeedback onPress={() => props.sendCommand(
-                        { ip: props.ip, port: props.port}, 
-                        { code: volumeUp }
-                    )}>
-                        <View style={styles.volumeButton}>
-                            <VolumeUpIcon color="#000000" size="28" />
-                        </View>
-                    </TouchableNativeFeedback>
-                </View>
-
-                {!mpcInfo && sync && (
+                {!props.mpc_hc_info && props.sync_enabled && (
 				<View style={styles.syncView}>
 			    		<View style={styles.syncBox}>
                             <Text style={styles.syncText}>Sincronizando con MPC-HC...</Text>
@@ -136,7 +86,7 @@ const Home = (props) => {
 			    	</View>
 			    )}
 
-                {!sync && (
+                {!props.sync_enabled && (
 				<View style={styles.syncView}>
 			    		<View style={styles.syncBox}>
                             <Text style={styles.syncText}>Sincronización desactivada</Text>
@@ -177,25 +127,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
 
-    volumePanel: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        marginTop: 10,
-    },
-
-    volumeButton: {
-        backgroundColor: 'red',
-        height: 48,
-        padding: 10,
-    },
-
-    slider: {
-        marginTop: 10,
-        height: 30,
-        width: Dimensions.get('window').width - 136,
-    },
-
     syncView: {
 		position: 'absolute',
 		height: '100%',
@@ -221,12 +152,14 @@ const mapStateToProps = (state) => {
     return {
         ip: state.mainReducer.ip,
         port: state.mainReducer.port,
+        mpc_hc_info: state.tempReducer.mpc_hc_info,
+        sync_enabled: state.tempReducer.sync_enabled,
     };
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        sendCommand: (ip, port, wm_command) => dispatch(sendCommand(ip, port, wm_command)),
+        setMpcHcInfo: (value) => dispatch(setMpcHcInfo(value)),
     };
 }
 
