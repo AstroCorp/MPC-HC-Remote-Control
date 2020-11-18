@@ -5,7 +5,3 @@
 ## MPC-HC
 
 Aunque MPC-HC ya no es mantenido de forma oficial existe un fork de este: https://github.com/clsid2/mpc-hc
-
-## Documentación
-
-> En desarrollo...
