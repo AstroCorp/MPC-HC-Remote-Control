@@ -1,66 +1,13 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import SafeAreaView from 'react-native-safe-area-view';
-import { WebView } from 'react-native-webview';
-import { Header, VolumeController } from '../components';
-import { setMpcHcInfo } from '../store/actions';
-import { getVariables } from '../utils/variables';
+import { Header, MediaInfoController, VolumeController, StatusModal } from '../components';
 
 const Home = (props) => {
-    const webview = useRef(null);
-
-    // Para enviar el contenido del webview a react native
-    const INJECTED_JAVASCRIPT =  `
-        window.check = setInterval(() => {
-            if(document.querySelector(".page-variables") !== null) {
-                window.ReactNativeWebView.postMessage(document.querySelector(".page-variables").innerHTML);
-                clearInterval(window.check);
-            }
-        }, 50);
-    `;
-
     return (
         <SafeAreaView style={{ flex: 1 }}>
-            {
-                props.sync_enabled && (
-                    <WebView
-                        key={props.ip + ':' + props.port}
-                        ref={webview}
-                        containerStyle={{ display: 'none' }}
-                        source={{ 
-                            uri: 'http://' + props.ip + ':' + props.port + '/variables.html'
-                        }}
-                        androidLayerType={'software'}
-                        javaScriptEnabled={true}
-                        injectedJavaScript={INJECTED_JAVASCRIPT}
-                        onMessage={event => {
-                            // Recibimos el contenido del webview
-                            props.setMpcHcInfo(getVariables(event.nativeEvent.data));
-                            
-                            // Recargamos para obtener nuevos datos
-                            if(webview.current !== null && props.sync_enabled) {
-                                webview.current.reload();
-                            }
-                        }}
-                        onLoadEnd={(syntheticEvent) => {
-                            const { nativeEvent } = syntheticEvent;
-                            
-                            // Si ocurre un error al cargar eliminamos los datos
-                            if(nativeEvent.description === "net::ERR_CONNECTION_REFUSED" || !nativeEvent.title.length) {
-                                props.setMpcHcInfo(null);
-                            }
-
-                            // Volvemos a intentar cargar los datos
-                            setTimeout(() => {
-                                if(webview.current !== null && props.sync_enabled) {
-                                    webview.current.reload();
-                                }
-                            }, 50);
-                        }}
-                    />
-                )
-            }
+            <MediaInfoController />
 
             <Header navigation={props.navigation} />
 
@@ -78,21 +25,17 @@ const Home = (props) => {
 
                 <VolumeController />
 
-                {!props.mpc_hc_info && props.sync_enabled && (
-				<View style={styles.syncView}>
-			    		<View style={styles.syncBox}>
-                            <Text style={styles.syncText}>Sincronizando con MPC-HC...</Text>
-                        </View>
-			    	</View>
-			    )}
+                {
+                    !props.mpc_hc_info && props.sync_enabled && (
+                        <StatusModal message='Sincronizando con MPC-HC...' />
+			        )
+                }
 
-                {!props.sync_enabled && (
-				<View style={styles.syncView}>
-			    		<View style={styles.syncBox}>
-                            <Text style={styles.syncText}>Sincronización desactivada</Text>
-                        </View>
-			    	</View>
-			    )}
+                {
+                    !props.sync_enabled && (
+                        <StatusModal message='Sincronización desactivada' />
+			        )
+                }
             </View>
         </SafeAreaView>
     );
@@ -126,26 +69,6 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center',
     },
-
-    syncView: {
-		position: 'absolute',
-		height: '100%',
-		width: '100%',
-		flex: 1,
-		backgroundColor: 'rgba(0, 0, 0, 0.5)',
-		justifyContent: 'center',
-		alignItems: 'center',
-    },
-    
-    syncBox: {
-        backgroundColor: 'rgba(0, 0, 0, 0.8)',
-        padding: 20,
-        borderRadius: 5,
-    },
-
-	syncText: {
-		color: '#FFFFFF',
-	},
 });
 
 const mapStateToProps = (state) => {
@@ -159,7 +82,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setMpcHcInfo: (value) => dispatch(setMpcHcInfo(value)),
+        //
     };
 }
 
