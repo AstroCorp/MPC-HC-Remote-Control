@@ -1,12 +1,25 @@
 import React from 'react';
 import { Text, View, StyleSheet, TouchableNativeFeedback, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
-import Slider from '@react-native-community/slider';
+import MultiSlider from '@ptomasroos/react-native-multi-slider';
 import { sendCommand } from '../store/actions';
 import { volumeUp, volumeDown, volumeCustom } from '../utils/commands';
 import { VolumeDownIcon, VolumeUpIcon } from '../assets/icons';
 
 const VolumeController = (props) => {
+    const customLabel = (ev) => {
+        if(!ev.oneMarkerPressed)
+        {
+            return null;
+        }
+
+        return (
+            <View style={{ position: 'relative', width: '100%' }}>
+                <Text style={[ styles.customLabel, { left: ev.oneMarkerLeftPosition - 20 }]}>{ev.oneMarkerValue}</Text>
+            </View>
+        );
+    }
+
     return (
         <View style={styles.volumePanel}>
             <TouchableNativeFeedback onPress={() => props.sendCommand(
@@ -18,20 +31,33 @@ const VolumeController = (props) => {
                 </View>
             </TouchableNativeFeedback>
 
-            <Slider
-                style={styles.slider}
-                minimumValue={0}
-                maximumValue={100}
-                step={1}
-                value={props.mpc_hc_info?.volumeLevel || 0}
-                thumbTintColor="#346998"
-                minimumTrackTintColor="#346998"
-                maximumTrackTintColor="#000000"
-                onSlidingComplete={(value) => props.sendCommand(
-                    { ip: props.ip, port: props.port },
-                    { code: volumeCustom, param: { name: 'volume', value } }
-                )}
-            />
+            <View>
+                <MultiSlider
+                    selectedStyle={{
+                        backgroundColor: '#346998',
+                    }}
+                    unselectedStyle={{
+                        backgroundColor: '#AAAAAA',
+                    }}
+                    containerStyle={{
+                        height: 50,
+                    }}
+                    markerStyle={{
+                        backgroundColor: '#346998',
+                        marginTop: 2,
+                    }}
+                    enableLabel
+                    customLabel={customLabel}
+                    min={0}
+                    max={101}
+                    step={1}
+                    values={[props.mpc_hc_info?.volumeLevel || 0]}
+                    onValuesChangeFinish={(value) => props.sendCommand(
+                        { ip: props.ip, port: props.port },
+                        { code: volumeCustom, param: { name: 'volume', value } }
+                    )}
+                />
+            </View>
 
             <TouchableNativeFeedback onPress={() => props.sendCommand(
                 { ip: props.ip, port: props.port },
@@ -63,6 +89,14 @@ const styles = StyleSheet.create({
         marginTop: 10,
         height: 30,
         width: Dimensions.get('window').width - 136,
+    },
+
+    customLabel: {
+        position: 'absolute',
+        width: 40,
+        backgroundColor: 'red',
+        textAlign: 'center',
+        marginTop: -6,
     },
 });
 
