@@ -28,6 +28,5 @@ export const msToTime = (ms) => {
 }
 
 export const msToPercent = (duration, ms) => {
-    console.log(ruleOfThree(duration, 100, ms))
     return ruleOfThree(duration, 100, ms);
 }
