@@ -19,7 +19,8 @@ const styles = StyleSheet.create({
     infoPanel: {
         height: '30%',
         backgroundColor: 'red',
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
+        marginBottom: 10,
     },
 
     infoPanelContent: {

@@ -15,7 +15,9 @@ const VolumeController = (props) => {
 
         return (
             <View style={{ position: 'relative', width: '100%' }}>
-                <Text style={[ styles.customLabel, { left: ev.oneMarkerLeftPosition - 20 }]}>{ev.oneMarkerValue}</Text>
+                <Text style={[ styles.customLabel, { left: ev.oneMarkerLeftPosition - 20 }]}>
+                    {ev.oneMarkerValue}
+                </Text>
             </View>
         );
     }
@@ -31,7 +33,7 @@ const VolumeController = (props) => {
                 </View>
             </TouchableNativeFeedback>
 
-            <View>
+            <View style={{ marginHorizontal: 20 }}>
                 <MultiSlider
                     selectedStyle={{
                         backgroundColor: '#346998',
@@ -51,6 +53,7 @@ const VolumeController = (props) => {
                     min={0}
                     max={101}
                     step={1}
+                    sliderLength={Dimensions.get('window').width - 156}
                     values={[props.mpc_hc_info?.volumeLevel || 0]}
                     onValuesChangeFinish={(value) => props.sendCommand(
                         { ip: props.ip, port: props.port },
@@ -76,19 +79,14 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-around',
-        marginTop: 10,
+        paddingHorizontal: 10,
     },
 
     volumeButton: {
         backgroundColor: 'red',
         height: 48,
+        width: 48,
         padding: 10,
-    },
-
-    slider: {
-        marginTop: 10,
-        height: 30,
-        width: Dimensions.get('window').width - 136,
     },
 
     customLabel: {

@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
 import SafeAreaView from 'react-native-safe-area-view';
-import { Header, MediaInfoController, InfoPanel, VolumeController, StatusModal } from '../components';
+import { Header, MediaInfoController, InfoPanel, VolumeController, TimeController, StatusModal } from '../components';
 
 const Home = (props) => (
     <SafeAreaView style={{ flex: 1 }}>
@@ -11,9 +11,13 @@ const Home = (props) => (
         <Header navigation={props.navigation} />
 
         <View style={{ flex: 1 }}>
-            <InfoPanel />
+            <View style={{ flex: 1, display: props.mpc_hc_info ? 'flex' : 'none' }}>
+                <InfoPanel />
 
-            <VolumeController />
+                <TimeController />
+
+                <VolumeController />
+            </View>
             
             {
                 !props.mpc_hc_info && props.sync_enabled && (

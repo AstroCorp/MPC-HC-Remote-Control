@@ -37,11 +37,11 @@ const Header = (props) => {
                         <TouchableWithoutFeedback onPress={toggleSync}>
                             <View style={[styles.icon, styles.syncIcon]}>
                                 {
-                                    !props.sync_enabled 
+                                    props.sync_enabled 
                                     ? 
-                                        <DisableSyncIcon color="#FFF" size="28" />
-                                    :
                                         <EnableSyncIcon color="#FFF" size="28" />
+                                    :
+                                        <DisableSyncIcon color="#FFF" size="28" />
                                 }
                             </View>
                         </TouchableWithoutFeedback>

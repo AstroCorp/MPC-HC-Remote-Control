@@ -759,7 +759,7 @@ export const pnsSubtractRotateZ = 882;
 *
 * @const {number}
 */
-export const TimeCustom = -1;
+export const timeCustom = -1;
 
 /**
 * Volume Custom — Command value (-2) — Param: volume
