@@ -6,6 +6,7 @@ import { sendCommand } from '../store/actions';
 import { msToTime, msToPercent } from '../utils/extras';
 import { PlayArrowIcon, PauseIcon } from '../assets/icons';
 import { timeCustom, togglePlayAndPause } from '../utils/commands';
+import colors from '../utils/colors';
 
 const TimeController = (props) => {
     const customLabel = (ev) => {
@@ -16,7 +17,7 @@ const TimeController = (props) => {
         return (
             <View style={{ position: 'relative', width: '100%' }}>
                 <Text style={[ styles.customLabel, { left: ev.oneMarkerLeftPosition - 20 }]}>
-                    {msToTime(ev.oneMarkerValue)}
+                    { msToTime(ev.oneMarkerValue) }
                 </Text>
             </View>
         );
@@ -25,22 +26,22 @@ const TimeController = (props) => {
     return (
         <View style={styles.timePanel}>
             <View style={styles.times}>
-                <Text>{msToTime(props.mpc_hc_info?.position)}</Text>
-                <Text>{msToTime(props.mpc_hc_info?.duration)}</Text>
+                <Text style={styles.timeText}>{ msToTime(props.mpc_hc_info?.position) }</Text>
+                <Text style={styles.timeText}>{ msToTime(props.mpc_hc_info?.duration) }</Text>
             </View>
 
             <MultiSlider
                 selectedStyle={{
-                    backgroundColor: '#346998',
+                    backgroundColor: colors.slider.button,
                 }}
                 unselectedStyle={{
-                    backgroundColor: '#AAAAAA',
+                    backgroundColor: colors.slider.bg,
                 }}
                 containerStyle={{
                     height: 50,
                 }}
                 markerStyle={{
-                    backgroundColor: '#346998',
+                    backgroundColor: colors.slider.button,
                     marginTop: 2,
                 }}
                 enableLabel
@@ -68,13 +69,13 @@ const TimeController = (props) => {
                     <View style={styles.timeButton}>
                         {
                             props.mpc_hc_info?.state === 1 && (
-                                <PlayArrowIcon color="#000000" size="28" />
+                                <PlayArrowIcon color={colors.icon} size="28" />
                             )
                         }
 
                         {
                             props.mpc_hc_info?.state === 2 && (
-                                <PauseIcon color="#000000" size="28" />
+                                <PauseIcon color={colors.icon} size="28" />
                             )
                         }
                     </View>
@@ -95,8 +96,12 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
 
+    timeText: {
+        color: colors.text,
+    },
+
     timeButton: {
-        backgroundColor: 'red',
+        backgroundColor: colors.button,
         height: 48,
         width: 48,
         padding: 10,
@@ -105,7 +110,8 @@ const styles = StyleSheet.create({
     customLabel: {
         position: 'absolute',
         width: 70,
-        backgroundColor: 'red',
+        backgroundColor: colors.slider.label.bg,
+        color: colors.slider.label.text,
         textAlign: 'center',
         marginTop: -6,
     },

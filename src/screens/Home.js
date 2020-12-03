@@ -1,11 +1,10 @@
 import React from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
-import SafeAreaView from 'react-native-safe-area-view';
-import { Header, MediaInfoController, InfoPanel, VolumeController, TimeController, StatusModal } from '../components';
+import { Header, MediaInfoController, InfoPanel, VolumeController, TimeController, StatusModal, MainContent } from '../components';
 
 const Home = (props) => (
-    <SafeAreaView style={{ flex: 1 }}>
+    <MainContent>
         <MediaInfoController />
 
         <Header navigation={props.navigation} />
@@ -31,7 +30,7 @@ const Home = (props) => (
 		        )
             }
         </View>
-    </SafeAreaView>
+    </MainContent>
 );
 
 const mapStateToProps = (state) => {

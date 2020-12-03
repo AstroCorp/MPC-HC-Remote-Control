@@ -28,6 +28,7 @@ const MediaInfoController = (props) => {
                     uri: 'http://' + props.ip + ':' + props.port + '/variables.html'
                 }}
                 androidLayerType={'software'}
+                setSupportMultipleWindows={false}
                 javaScriptEnabled={true}
                 injectedJavaScript={INJECTED_JAVASCRIPT}
                 onMessage={event => {

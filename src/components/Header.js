@@ -3,6 +3,7 @@ import { View, TouchableWithoutFeedback, Text, StyleSheet, StatusBar } from 'rea
 import { connect } from 'react-redux';
 import { BackArrowIcon, SettingsIcon, EnableSyncIcon, DisableSyncIcon } from '../assets/icons';
 import { setMpcHcInfo, setSyncEnabled } from '../store/actions';
+import colors from '../utils/colors';
 
 const Header = (props) => {
     const title = props.title || props.ip + ':' + props.port;
@@ -13,24 +14,26 @@ const Header = (props) => {
 
     return (
         <View style={{ height: 60 }}>
-            <StatusBar backgroundColor="#346998" />
+            <StatusBar backgroundColor={colors.statusBar} />
     
             <View style={styles.header}>
                 {props.title === 'Settings' && (
                     <TouchableWithoutFeedback onPress={() => props.navigation.goBack()}>
                         <View style={styles.icon}>
-                            <BackArrowIcon color="#FFF" size="28" />
+                            <BackArrowIcon color={colors.icon} size="28" />
                         </View>
                     </TouchableWithoutFeedback>
                 )}
     
-                <Text style={[styles.title, props.title === 'Settings' && styles.titleSettings]}>{title}</Text>
+                <Text style={[styles.title, props.title === 'Settings' && styles.titleSettings]}>
+                    { title }
+                </Text>
     
                 {props.title !== 'Settings' && (
                     <View style={styles.options}>
                         <TouchableWithoutFeedback onPress={() => props.navigation.navigate('Settings')}>
                             <View style={styles.icon}>
-                                <SettingsIcon color="#FFF" size="28" />
+                                <SettingsIcon color={colors.icon} size="28" />
                             </View>
                         </TouchableWithoutFeedback>
     
@@ -39,9 +42,9 @@ const Header = (props) => {
                                 {
                                     props.sync_enabled 
                                     ? 
-                                        <EnableSyncIcon color="#FFF" size="28" />
+                                        <EnableSyncIcon color={colors.icon} size="28" />
                                     :
-                                        <DisableSyncIcon color="#FFF" size="28" />
+                                        <DisableSyncIcon color={colors.icon} size="28" />
                                 }
                             </View>
                         </TouchableWithoutFeedback>
@@ -54,7 +57,6 @@ const Header = (props) => {
 
 const styles = StyleSheet.create({
     header: {
-        backgroundColor: '#3E7DB4',
         height: 60,
         paddingHorizontal: 15,
         flex: 1,
@@ -69,7 +71,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 20,
         marginTop: -2,
-        color: "#FFF"
+        color: colors.text
     },
 
     options: {

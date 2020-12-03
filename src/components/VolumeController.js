@@ -5,18 +5,18 @@ import MultiSlider from '@ptomasroos/react-native-multi-slider';
 import { sendCommand } from '../store/actions';
 import { volumeUp, volumeDown, volumeCustom } from '../utils/commands';
 import { VolumeDownIcon, VolumeUpIcon } from '../assets/icons';
+import colors from '../utils/colors';
 
 const VolumeController = (props) => {
     const customLabel = (ev) => {
-        if(!ev.oneMarkerPressed)
-        {
+        if (!ev.oneMarkerPressed) {
             return null;
         }
 
         return (
             <View style={{ position: 'relative', width: '100%' }}>
                 <Text style={[ styles.customLabel, { left: ev.oneMarkerLeftPosition - 20 }]}>
-                    {ev.oneMarkerValue}
+                    { ev.oneMarkerValue }
                 </Text>
             </View>
         );
@@ -29,23 +29,23 @@ const VolumeController = (props) => {
                 { code: volumeDown }
             )}>
                 <View style={styles.volumeButton}>
-                    <VolumeDownIcon color="#000000" size="28" />
+                    <VolumeDownIcon color={colors.icon} size="28" />
                 </View>
             </TouchableNativeFeedback>
 
             <View style={{ marginHorizontal: 20 }}>
                 <MultiSlider
                     selectedStyle={{
-                        backgroundColor: '#346998',
+                    backgroundColor: colors.slider.button,
                     }}
                     unselectedStyle={{
-                        backgroundColor: '#AAAAAA',
+                        backgroundColor: colors.slider.bg,
                     }}
                     containerStyle={{
                         height: 50,
                     }}
                     markerStyle={{
-                        backgroundColor: '#346998',
+                        backgroundColor: colors.slider.button,
                         marginTop: 2,
                     }}
                     enableLabel
@@ -67,7 +67,7 @@ const VolumeController = (props) => {
                 { code: volumeUp }
             )}>
                 <View style={styles.volumeButton}>
-                    <VolumeUpIcon color="#000000" size="28" />
+                    <VolumeUpIcon color={colors.icon} size="28" />
                 </View>
             </TouchableNativeFeedback>
         </View>
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     },
 
     volumeButton: {
-        backgroundColor: 'red',
+        backgroundColor: colors.button,
         height: 48,
         width: 48,
         padding: 10,
@@ -92,7 +92,8 @@ const styles = StyleSheet.create({
     customLabel: {
         position: 'absolute',
         width: 40,
-        backgroundColor: 'red',
+        backgroundColor: colors.slider.label.bg,
+        color: colors.slider.label.text,
         textAlign: 'center',
         marginTop: -6,
     },

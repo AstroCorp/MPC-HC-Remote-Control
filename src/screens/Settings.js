@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Text, Button, TextInput } from 'react-native';
-import SafeAreaView from 'react-native-safe-area-view';
-import { Header } from '../components';
+import { Text, View, TouchableNativeFeedback, TextInput, StyleSheet } from 'react-native';
+import { Header, MainContent } from '../components';
 import { setIp, setPort, setMpcHcInfo, setSyncEnabled } from '../store/actions';
 
 const Settings = (props) => {
@@ -23,21 +22,63 @@ const Settings = (props) => {
     };
 
     return (
-        <SafeAreaView forceInset={{ top: 'always', horizontal: 'never' }}>
+        <MainContent>
             <Header title="Settings" navigation={props.navigation} />
 
-            <TextInput
-                onChangeText={text => onChangeIp(text)}
-                value={ip} />
+            <View style={styles.cont}>
+                <View>
+                    <Text style={styles.text}>IP</Text>
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={text => onChangeIp(text)}
+                        value={ip} />
+                </View>
 
-            <TextInput
-                onChangeText={text => onChangePort(text)}
-                value={port} />
+                <View>
+                    <Text style={styles.text}>Port</Text>
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={text => onChangePort(text)}
+                        value={port} />
+                </View>
 
-            <Button title="Update ip and port" onPress={submit} />
-        </SafeAreaView>
+                <TouchableNativeFeedback onPress={submit}>
+                    <View style={styles.button}>
+                        <Text style={styles.buttonText}>Update</Text>
+                    </View>
+                </TouchableNativeFeedback>
+            </View>
+        </MainContent>
     );
 }
+
+const styles = StyleSheet.create({
+    cont: {
+        flex: 1,
+        paddingHorizontal: 10,
+    },
+
+    text: {
+        color: colors.text,
+        marginBottom: 5,
+    },
+
+    input: {
+        backgroundColor: colors.input,
+        marginBottom: 20,
+    },
+
+    button: {
+        backgroundColor: colors.button,
+        marginTop: 10,
+        padding: 10,
+    },
+
+    buttonText: {
+        textAlign: 'center',
+        color: colors.text,
+    }
+});
 
 const mapStateToProps = (state) => {
     return {
