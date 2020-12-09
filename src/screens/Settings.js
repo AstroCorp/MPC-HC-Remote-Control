@@ -1,26 +1,34 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Text, View, TouchableNativeFeedback, TextInput, StyleSheet } from 'react-native';
+import { useForm } from 'react-hook-form';
 import { Header, MainContent } from '../components';
 import { setIp, setPort, setRefreshTime, setMpcHcInfo, setSyncEnabled } from '../store/actions';
 
 const Settings = (props) => {
-    const [ ip, onChangeIp ] = useState(props.ip);
-    const [ port, onChangePort ] = useState(props.port);
-    const [ refreshTime, onChangeRefreshTime ] = useState(props.refreshTime);
+    const { register, handleSubmit, setValue, errors } = useForm({
+        defaultValues: {
+            ip: props.ip,
+            port: props.port.toString(),
+            refreshTime: props.refreshTime.toString(),
+        },
+        criteriaMode: 'all',
+        shouldUnregister: false,
+    });
 
-    const submit = () => {
-        if(props.ip !== ip || props.port !== port || props.refreshTime !== refreshTime)
-        {
-            props.setMpcHcInfo(null);
-            props.setSyncEnabled(false);
+    const submit = (data) => {
+        const ip = data.ip;
+        const port = parseInt(data.port);
+        const refreshTime = parseInt(data.refreshTime);
 
-            props.setIp(ip);
-            props.setPort(port);
-            props.setRefreshTime(refreshTime);
+        props.setMpcHcInfo(null);
+        props.setSyncEnabled(false);
+
+        props.setIp(ip);
+        props.setPort(port);
+        props.setRefreshTime(refreshTime);
             
-            alert('Updated ip and port'); // Temporal
-        }
+        alert('Changes saved');
     };
 
     return (
@@ -28,34 +36,66 @@ const Settings = (props) => {
             <Header title="Settings" navigation={props.navigation} />
 
             <View style={styles.cont}>
-                <View>
-                    <Text style={styles.text}>IP</Text>
+                <View style={styles.inputContent}>
+                    <Text style={styles.textLabel}>IP</Text>
                     <TextInput
                         style={styles.input}
                         keyboardType='numeric'
-                        onChangeText={text => onChangeIp(text)}
-                        value={ip} />
+                        onChangeText={text => setValue('ip', text)}
+                        ref={register({ name: 'ip' }, { required: true })}
+                        defaultValue={props.ip}
+                    />
+
+                    {
+                        errors.ip && (
+                            <View style={styles.errorContent}>
+                                { errors.ip.type === 'required' && <Text style={styles.textError}>IP is required</Text> }
+                            </View>
+                        )
+                    }
                 </View>
 
-                <View>
-                    <Text style={styles.text}>Port</Text>
+                <View style={styles.inputContent}>
+                    <Text style={styles.textLabel}>Port</Text>
                     <TextInput
                         style={styles.input}
                         keyboardType='numeric'
-                        onChangeText={text => onChangePort(text)}
-                        value={port} />
+                        onChangeText={text => setValue('port', text)}
+                        ref={register({ name: 'port' }, { required: true, min: 1, max: 65535 })}
+                        defaultValue={props.port.toString()}
+                    />
+
+                    {
+                        errors.port && (
+                            <View style={styles.errorContent}>
+                                { errors.port.type === 'required' && <Text style={styles.textError}>Port is required</Text> }
+                                { (errors.port.type === 'min' || errors.refreshTime.type === 'max') && <Text style={styles.textError}>Range valid: 1-65535</Text> }
+                            </View>
+                        )
+                    }
                 </View>
 
-                <View>
-                    <Text style={styles.text}>Refresh time (ms)</Text>
+                <View style={styles.inputContent}>
+                    <Text style={styles.textLabel}>Refresh time (ms)</Text>
                     <TextInput
                         style={styles.input}
                         keyboardType='numeric'
-                        onChangeText={text => onChangeRefreshTime(text)}
-                        value={refreshTime} />
+                        onChangeText={text => setValue('refreshTime', text)}
+                        ref={register({ name: 'refreshTime' }, { required: true, min: 1, max: 10000 })}
+                        defaultValue={props.refreshTime.toString()}
+                    />
+
+                    {
+                        errors.refreshTime && (
+                            <View style={styles.errorContent}>
+                                { errors.refreshTime.type === 'required' && <Text style={styles.textError}>Refresh time is required</Text> }
+                                { (errors.refreshTime.type === 'min' || errors.refreshTime.type === 'max') && <Text style={styles.textError}>Range valid: 1-10000</Text> }
+                            </View>
+                        )
+                    }
                 </View>
 
-                <TouchableNativeFeedback onPress={submit}>
+                <TouchableNativeFeedback onPress={handleSubmit(submit)}>
                     <View style={styles.button}>
                         <Text style={styles.buttonText}>Update</Text>
                     </View>
@@ -71,14 +111,26 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
     },
 
-    text: {
+    inputContent: {
+        marginBottom: 20,
+    },
+
+    textLabel: {
         color: colors.text,
         marginBottom: 5,
     },
 
     input: {
         backgroundColor: colors.input,
-        marginBottom: 20,
+    },
+
+    errorContent: {
+        marginTop: 5,
+    },
+
+    textError: {
+        color: colors.error,
+        marginTop: 5,
     },
 
     button: {

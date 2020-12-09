@@ -2,6 +2,7 @@ export default colors = {
     statusBar: '#1D1925',
     bg: '#1D1925',
 
+    error: '#FF0000',
     text: '#FFFFFF',
     icon: '#FFFFFF',
     input: '#49464F',

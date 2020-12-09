@@ -2,8 +2,8 @@ import { SET_IP, SET_PORT, SET_REFRESH_TIME } from '../actions/actionTypes';
 
 const initialState = {
 	ip: '192.168.0.10',
-	port: '13579',
-	refreshTime: '50',
+	port: 13579,
+	refreshTime: 50,
 };
 
 const mainReducer = (state = initialState, action) => {

@@ -14,10 +14,7 @@ if (Text.defaultProps == null) {
 
 Text.defaultProps.allowFontScaling = false;
 
-const client = axios.create({
-    baseURL: 'https://api.github.com/users/AstroCorp/repos',
-    responseType: 'json',
-});
+const client = axios.create();
 
 let composeEnhancers = compose;
 
