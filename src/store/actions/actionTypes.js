@@ -1,5 +1,6 @@
 export const SET_IP = 'SET_IP';
 export const SET_PORT = 'SET_PORT';
+export const SET_REFRESH_TIME = 'SET_REFRESH_TIME';
 
 export const SET_MPC_HC_INFO = 'SET_MPC_HC_INFO';
 export const SET_SYNC_ENABLED = 'SET_SYNC_ENABLED';

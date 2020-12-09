@@ -6,7 +6,6 @@ import { getVariables } from '../utils/variables';
 
 const MediaInfoController = (props) => {
     const webview = useRef(null);
-    const refresh = 50;
 
     // Para enviar el contenido del webview a react native
     const INJECTED_JAVASCRIPT = `
@@ -15,13 +14,13 @@ const MediaInfoController = (props) => {
                 window.ReactNativeWebView.postMessage(document.querySelector(".page-variables").innerHTML);
                 clearInterval(window.check);
             }
-        }, ${refresh});
+        }, ${props.refreshTime});
     `;
 
     return (
         props.sync_enabled && (
             <WebView
-                key={props.ip + ':' + props.port}
+                key={props.ip + ':' + props.port + '-' + props.refreshTime}
                 ref={webview}
                 containerStyle={{ display: 'none' }}
                 source={{
@@ -53,7 +52,7 @@ const MediaInfoController = (props) => {
                         if (webview.current !== null && props.sync_enabled) {
                             webview.current.reload();
                         }
-                    }, refresh);
+                    }, props.refreshTime);
                 }}
             />
         )
@@ -64,6 +63,7 @@ const mapStateToProps = (state) => {
     return {
         ip: state.mainReducer.ip,
         port: state.mainReducer.port,
+        refreshTime: state.mainReducer.refreshTime,
         sync_enabled: state.tempReducer.sync_enabled,
     };
 }

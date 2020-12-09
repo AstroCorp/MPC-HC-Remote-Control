@@ -1,15 +1,22 @@
-import { SET_IP, SET_PORT } from './actionTypes';
+import { SET_IP, SET_PORT, SET_REFRESH_TIME } from './actionTypes';
 
 export const setIp = (value) => {
     return {
         type: SET_IP,
-        value
+        value,
     };
 };
 
 export const setPort = (value) => {
     return {
         type: SET_PORT,
-        value
+        value,
+    };
+};
+
+export const setRefreshTime = (value) => {
+    return {
+        type: SET_REFRESH_TIME,
+        value,
     };
 };

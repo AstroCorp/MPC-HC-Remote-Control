@@ -2,20 +2,22 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Text, View, TouchableNativeFeedback, TextInput, StyleSheet } from 'react-native';
 import { Header, MainContent } from '../components';
-import { setIp, setPort, setMpcHcInfo, setSyncEnabled } from '../store/actions';
+import { setIp, setPort, setRefreshTime, setMpcHcInfo, setSyncEnabled } from '../store/actions';
 
 const Settings = (props) => {
     const [ ip, onChangeIp ] = useState(props.ip);
     const [ port, onChangePort ] = useState(props.port);
+    const [ refreshTime, onChangeRefreshTime ] = useState(props.refreshTime);
 
     const submit = () => {
-        if(props.ip !== ip || props.port !== port)
+        if(props.ip !== ip || props.port !== port || props.refreshTime !== refreshTime)
         {
             props.setMpcHcInfo(null);
             props.setSyncEnabled(false);
 
             props.setIp(ip);
             props.setPort(port);
+            props.setRefreshTime(refreshTime);
             
             alert('Updated ip and port'); // Temporal
         }
@@ -30,6 +32,7 @@ const Settings = (props) => {
                     <Text style={styles.text}>IP</Text>
                     <TextInput
                         style={styles.input}
+                        keyboardType='numeric'
                         onChangeText={text => onChangeIp(text)}
                         value={ip} />
                 </View>
@@ -38,8 +41,18 @@ const Settings = (props) => {
                     <Text style={styles.text}>Port</Text>
                     <TextInput
                         style={styles.input}
+                        keyboardType='numeric'
                         onChangeText={text => onChangePort(text)}
                         value={port} />
+                </View>
+
+                <View>
+                    <Text style={styles.text}>Refresh time (ms)</Text>
+                    <TextInput
+                        style={styles.input}
+                        keyboardType='numeric'
+                        onChangeText={text => onChangeRefreshTime(text)}
+                        value={refreshTime} />
                 </View>
 
                 <TouchableNativeFeedback onPress={submit}>
@@ -84,6 +97,7 @@ const mapStateToProps = (state) => {
     return {
         ip: state.mainReducer.ip,
         port: state.mainReducer.port,
+        refreshTime: state.mainReducer.refreshTime,
     };
 }
 
@@ -91,6 +105,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         setIp: (value) => dispatch(setIp(value)),
         setPort: (value) => dispatch(setPort(value)),
+        setRefreshTime: (value) => dispatch(setRefreshTime(value)),
         setMpcHcInfo: (value) => dispatch(setMpcHcInfo(value)),
         setSyncEnabled: (value) => dispatch(setSyncEnabled(value)),
     };
