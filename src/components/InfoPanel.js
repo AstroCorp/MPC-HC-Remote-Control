@@ -7,10 +7,10 @@ import colors from '../utils/colors';
 const InfoPanel = (props) => (
     <LinearGradient colors={colors.gradient} style={styles.infoPanel}>
     {
-        props.mpc_hc_info && (
+        props.mediaPlayerData && (
             <View style={styles.infoPanelContent}>
-                <Text style={styles.textBold}>{ props.mpc_hc_info?.file }</Text>
-                <Text style={styles.text}>Vol - { props.mpc_hc_info?.volumeLevel }%</Text>
+                <Text style={styles.textBold}>{ props.mediaPlayerData?.file }</Text>
+                <Text style={styles.text}>Vol - { props.mediaPlayerData?.volumeLevel }%</Text>
             </View>
         )
     }
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
     return {
-        mpc_hc_info: state.tempReducer.mpc_hc_info,
+        mediaPlayerData: state.tempReducer.mediaPlayerData,
     };
 }
 

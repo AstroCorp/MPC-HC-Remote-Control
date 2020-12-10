@@ -8,7 +8,7 @@ import colors from '../utils/colors';
 const Header = (props) => {
     const title = props.title || props.ip + ':' + props.port;
     const toggleSync = () => {
-        props.setSyncEnabled(!props.sync_enabled);
+        props.setSyncEnabled(!props.syncEnabled);
         props.setMpcHcInfo(null);
     }
 
@@ -40,7 +40,7 @@ const Header = (props) => {
                         <TouchableWithoutFeedback onPress={toggleSync}>
                             <View style={[styles.icon, styles.syncIcon]}>
                                 {
-                                    props.sync_enabled 
+                                    props.syncEnabled 
                                     ? 
                                         <EnableSyncIcon color={colors.icon} size="28" />
                                     :
@@ -93,7 +93,7 @@ const mapStateToProps = (state) => {
     return {
         ip: state.mainReducer.ip,
         port: state.mainReducer.port,
-        sync_enabled: state.tempReducer.sync_enabled,
+        syncEnabled: state.tempReducer.syncEnabled,
     };
 }
 

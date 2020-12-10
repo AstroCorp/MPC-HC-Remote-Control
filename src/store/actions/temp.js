@@ -1,8 +1,8 @@
-import { SET_MPC_HC_INFO, SET_SYNC_ENABLED } from './actionTypes';
+import { SET_MEDIA_PLAYER_DATA, SET_SYNC_ENABLED } from './actionTypes';
 
 export const setMpcHcInfo = (value) => {
     return {
-        type: SET_MPC_HC_INFO,
+        type: SET_MEDIA_PLAYER_DATA,
         value,
     };
 };

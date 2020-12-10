@@ -1,22 +1,22 @@
-import { SET_MPC_HC_INFO, SET_SYNC_ENABLED } from '../actions/actionTypes';
+import { SET_MEDIA_PLAYER_DATA, SET_SYNC_ENABLED } from '../actions/actionTypes';
 
 const initialState = {
-    mpc_hc_info: null,
-    sync_enabled: false,
+    mediaPlayerData: null,
+    syncEnabled: false,
 };
 
 const tempReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case SET_MPC_HC_INFO:
+		case SET_MEDIA_PLAYER_DATA:
 			return {
 				...state,
-				mpc_hc_info: action.value,
+				mediaPlayerData: action.value,
 			};
 
 		case SET_SYNC_ENABLED:
 			return {
 				...state,
-				sync_enabled: action.value,
+				syncEnabled: action.value,
 			};
 	}
 

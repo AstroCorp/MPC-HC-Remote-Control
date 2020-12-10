@@ -34,8 +34,8 @@ const TimeController = (props) => {
     return (
         <View style={styles.timePanel}>
             <View style={styles.times}>
-                <Text style={styles.timeText}>{ msToTime(props.mpc_hc_info?.position) }</Text>
-                <Text style={styles.timeText}>{ msToTime(props.mpc_hc_info?.duration) }</Text>
+                <Text style={styles.timeText}>{ msToTime(props.mediaPlayerData?.position) }</Text>
+                <Text style={styles.timeText}>{ msToTime(props.mediaPlayerData?.duration) }</Text>
             </View>
 
             <View style={styles.centerCont}>
@@ -56,12 +56,12 @@ const TimeController = (props) => {
                     enableLabel
                     customLabel={customLabel}
                     min={0}
-                    max={props.mpc_hc_info?.duration || 1}
+                    max={props.mediaPlayerData?.duration || 1}
                     step={1}
                     sliderLength={Dimensions.get('window').width - 21}
-                    values={[props.mpc_hc_info?.position || 0]}
+                    values={[props.mediaPlayerData?.position || 0]}
                     onValuesChangeFinish={(value) => {
-                        const percent = msToPercent(props.mpc_hc_info?.duration, value);
+                        const percent = msToPercent(props.mediaPlayerData?.duration, value);
 
                         props.sendCommand(
                             { ip: props.ip, port: props.port },
@@ -96,13 +96,13 @@ const TimeController = (props) => {
                 )}>
                     <View style={styles.timeButton}>
                         {
-                            (props.mpc_hc_info?.state === 1 || props.mpc_hc_info?.state === -1) && (
+                            (props.mediaPlayerData?.state === 1 || props.mediaPlayerData?.state === -1) && (
                                 <PlayArrowIcon color={colors.icon} size="28" />
                             )
                         }
 
                         {
-                            props.mpc_hc_info?.state === 2 && (
+                            props.mediaPlayerData?.state === 2 && (
                                 <PauseIcon color={colors.icon} size="28" />
                             )
                         }
@@ -174,7 +174,7 @@ const mapStateToProps = (state) => {
     return {
         ip: state.mainReducer.ip,
         port: state.mainReducer.port,
-        mpc_hc_info: state.tempReducer.mpc_hc_info,
+        mediaPlayerData: state.tempReducer.mediaPlayerData,
     };
 }
 

@@ -54,7 +54,7 @@ const VolumeController = (props) => {
                     max={101}
                     step={1}
                     sliderLength={Dimensions.get('window').width - 156}
-                    values={[props.mpc_hc_info?.volumeLevel || 0]}
+                    values={[props.mediaPlayerData?.volumeLevel || 0]}
                     onValuesChangeFinish={(value) => props.sendCommand(
                         { ip: props.ip, port: props.port },
                         { code: volumeCustom, param: { name: 'volume', value } }
@@ -104,7 +104,7 @@ const mapStateToProps = (state) => {
     return {
         ip: state.mainReducer.ip,
         port: state.mainReducer.port,
-        mpc_hc_info: state.tempReducer.mpc_hc_info,
+        mediaPlayerData: state.tempReducer.mediaPlayerData,
     };
 }
 

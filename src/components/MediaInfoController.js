@@ -18,7 +18,7 @@ const MediaInfoController = (props) => {
     `;
 
     return (
-        props.sync_enabled && (
+        props.syncEnabled && (
             <WebView
                 key={props.ip + ':' + props.port + '-' + props.refreshTime}
                 ref={webview}
@@ -33,9 +33,9 @@ const MediaInfoController = (props) => {
                 onMessage={event => {
                     // Recibimos el contenido del webview
                     props.setMpcHcInfo(getVariables(event.nativeEvent.data));
-                
+                    
                     // Recargamos para obtener nuevos datos
-                    if (webview.current !== null && props.sync_enabled) {
+                    if (webview.current !== null && props.syncEnabled) {
                         webview.current.reload();
                     }
                 }}
@@ -49,7 +49,7 @@ const MediaInfoController = (props) => {
                 
                     // Volvemos a intentar cargar los datos
                     setTimeout(() => {
-                        if (webview.current !== null && props.sync_enabled) {
+                        if (webview.current !== null && props.syncEnabled) {
                             webview.current.reload();
                         }
                     }, props.refreshTime);
@@ -64,7 +64,7 @@ const mapStateToProps = (state) => {
         ip: state.mainReducer.ip,
         port: state.mainReducer.port,
         refreshTime: state.mainReducer.refreshTime,
-        sync_enabled: state.tempReducer.sync_enabled,
+        syncEnabled: state.tempReducer.syncEnabled,
     };
 }
 

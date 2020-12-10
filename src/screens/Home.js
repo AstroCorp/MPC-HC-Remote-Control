@@ -10,7 +10,7 @@ const Home = (props) => (
         <Header navigation={props.navigation} />
 
         <View style={{ flex: 1 }}>
-            <View style={{ flex: 1, display: props.mpc_hc_info ? 'flex' : 'none' }}>
+            <View style={{ flex: 1, display: props.mediaPlayerData && props.syncEnabled ? 'flex' : 'none' }}>
                 <InfoPanel />
 
                 <TimeController />
@@ -19,20 +19,20 @@ const Home = (props) => (
             </View>
             
             {
-                !props.mpc_hc_info && props.sync_enabled && (
+                !props.mediaPlayerData && props.syncEnabled && (
                     <StatusModal message='Sincronizando con MPC-HC...' />
 		        )
             }
 
             {
-                !props.sync_enabled && (
+                !props.syncEnabled && (
                     <StatusModal message='Sincronización desactivada' />
 		        )
             }
         </View>
 
         {
-            (props.mpc_hc_info && props.mpc_hc_info?.state === -1) && (
+            (props.mediaPlayerData && props.mediaPlayerData?.state === -1) && (
                 <StatusModal />
             )
         }
@@ -43,8 +43,8 @@ const mapStateToProps = (state) => {
     return {
         ip: state.mainReducer.ip,
         port: state.mainReducer.port,
-        mpc_hc_info: state.tempReducer.mpc_hc_info,
-        sync_enabled: state.tempReducer.sync_enabled,
+        mediaPlayerData: state.tempReducer.mediaPlayerData,
+        syncEnabled: state.tempReducer.syncEnabled,
     };
 }
 
