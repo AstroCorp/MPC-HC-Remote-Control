@@ -20,13 +20,13 @@ const Home = (props) => (
             
             {
                 !props.mediaPlayerData && props.syncEnabled && (
-                    <StatusModal message='Sincronizando con MPC-HC...' />
+                    <StatusModal message='Synchronizing with MPC-HC...' />
 		        )
             }
 
             {
                 !props.syncEnabled && (
-                    <StatusModal message='Sincronización desactivada' />
+                    <StatusModal message='Synchronization disabled' />
 		        )
             }
         </View>
