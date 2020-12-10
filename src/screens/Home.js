@@ -10,7 +10,7 @@ const Home = (props) => (
         <Header navigation={props.navigation} />
 
         <View style={{ flex: 1 }}>
-            <View style={{ flex: 1, display: props.mediaPlayerData && props.syncEnabled ? 'flex' : 'none' }}>
+            <View style={{ flex: 1, display: props.syncEnabled && props.mediaPlayerData ? 'flex' : 'none' }}>
                 <InfoPanel />
 
                 <TimeController />

@@ -1,3 +1,3 @@
-export { setIp, setPort, setRefreshTime } from './main';
-export { setMpcHcInfo, setSyncEnabled } from './temp';
-export { sendCommand } from './axios';
+export { setIp, setPort, setRefreshTime } from './mainActions';
+export { setMpcHcInfo, setSyncEnabled } from './tempActions';
+export { sendCommand } from './axiosActions';
