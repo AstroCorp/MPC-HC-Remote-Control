@@ -135,6 +135,8 @@ const styles = StyleSheet.create({
     timePanel: {
         flex: 1,
         paddingHorizontal: 10,
+        maxHeight: 119,
+        marginBottom: 50,
     },
 
     times : {

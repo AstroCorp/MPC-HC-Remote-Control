@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         paddingHorizontal: 10,
+        maxHeight: 50,
     },
 
     volumeButton: {

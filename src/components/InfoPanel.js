@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     infoPanel: {
         height: '30%',
         justifyContent: 'flex-end',
-        marginBottom: 10,
+        marginBottom: 20,
     },
 
     infoPanelContent: {
