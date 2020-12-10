@@ -14,9 +14,17 @@ const TimeController = (props) => {
             return null;
         }
 
+        // Para evitar que el label salga de la pantalla
+        const position = ev.oneMarkerLeftPosition - 35;
+        const realPosition = position - 10;
+        const maxPosition = Dimensions.get('window').width - 90;
+
+        let left = realPosition < 0 ? 0 : position;
+        left = left > maxPosition ? maxPosition : left;
+
         return (
             <View style={{ position: 'relative', width: '100%' }}>
-                <Text style={[ styles.customLabel, { left: ev.oneMarkerLeftPosition - 20 }]}>
+                <Text style={[ styles.customLabel, { left }]}>
                     { msToTime(ev.oneMarkerValue) }
                 </Text>
             </View>
