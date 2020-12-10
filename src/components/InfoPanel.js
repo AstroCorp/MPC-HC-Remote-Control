@@ -9,8 +9,8 @@ const InfoPanel = (props) => (
     {
         props.mpc_hc_info && (
             <View style={styles.infoPanelContent}>
-                <Text style={styles.textBold}>{ props.mpc_hc_info.file }</Text>
-                <Text style={styles.text}>Vol - { props.mpc_hc_info.volumeLevel }%</Text>
+                <Text style={styles.textBold}>{ props.mpc_hc_info?.file }</Text>
+                <Text style={styles.text}>Vol - { props.mpc_hc_info?.volumeLevel }%</Text>
             </View>
         )
     }

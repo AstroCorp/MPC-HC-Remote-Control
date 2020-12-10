@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 import { sendCommand } from '../store/actions';
 import { msToTime, msToPercent } from '../utils/extras';
-import { PlayArrowIcon, PauseIcon } from '../assets/icons';
-import { timeCustom, togglePlayAndPause } from '../utils/commands';
+import { PlayArrowIcon, PauseIcon, FastForwardIcon, FastRewindIcon, SkipNextIcon, SkipPreviousIcon } from '../assets/icons';
+import { timeCustom, togglePlayAndPause, decreaseRate, increaseRate, previous, next } from '../utils/commands';
 import colors from '../utils/colors';
 
 const TimeController = (props) => {
@@ -47,7 +47,7 @@ const TimeController = (props) => {
                 enableLabel
                 customLabel={customLabel}
                 min={0}
-                max={props.mpc_hc_info?.duration}
+                max={props.mpc_hc_info?.duration || 1}
                 step={1}
                 sliderLength={Dimensions.get('window').width - 20}
                 values={[props.mpc_hc_info?.position || 0]}
@@ -64,11 +64,29 @@ const TimeController = (props) => {
             <View style={styles.controls}>
                 <TouchableNativeFeedback onPress={() => props.sendCommand(
                     { ip: props.ip, port: props.port },
+                    { code: previous }
+                )}>
+                    <View style={styles.timeButton}>
+                        <SkipPreviousIcon color={colors.icon} size="28" />
+                    </View>
+                </TouchableNativeFeedback>
+
+                <TouchableNativeFeedback onPress={() => props.sendCommand(
+                    { ip: props.ip, port: props.port },
+                    { code: decreaseRate }
+                )}>
+                    <View style={styles.timeButton}>
+                        <FastRewindIcon color={colors.icon} size="28" />
+                    </View>
+                </TouchableNativeFeedback>
+
+                <TouchableNativeFeedback onPress={() => props.sendCommand(
+                    { ip: props.ip, port: props.port },
                     { code: togglePlayAndPause }
                 )}>
                     <View style={styles.timeButton}>
                         {
-                            props.mpc_hc_info?.state === 1 && (
+                            (props.mpc_hc_info?.state === 1 || props.mpc_hc_info?.state === -1) && (
                                 <PlayArrowIcon color={colors.icon} size="28" />
                             )
                         }
@@ -78,6 +96,24 @@ const TimeController = (props) => {
                                 <PauseIcon color={colors.icon} size="28" />
                             )
                         }
+                    </View>
+                </TouchableNativeFeedback>
+
+                <TouchableNativeFeedback onPress={() => props.sendCommand(
+                    { ip: props.ip, port: props.port },
+                    { code: increaseRate }
+                )}>
+                    <View style={styles.timeButton}>
+                        <FastForwardIcon color={colors.icon} size="28" />
+                    </View>
+                </TouchableNativeFeedback>
+
+                <TouchableNativeFeedback onPress={() => props.sendCommand(
+                    { ip: props.ip, port: props.port },
+                    { code: next }
+                )}>
+                    <View style={styles.timeButton}>
+                        <SkipNextIcon color={colors.icon} size="28" />
                     </View>
                 </TouchableNativeFeedback>
             </View>
