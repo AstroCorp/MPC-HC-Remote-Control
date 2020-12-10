@@ -30,6 +30,12 @@ const Home = (props) => (
 		        )
             }
         </View>
+
+        {
+            (props.mpc_hc_info && props.mpc_hc_info?.state === -1) && (
+                <StatusModal />
+            )
+        }
     </MainContent>
 );
 

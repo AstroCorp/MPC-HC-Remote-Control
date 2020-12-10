@@ -3,10 +3,14 @@ import { Text, View, StyleSheet } from 'react-native';
 import colors from '../utils/colors';
 
 const StatusModal = (props) => (
-    <View style={styles.syncView}>
-		<View style={styles.syncBox}>
-            <Text style={styles.syncText}>{ props.message }</Text>
-        </View>
+    <View style={[styles.syncView, props.message && styles.syncViewBackground]}>
+		{
+			props.message && (
+				<View style={styles.syncBox}>
+            		<Text style={styles.syncText}>{ props.message }</Text>
+        		</View>
+			)
+		}
 	</View>
 );
 
@@ -16,10 +20,13 @@ const styles = StyleSheet.create({
 		height: '100%',
 		width: '100%',
 		flex: 1,
-		backgroundColor: colors.sync.view,
 		justifyContent: 'center',
 		alignItems: 'center',
-    },
+	},
+	
+	syncViewBackground: {
+		backgroundColor: colors.sync.view,
+	},
     
     syncBox: {
         backgroundColor: colors.sync.box,
