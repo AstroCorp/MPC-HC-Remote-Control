@@ -84,9 +84,10 @@ const styles = StyleSheet.create({
 
     volumeButton: {
         backgroundColor: colors.button,
-        height: 48,
-        width: 48,
-        padding: 10,
+        height: 50,
+        width: 50,
+        padding: 11,
+        borderRadius: 50,
     },
 
     customLabel: {

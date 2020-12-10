@@ -30,38 +30,40 @@ const TimeController = (props) => {
                 <Text style={styles.timeText}>{ msToTime(props.mpc_hc_info?.duration) }</Text>
             </View>
 
-            <MultiSlider
-                selectedStyle={{
-                    backgroundColor: colors.slider.button,
-                }}
-                unselectedStyle={{
-                    backgroundColor: colors.slider.bg,
-                }}
-                containerStyle={{
-                    height: 50,
-                }}
-                markerStyle={{
-                    backgroundColor: colors.slider.button,
-                    marginTop: 2,
-                }}
-                enableLabel
-                customLabel={customLabel}
-                min={0}
-                max={props.mpc_hc_info?.duration || 1}
-                step={1}
-                sliderLength={Dimensions.get('window').width - 20}
-                values={[props.mpc_hc_info?.position || 0]}
-                onValuesChangeFinish={(value) => {
-                    const percent = msToPercent(props.mpc_hc_info?.duration, value);
-                    
-                    props.sendCommand(
-                        { ip: props.ip, port: props.port },
-                        { code: timeCustom, param: { name: 'percent', value: percent } }
-                    )
-                }}
-            />
+            <View style={styles.centerCont}>
+                <MultiSlider
+                    selectedStyle={{
+                        backgroundColor: colors.slider.button,
+                    }}
+                    unselectedStyle={{
+                        backgroundColor: colors.slider.bg,
+                    }}
+                    containerStyle={{
+                        height: 50,
+                    }}
+                    markerStyle={{
+                        backgroundColor: colors.slider.button,
+                        marginTop: 2,
+                    }}
+                    enableLabel
+                    customLabel={customLabel}
+                    min={0}
+                    max={props.mpc_hc_info?.duration || 1}
+                    step={1}
+                    sliderLength={Dimensions.get('window').width - 21}
+                    values={[props.mpc_hc_info?.position || 0]}
+                    onValuesChangeFinish={(value) => {
+                        const percent = msToPercent(props.mpc_hc_info?.duration, value);
 
-            <View style={styles.controls}>
+                        props.sendCommand(
+                            { ip: props.ip, port: props.port },
+                            { code: timeCustom, param: { name: 'percent', value: percent } }
+                        )
+                    }}
+                />
+            </View>
+
+            <View style={styles.centerCont}>
                 <TouchableNativeFeedback onPress={() => props.sendCommand(
                     { ip: props.ip, port: props.port },
                     { code: previous }
@@ -136,11 +138,18 @@ const styles = StyleSheet.create({
         color: colors.text,
     },
 
+    centerCont: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+    },
+
     timeButton: {
         backgroundColor: colors.button,
-        height: 48,
-        width: 48,
-        padding: 10,
+        height: 50,
+        width: 50,
+        padding: 11,
+        marginHorizontal: 10,
+        borderRadius: 50,
     },
 
     customLabel: {
@@ -151,11 +160,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginTop: -6,
     },
-
-    controls: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-    }
 });
 
 const mapStateToProps = (state) => {
