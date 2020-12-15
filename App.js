@@ -32,7 +32,7 @@ const App = () => {
 					<StatusBar backgroundColor="#28293D" />
 
 					<NavigationContainer>
-						<Stack.Navigator mode="modal" screenOptions={{ headerShown: false }}>
+						<Stack.Navigator mode="modal" screenOptions={{ headerShown: false, stackAnimation: 'slide_from_right' }}>
 							<Stack.Screen name="Home" component={Home} />
 							<Stack.Screen name="Settings" component={Settings} />
 						</Stack.Navigator>
