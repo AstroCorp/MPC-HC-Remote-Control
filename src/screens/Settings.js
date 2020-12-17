@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Text, View, ScrollView, KeyboardAvoidingView, TouchableNativeFeedback, TextInput, StyleSheet } from 'react-native';
 import { useForm } from 'react-hook-form';
 import { Header, MainContent } from '../components';
+import Modal from 'react-native-modal';
 import { setIp, setPort, setRefreshTime, setMpcHcInfo, setSyncEnabled } from '../store/actions';
 
 const Settings = (props) => {
+    const [ isVisible, setIsVisible ] = useState(false);
     const { register, handleSubmit, setValue, errors } = useForm({
         defaultValues: {
             ip: props.ip,
@@ -27,13 +29,25 @@ const Settings = (props) => {
         props.setIp(ip);
         props.setPort(port);
         props.setRefreshTime(refreshTime);
-            
-        alert('Changes saved');
+
+        setIsVisible(true);
     };
 
     return (
         <MainContent>
             <Header title="Settings" navigation={props.navigation} />
+
+            <Modal isVisible={isVisible}>
+                <View style={styles.modal}>
+                    <Text style={[styles.text, styles.modalText]}>Changes saved!</Text>
+
+                    <TouchableNativeFeedback onPress={() => setIsVisible(false)}>
+                        <View style={styles.modalButton}>
+                            <Text style={styles.text}>Ok</Text>
+                        </View>
+                    </TouchableNativeFeedback>
+                </View>
+            </Modal>
 
             <KeyboardAvoidingView style={styles.cont}>
                 <ScrollView bounces={false} style={{flex:1}}>
@@ -98,7 +112,7 @@ const Settings = (props) => {
 
                     <TouchableNativeFeedback onPress={handleSubmit(submit)}>
                         <View style={styles.button}>
-                            <Text style={styles.buttonText}>Update</Text>
+                            <Text style={styles.text}>Update</Text>
                         </View>
                     </TouchableNativeFeedback>
                 </ScrollView>
@@ -141,10 +155,32 @@ const styles = StyleSheet.create({
         padding: 10,
     },
 
-    buttonText: {
+    text: {
         textAlign: 'center',
         color: colors.text,
     },
+
+    modal: {
+        backgroundColor: colors.sync.box,
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignSelf: 'center',
+        borderRadius: 5,
+        width: '75%',
+        minWidth: 250,
+    },
+
+    modalText: {
+        marginVertical: 25,
+    },
+
+    modalButton: {
+        backgroundColor: colors.button,
+        padding: 15,
+        width: '100%',
+        borderBottomEndRadius: 5,
+        borderBottomStartRadius: 5,
+    }
 });
 
 const mapStateToProps = (state) => {
