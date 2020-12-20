@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TouchableWithoutFeedback, Text, StyleSheet, StatusBar } from 'react-native';
+import { View, TouchableWithoutFeedback, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { BackArrowIcon, SettingsIcon, EnableSyncIcon, DisableSyncIcon } from '../assets/icons';
 import { setMpcHcInfo, setSyncEnabled } from '../store/actions';
@@ -14,8 +14,6 @@ const Header = (props) => {
 
     return (
         <View style={{ height: 60 }}>
-            <StatusBar backgroundColor={colors.statusBar} />
-    
             <View style={styles.header}>
                 {props.title === 'Settings' && (
                     <TouchableWithoutFeedback onPress={() => props.navigation.goBack()}>

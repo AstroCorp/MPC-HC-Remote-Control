@@ -16,7 +16,7 @@ const VolumeController = (props) => {
         return (
             <View style={{ position: 'relative', width: '100%' }}>
                 <Text style={[ styles.customLabel, { left: ev.oneMarkerLeftPosition - 20 }]}>
-                    { ev.oneMarkerValue }
+                    { ev.oneMarkerValue }%
                 </Text>
             </View>
         );
