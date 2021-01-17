@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, StyleSheet, TouchableNativeFeedback, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
-import MultiSlider from '@ptomasroos/react-native-multi-slider';
+import Slider from '@react-native-community/slider';
 import { sendCommand } from '../store/actions';
 import { msToTime, msToPercent } from '../utils/extras';
 import { PlayArrowIcon, PauseIcon, FastForwardIcon, FastRewindIcon, SkipNextIcon, SkipPreviousIcon } from '../assets/icons';
@@ -9,28 +9,6 @@ import { timeCustom, togglePlayAndPause, decreaseRate, increaseRate, previous, n
 import colors from '../utils/colors';
 
 const TimeController = (props) => {
-    const customLabel = (ev) => {
-        if (!ev.oneMarkerPressed) {
-            return null;
-        }
-
-        // Para evitar que el label salga de la pantalla
-        const position = ev.oneMarkerLeftPosition - 35;
-        const realPosition = position - 10;
-        const maxPosition = Dimensions.get('window').width - 90;
-
-        let left = realPosition < 0 ? 0 : position;
-        left = left > maxPosition ? maxPosition : left;
-
-        return (
-            <View style={{ position: 'relative', width: '100%' }}>
-                <Text style={[ styles.customLabel, { left }]}>
-                    { msToTime(ev.oneMarkerValue) }
-                </Text>
-            </View>
-        );
-    }
-
     return (
         <View style={styles.timePanel}>
             <View style={styles.times}>
@@ -39,28 +17,16 @@ const TimeController = (props) => {
             </View>
 
             <View style={styles.centerCont}>
-                <MultiSlider
-                    selectedStyle={{
-                        backgroundColor: colors.slider.button,
-                    }}
-                    unselectedStyle={{
-                        backgroundColor: colors.slider.bg,
-                    }}
-                    containerStyle={{
-                        height: 50,
-                    }}
-                    markerStyle={{
-                        backgroundColor: colors.slider.button,
-                        marginTop: 2,
-                    }}
-                    enableLabel
-                    customLabel={customLabel}
-                    min={0}
-                    max={props.mediaPlayerData?.duration || 1}
+                <Slider
+                    style={styles.slider}
+                    minimumValue={0}
+                    maximumValue={props.mediaPlayerData?.duration || 1}
+                    minimumTrackTintColor={colors.slider.button}
+                    maximumTrackTintColor={colors.slider.bg}
+                    thumbTintColor={colors.slider.button}
                     step={1}
-                    sliderLength={Dimensions.get('window').width - 21}
-                    values={[props.mediaPlayerData?.position || 0]}
-                    onValuesChangeFinish={(value) => {
+                    value={props.mediaPlayerData?.position || 0}
+                    onSlidingComplete={(value) => {
                         const percent = msToPercent(props.mediaPlayerData?.duration, value);
 
                         props.sendCommand(
@@ -162,14 +128,10 @@ const styles = StyleSheet.create({
         borderRadius: 50,
     },
 
-    customLabel: {
-        position: 'absolute',
-        width: 70,
-        backgroundColor: colors.slider.label.bg,
-        color: colors.slider.label.text,
-        textAlign: 'center',
-        marginTop: -6,
-    },
+    slider: {
+        width: Dimensions.get('window').width, 
+        marginVertical: 5,
+    }
 });
 
 const mapStateToProps = (state) => {

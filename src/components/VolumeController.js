@@ -1,27 +1,13 @@
 import React from 'react';
-import { Text, View, StyleSheet, TouchableNativeFeedback, Dimensions } from 'react-native';
+import { View, StyleSheet, TouchableNativeFeedback, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
-import MultiSlider from '@ptomasroos/react-native-multi-slider';
+import Slider from '@react-native-community/slider';
 import { sendCommand } from '../store/actions';
 import { volumeUp, volumeDown, volumeCustom } from '../utils/commands';
 import { VolumeDownIcon, VolumeUpIcon } from '../assets/icons';
 import colors from '../utils/colors';
 
 const VolumeController = (props) => {
-    const customLabel = (ev) => {
-        if (!ev.oneMarkerPressed) {
-            return null;
-        }
-
-        return (
-            <View style={{ position: 'relative', width: '100%' }}>
-                <Text style={[ styles.customLabel, { left: ev.oneMarkerLeftPosition - 20 }]}>
-                    { ev.oneMarkerValue }%
-                </Text>
-            </View>
-        );
-    }
-
     return (
         <View style={styles.volumePanel}>
             <TouchableNativeFeedback onPress={() => props.sendCommand(
@@ -34,28 +20,16 @@ const VolumeController = (props) => {
             </TouchableNativeFeedback>
 
             <View style={{ marginHorizontal: 20 }}>
-                <MultiSlider
-                    selectedStyle={{
-                    backgroundColor: colors.slider.button,
-                    }}
-                    unselectedStyle={{
-                        backgroundColor: colors.slider.bg,
-                    }}
-                    containerStyle={{
-                        height: 50,
-                    }}
-                    markerStyle={{
-                        backgroundColor: colors.slider.button,
-                        marginTop: 2,
-                    }}
-                    enableLabel
-                    customLabel={customLabel}
-                    min={0}
-                    max={101}
+                <Slider
+                    style={styles.slider}
+                    minimumValue={0}
+                    maximumValue={100}
+                    minimumTrackTintColor={colors.slider.button}
+                    maximumTrackTintColor={colors.slider.bg}
+                    thumbTintColor={colors.slider.button}
                     step={1}
-                    sliderLength={Dimensions.get('window').width - 156}
-                    values={[props.mediaPlayerData?.volumeLevel || 0]}
-                    onValuesChangeFinish={(value) => props.sendCommand(
+                    value={props.mediaPlayerData?.volumeLevel || 0}
+                    onSlidingComplete={(value) => props.sendCommand(
                         { ip: props.ip, port: props.port },
                         { code: volumeCustom, param: { name: 'volume', value } }
                     )}
@@ -99,6 +73,11 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginTop: -6,
     },
+
+    slider: {
+        width: Dimensions.get('window').width - 125, 
+        marginTop: 9,
+    }
 });
 
 const mapStateToProps = (state) => {

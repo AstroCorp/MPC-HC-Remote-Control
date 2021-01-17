@@ -10,13 +10,15 @@ const Home = (props) => (
         <Header navigation={props.navigation} />
 
         <View style={{ flex: 1 }}>
-            <View style={{ flex: 1, display: props.syncEnabled && props.mediaPlayerData ? 'flex' : 'none' }}>
-                <InfoPanel />
-
-                <TimeController />
-
-                <VolumeController />
-            </View>
+            {
+                props.syncEnabled && props.mediaPlayerData && (
+                    <View style={{ flex: 1 }}>
+                        <InfoPanel />
+                        <TimeController />
+                        <VolumeController />
+                    </View>
+                )
+            }
             
             {
                 !props.mediaPlayerData && props.syncEnabled && (
