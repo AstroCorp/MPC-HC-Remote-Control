@@ -4,6 +4,7 @@ import { Text, View, ScrollView, KeyboardAvoidingView, TouchableNativeFeedback, 
 import { useForm } from 'react-hook-form';
 import { Header, MainContent } from '../components';
 import Modal from 'react-native-modal';
+import { default as isIp } from 'is-ip';
 import { setIp, setPort, setRefreshTime, setMpcHcInfo, setSyncEnabled } from '../store/actions';
 
 const Settings = (props) => {
@@ -57,7 +58,7 @@ const Settings = (props) => {
                             style={styles.input}
                             keyboardType='numeric'
                             onChangeText={text => setValue('ip', text)}
-                            ref={register({ name: 'ip' }, { required: true })}
+                            ref={register({ name: 'ip' }, { required: true, validate: (value) => isIp.v4(value)})}
                             defaultValue={props.ip}
                         />
 
@@ -65,6 +66,7 @@ const Settings = (props) => {
                             errors.ip && (
                                 <View style={styles.errorContent}>
                                     { errors.ip.type === 'required' && <Text style={styles.textError}>IP is required</Text> }
+                                    { errors.ip.type === 'validate' && <Text style={styles.textError}>IP is not valid</Text> }
                                 </View>
                             )
                         }
@@ -84,7 +86,7 @@ const Settings = (props) => {
                             errors.port && (
                                 <View style={styles.errorContent}>
                                     { errors.port.type === 'required' && <Text style={styles.textError}>Port is required</Text> }
-                                    { (errors.port.type === 'min' || errors.refreshTime.type === 'max') && <Text style={styles.textError}>Range valid: 1-65535</Text> }
+                                    { (errors.port.type === 'min' || errors.port.type === 'max') && <Text style={styles.textError}>Range valid: 1-65535</Text> }
                                 </View>
                             )
                         }
