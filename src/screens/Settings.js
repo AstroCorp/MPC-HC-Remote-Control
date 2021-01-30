@@ -1,35 +1,54 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Text, View, ScrollView, KeyboardAvoidingView, TouchableNativeFeedback, TextInput, StyleSheet } from 'react-native';
-import { useForm } from 'react-hook-form';
 import { Header, MainContent } from '../components';
 import Modal from 'react-native-modal';
-import { default as isIp } from 'is-ip';
+import validateForm from '../utils/validation';
 import { setIp, setPort, setRefreshTime, setMpcHcInfo, setSyncEnabled } from '../store/actions';
 
 const Settings = (props) => {
     const [ isVisible, setIsVisible ] = useState(false);
-    const { register, handleSubmit, setValue, errors } = useForm({
-        defaultValues: {
-            ip: props.ip,
-            port: props.port.toString(),
-            refreshTime: props.refreshTime.toString(),
+    const [ formErrors, setFormErrors ] = useState({});
+    const [ formData, setFormData ] = useState({
+        ip: {
+            value: props.ip,
+            rules: [{ required: true }, { isValidIp: true }],
         },
-        criteriaMode: 'all',
-        shouldUnregister: false,
+        port: {
+            value: props.port,
+            rules: [{ required: true }, { min: 1 }, { max: 65535 }],
+        },
+        refreshTime: {
+            value: props.refreshTime,
+            rules: [{ required: true }, { min: 1 }, { max: 5000 }],
+        },
     });
 
-    const submit = (data) => {
-        const ip = data.ip;
-        const port = parseInt(data.port);
-        const refreshTime = parseInt(data.refreshTime);
+    useEffect(() => {
+        setFormErrors(validateForm(formData));
+    }, [formData]);
 
+    const updateFormValue = (inputName, value) => {
+        setFormData({
+            ...formData,
+            [inputName]: {
+                ...formData[inputName],
+                value,
+            },
+        });
+    };
+
+    const submit = () => {
+        if (Object.keys(formErrors).length) {
+            return;
+        }
+        
         props.setMpcHcInfo(null);
         props.setSyncEnabled(false);
 
-        props.setIp(ip);
-        props.setPort(port);
-        props.setRefreshTime(refreshTime);
+        props.setIp(formData.ip.value);
+        props.setPort(formData.port.value);
+        props.setRefreshTime(formData.refreshTime.value);
 
         setIsVisible(true);
     };
@@ -57,16 +76,15 @@ const Settings = (props) => {
                         <TextInput
                             style={styles.input}
                             keyboardType='numeric'
-                            onChangeText={text => setValue('ip', text)}
-                            ref={register({ name: 'ip' }, { required: true, validate: (value) => isIp.v4(value)})}
+                            onChangeText={text => updateFormValue('ip', text)}
                             defaultValue={props.ip}
                         />
 
                         {
-                            errors.ip && (
+                            formErrors.ip && (
                                 <View style={styles.errorContent}>
-                                    { errors.ip.type === 'required' && <Text style={styles.textError}>IP is required</Text> }
-                                    { errors.ip.type === 'validate' && <Text style={styles.textError}>IP is not valid</Text> }
+                                    { formErrors.ip.includes('required') && <Text style={styles.textError}>IP is required</Text> }
+                                    { formErrors.ip.includes('isValidIp') && <Text style={styles.textError}>IP is not valid</Text> }
                                 </View>
                             )
                         }
@@ -77,16 +95,14 @@ const Settings = (props) => {
                         <TextInput
                             style={styles.input}
                             keyboardType='numeric'
-                            onChangeText={text => setValue('port', text)}
-                            ref={register({ name: 'port' }, { required: true, min: 1, max: 65535 })}
+                            onChangeText={text => updateFormValue('port', text)}
                             defaultValue={props.port.toString()}
                         />
-
                         {
-                            errors.port && (
+                            formErrors.port && (
                                 <View style={styles.errorContent}>
-                                    { errors.port.type === 'required' && <Text style={styles.textError}>Port is required</Text> }
-                                    { (errors.port.type === 'min' || errors.port.type === 'max') && <Text style={styles.textError}>Range valid: 1-65535</Text> }
+                                    { formErrors.port.includes('required') && <Text style={styles.textError}>Port is required</Text> }
+                                    { (formErrors.port.includes('min') || formErrors.port.includes('max')) && <Text style={styles.textError}>Range valid: 1-65535</Text> }
                                 </View>
                             )
                         }
@@ -97,22 +113,21 @@ const Settings = (props) => {
                         <TextInput
                             style={styles.input}
                             keyboardType='numeric'
-                            onChangeText={text => setValue('refreshTime', text)}
-                            ref={register({ name: 'refreshTime' }, { required: true, min: 1, max: 10000 })}
+                            onChangeText={text => updateFormValue('refreshTime', text)}
                             defaultValue={props.refreshTime.toString()}
                         />
 
                         {
-                            errors.refreshTime && (
+                            formErrors.refreshTime && (
                                 <View style={styles.errorContent}>
-                                    { errors.refreshTime.type === 'required' && <Text style={styles.textError}>Refresh time is required</Text> }
-                                    { (errors.refreshTime.type === 'min' || errors.refreshTime.type === 'max') && <Text style={styles.textError}>Range valid: 1-10000</Text> }
+                                    { formErrors.refreshTime.includes('required') && <Text style={styles.textError}>Refresh time is required</Text> }
+                                    { (formErrors.refreshTime.includes('min') || formErrors.refreshTime.includes('max')) && <Text style={styles.textError}>Range valid: 1-5000</Text> }
                                 </View>
                             )
                         }
                     </View>
 
-                    <TouchableNativeFeedback onPress={handleSubmit(submit)}>
+                    <TouchableNativeFeedback disabled={Object.keys(formErrors).length} onPress={submit}>
                         <View style={styles.button}>
                             <Text style={styles.text}>Update</Text>
                         </View>
