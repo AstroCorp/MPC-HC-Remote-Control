@@ -1,4 +1,4 @@
-export default colors = {
+const colors = {
     statusBar: '#1D1925',
     bg: '#1D1925',
 
@@ -24,3 +24,5 @@ export default colors = {
         },
     },
 };
+
+export default colors;
