@@ -2,10 +2,9 @@ import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
-import colors from '../utils/colors';
 
 const InfoPanel = (props) => (
-    <LinearGradient colors={colors.gradient} style={styles.infoPanel}>
+    <LinearGradient colors={['#1D1925', '#000000']} style={styles.infoPanel}>
     {
         props.mediaPlayerData && (
             <View style={styles.infoPanelContent}>
@@ -30,13 +29,13 @@ const styles = StyleSheet.create({
     },
 
     text: {
-        color: colors.text,
+        color: '#FFFFFF',
         fontSize: 12,
         textAlign: 'center',
     },
 
     textBold: {
-        color: colors.text,
+        color: '#FFFFFF',
         fontSize: 16,
         fontWeight: 'bold',
         textAlign: 'center',

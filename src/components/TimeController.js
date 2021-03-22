@@ -6,7 +6,6 @@ import { sendCommand } from '../store/actions';
 import { msToTime, msToPercent } from '../utils/extras';
 import { PlayArrowIcon, PauseIcon, FastForwardIcon, FastRewindIcon, SkipNextIcon, SkipPreviousIcon } from '../assets/icons';
 import { timeCustom, togglePlayAndPause, decreaseRate, increaseRate, previous, next } from '../utils/commands';
-import colors from '../utils/colors';
 
 const TimeController = (props) => {
     return (
@@ -21,9 +20,9 @@ const TimeController = (props) => {
                     style={styles.slider}
                     minimumValue={0}
                     maximumValue={props.mediaPlayerData?.duration || 1}
-                    minimumTrackTintColor={colors.slider.button}
-                    maximumTrackTintColor={colors.slider.bg}
-                    thumbTintColor={colors.slider.button}
+                    minimumTrackTintColor="#1CD1FF"
+                    maximumTrackTintColor="#49464F"
+                    thumbTintColor="#1CD1FF"
                     step={1}
                     value={props.mediaPlayerData?.position || 0}
                     onSlidingComplete={(value) => {
@@ -43,7 +42,7 @@ const TimeController = (props) => {
                     { code: previous }
                 )}>
                     <View style={styles.timeButton}>
-                        <SkipPreviousIcon color={colors.icon} size="28" />
+                        <SkipPreviousIcon color="#FFFFFF" size="28" />
                     </View>
                 </TouchableNativeFeedback>
 
@@ -52,7 +51,7 @@ const TimeController = (props) => {
                     { code: decreaseRate }
                 )}>
                     <View style={styles.timeButton}>
-                        <FastRewindIcon color={colors.icon} size="28" />
+                        <FastRewindIcon color="#FFFFFF" size="28" />
                     </View>
                 </TouchableNativeFeedback>
 
@@ -63,13 +62,13 @@ const TimeController = (props) => {
                     <View style={styles.timeButton}>
                         {
                             (props.mediaPlayerData?.state === 1 || props.mediaPlayerData?.state === -1) && (
-                                <PlayArrowIcon color={colors.icon} size="28" />
+                                <PlayArrowIcon color="#FFFFFF" size="28" />
                             )
                         }
 
                         {
                             props.mediaPlayerData?.state === 2 && (
-                                <PauseIcon color={colors.icon} size="28" />
+                                <PauseIcon color="#FFFFFF" size="28" />
                             )
                         }
                     </View>
@@ -80,7 +79,7 @@ const TimeController = (props) => {
                     { code: increaseRate }
                 )}>
                     <View style={styles.timeButton}>
-                        <FastForwardIcon color={colors.icon} size="28" />
+                        <FastForwardIcon color="#FFFFFF" size="28" />
                     </View>
                 </TouchableNativeFeedback>
 
@@ -89,7 +88,7 @@ const TimeController = (props) => {
                     { code: next }
                 )}>
                     <View style={styles.timeButton}>
-                        <SkipNextIcon color={colors.icon} size="28" />
+                        <SkipNextIcon color="#FFFFFF" size="28" />
                     </View>
                 </TouchableNativeFeedback>
             </View>
@@ -111,7 +110,7 @@ const styles = StyleSheet.create({
     },
 
     timeText: {
-        color: colors.text,
+        color: '#FFFFFF',
     },
 
     centerCont: {
@@ -120,7 +119,7 @@ const styles = StyleSheet.create({
     },
 
     timeButton: {
-        backgroundColor: colors.button,
+        backgroundColor: '#3F3A4A',
         height: 50,
         width: 50,
         padding: 11,

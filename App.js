@@ -16,8 +16,6 @@ import { createNativeStackNavigator } from 'react-native-screens/native-stack';
 import Home from './src/screens/Home';
 import Settings from './src/screens/Settings';
 
-import colors from './src/utils/colors';
-
 enableScreens();
 const store = configureStore();
 const Stack = createNativeStackNavigator();
@@ -31,7 +29,7 @@ const App = () => {
 		<SafeAreaProvider>
 			<Provider store={store.store}>
 				<PersistGate loading={null} persistor={store.persistor}>
-					<StatusBar backgroundColor={colors.statusBar} />
+					<StatusBar backgroundColor="#1D1925" />
 
 					<NavigationContainer>
 						<Stack.Navigator mode="modal" screenOptions={{ headerShown: false, stackAnimation: 'slide_from_right' }}>

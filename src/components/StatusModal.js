@@ -1,6 +1,5 @@
 import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
-import colors from '../utils/colors';
 
 const StatusModal = (props) => (
     <View style={[styles.syncView, props.message && styles.syncViewBackground]}>
@@ -25,17 +24,17 @@ const styles = StyleSheet.create({
 	},
 	
 	syncViewBackground: {
-		backgroundColor: colors.sync.view,
+		backgroundColor: '#00000080',
 	},
     
     syncBox: {
-        backgroundColor: colors.sync.box,
+        backgroundColor: '#000000CC',
         padding: 20,
         borderRadius: 5,
     },
 
 	syncText: {
-		color: colors.text,
+		color: '#FFFFFF',
 	},
 });
 

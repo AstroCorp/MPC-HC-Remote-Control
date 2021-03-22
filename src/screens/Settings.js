@@ -149,12 +149,12 @@ const styles = StyleSheet.create({
     },
 
     textLabel: {
-        color: colors.text,
+        color: '#FFFFFF',
         marginBottom: 5,
     },
 
     input: {
-        backgroundColor: colors.input,
+        backgroundColor: '#49464F',
     },
 
     errorContent: {
@@ -162,23 +162,23 @@ const styles = StyleSheet.create({
     },
 
     textError: {
-        color: colors.error,
+        color: '#FF0000',
         marginTop: 5,
     },
 
     button: {
-        backgroundColor: colors.button,
+        backgroundColor: '#3F3A4A',
         marginVertical: 10,
         padding: 10,
     },
 
     text: {
         textAlign: 'center',
-        color: colors.text,
+        color: '#FFFFFF',
     },
 
     modal: {
-        backgroundColor: colors.sync.box,
+        backgroundColor: '#000000CC',
         justifyContent: 'center',
         alignItems: 'center',
         alignSelf: 'center',
@@ -192,7 +192,7 @@ const styles = StyleSheet.create({
     },
 
     modalButton: {
-        backgroundColor: colors.button,
+        backgroundColor: '#3F3A4A',
         padding: 15,
         width: '100%',
         borderBottomEndRadius: 5,

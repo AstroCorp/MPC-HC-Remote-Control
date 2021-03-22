@@ -3,7 +3,6 @@ import { View, TouchableWithoutFeedback, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { BackArrowIcon, SettingsIcon, EnableSyncIcon, DisableSyncIcon } from '../assets/icons';
 import { setMpcHcInfo, setSyncEnabled } from '../store/actions';
-import colors from '../utils/colors';
 
 const Header = (props) => {
     const title = props.title || props.ip + ':' + props.port;
@@ -18,7 +17,7 @@ const Header = (props) => {
                 {props.title === 'Settings' && (
                     <TouchableWithoutFeedback onPress={() => props.navigation.goBack()}>
                         <View style={styles.icon}>
-                            <BackArrowIcon color={colors.icon} size="28" />
+                            <BackArrowIcon color="#FFFFFF" size="28" />
                         </View>
                     </TouchableWithoutFeedback>
                 )}
@@ -31,7 +30,7 @@ const Header = (props) => {
                     <View style={styles.options}>
                         <TouchableWithoutFeedback onPress={() => props.navigation.navigate('Settings')}>
                             <View style={styles.icon}>
-                                <SettingsIcon color={colors.icon} size="28" />
+                                <SettingsIcon color="#FFFFFF" size="28" />
                             </View>
                         </TouchableWithoutFeedback>
     
@@ -40,9 +39,9 @@ const Header = (props) => {
                                 {
                                     props.syncEnabled 
                                     ? 
-                                        <EnableSyncIcon color={colors.icon} size="28" />
+                                        <EnableSyncIcon color="#FFFFFF" size="28" />
                                     :
-                                        <DisableSyncIcon color={colors.icon} size="28" />
+                                        <DisableSyncIcon color="#FFFFFF" size="28" />
                                 }
                             </View>
                         </TouchableWithoutFeedback>
@@ -69,7 +68,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 20,
         marginTop: -2,
-        color: colors.text
+        color: '#FFFFFF'
     },
 
     options: {

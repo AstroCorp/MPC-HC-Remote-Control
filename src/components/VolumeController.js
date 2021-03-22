@@ -5,7 +5,6 @@ import Slider from '@react-native-community/slider';
 import { sendCommand } from '../store/actions';
 import { volumeUp, volumeDown, volumeCustom } from '../utils/commands';
 import { VolumeDownIcon, VolumeUpIcon } from '../assets/icons';
-import colors from '../utils/colors';
 
 const VolumeController = (props) => {
     return (
@@ -15,7 +14,7 @@ const VolumeController = (props) => {
                 { code: volumeDown }
             )}>
                 <View style={styles.volumeButton}>
-                    <VolumeDownIcon color={colors.icon} size="28" />
+                    <VolumeDownIcon color="#FFFFFF" size="28" />
                 </View>
             </TouchableNativeFeedback>
 
@@ -24,9 +23,9 @@ const VolumeController = (props) => {
                     style={styles.slider}
                     minimumValue={0}
                     maximumValue={100}
-                    minimumTrackTintColor={colors.slider.button}
-                    maximumTrackTintColor={colors.slider.bg}
-                    thumbTintColor={colors.slider.button}
+                    minimumTrackTintColor="#1CD1FF"
+                    maximumTrackTintColor="#49464F"
+                    thumbTintColor="#1CD1FF"
                     step={1}
                     value={props.mediaPlayerData?.volumeLevel || 0}
                     onSlidingComplete={(value) => props.sendCommand(
@@ -41,7 +40,7 @@ const VolumeController = (props) => {
                 { code: volumeUp }
             )}>
                 <View style={styles.volumeButton}>
-                    <VolumeUpIcon color={colors.icon} size="28" />
+                    <VolumeUpIcon color="#FFFFFF" size="28" />
                 </View>
             </TouchableNativeFeedback>
         </View>
@@ -58,7 +57,7 @@ const styles = StyleSheet.create({
     },
 
     volumeButton: {
-        backgroundColor: colors.button,
+        backgroundColor: '#3F3A4A',
         height: 50,
         width: 50,
         padding: 11,
@@ -68,8 +67,8 @@ const styles = StyleSheet.create({
     customLabel: {
         position: 'absolute',
         width: 40,
-        backgroundColor: colors.slider.label.bg,
-        color: colors.slider.label.text,
+        backgroundColor: '#1CD1FF',
+        color: '#FFFFFF',
         textAlign: 'center',
         marginTop: -6,
     },

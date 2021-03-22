@@ -26,7 +26,7 @@ const MediaInfoController = (props) => {
                 source={{
                     uri: 'http://' + props.ip + ':' + props.port + '/variables.html'
                 }}
-                androidLayerType={'software'}
+                androidLayerType="software"
                 setSupportMultipleWindows={false}
                 javaScriptEnabled={true}
                 injectedJavaScript={INJECTED_JAVASCRIPT}
