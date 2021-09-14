@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Text, View, ScrollView, KeyboardAvoidingView, TouchableNativeFeedback, TextInput, StyleSheet } from 'react-native';
+import { Text, View, ScrollView, KeyboardAvoidingView, TouchableNativeFeedback, TextInput } from 'react-native';
 import { Header, MainContent } from '../components';
 import Modal from 'react-native-modal';
+import tailwind from 'tailwind-rn';
 import validateForm from '../utils/validation';
 import { setIp, setPort, setRefreshTime, setMpcHcInfo, setSyncEnabled } from '../store/actions';
 
@@ -58,23 +59,23 @@ const Settings = (props) => {
             <Header title="Settings" navigation={props.navigation} />
 
             <Modal isVisible={isVisible}>
-                <View style={styles.modal}>
-                    <Text style={[styles.text, styles.modalText]}>Changes saved!</Text>
+                <View style={tailwind('bg-black bg-opacity-50 rounded-t justify-center items-center self-center w-3/4')}>
+                    <Text style={tailwind('text-center text-white my-3')}>Changes saved!</Text>
 
                     <TouchableNativeFeedback onPress={() => setIsVisible(false)}>
-                        <View style={styles.modalButton}>
-                            <Text style={styles.text}>Ok</Text>
+                        <View style={tailwind('bg-gray-600 p-3 w-full rounded-b')}>
+                            <Text style={tailwind('text-center text-white')}>Ok</Text>
                         </View>
                     </TouchableNativeFeedback>
                 </View>
             </Modal>
 
-            <KeyboardAvoidingView style={styles.cont}>
-                <ScrollView bounces={false} style={{flex:1}}>
-                    <View style={styles.inputContent}>
-                        <Text style={styles.textLabel}>IP</Text>
+            <KeyboardAvoidingView style={tailwind('flex-1 px-3')}>
+                <ScrollView bounces={false} style={tailwind('flex-1')}>
+                    <View style={tailwind('mb-5')}>
+                        <Text style={tailwind('text-white mb-2')}>IP</Text>
                         <TextInput
-                            style={styles.input}
+                            style={tailwind('bg-gray-500')}
                             keyboardType='numeric'
                             onChangeText={text => updateFormValue('ip', text)}
                             defaultValue={props.ip}
@@ -82,36 +83,36 @@ const Settings = (props) => {
 
                         {
                             formErrors.ip && (
-                                <View style={styles.errorContent}>
-                                    { formErrors.ip.includes('required') && <Text style={styles.textError}>IP is required</Text> }
-                                    { formErrors.ip.includes('isValidIp') && <Text style={styles.textError}>IP is not valid</Text> }
+                                <View style={tailwind('mt-1')}>
+                                    { formErrors.ip.includes('required') && <Text style={tailwind('text-red-500 mt-1')}>IP is required</Text> }
+                                    { formErrors.ip.includes('isValidIp') && <Text style={tailwind('text-red-500 mt-1')}>IP is not valid</Text> }
                                 </View>
                             )
                         }
                     </View>
 
-                    <View style={styles.inputContent}>
-                        <Text style={styles.textLabel}>Port</Text>
+                    <View style={tailwind('mb-5')}>
+                        <Text style={tailwind('text-white mb-2')}>Port</Text>
                         <TextInput
-                            style={styles.input}
+                            style={tailwind('bg-gray-500')}
                             keyboardType='numeric'
                             onChangeText={text => updateFormValue('port', text)}
                             defaultValue={props.port.toString()}
                         />
                         {
                             formErrors.port && (
-                                <View style={styles.errorContent}>
-                                    { formErrors.port.includes('required') && <Text style={styles.textError}>Port is required</Text> }
-                                    { (formErrors.port.includes('min') || formErrors.port.includes('max')) && <Text style={styles.textError}>Range valid: 1-65535</Text> }
+                                <View style={tailwind('mt-1')}>
+                                    { formErrors.port.includes('required') && <Text style={tailwind('text-red-500 mt-1')}>Port is required</Text> }
+                                    { (formErrors.port.includes('min') || formErrors.port.includes('max')) && <Text style={tailwind('text-red-500 mt-1')}>Range valid: 1-65535</Text> }
                                 </View>
                             )
                         }
                     </View>
 
-                    <View style={styles.inputContent}>
-                        <Text style={styles.textLabel}>Refresh time (ms)</Text>
+                    <View style={tailwind('mb-5')}>
+                        <Text style={tailwind('text-white mb-2')}>Refresh time (ms)</Text>
                         <TextInput
-                            style={styles.input}
+                            style={tailwind('bg-gray-500')}
                             keyboardType='numeric'
                             onChangeText={text => updateFormValue('refreshTime', text)}
                             defaultValue={props.refreshTime.toString()}
@@ -119,17 +120,17 @@ const Settings = (props) => {
 
                         {
                             formErrors.refreshTime && (
-                                <View style={styles.errorContent}>
-                                    { formErrors.refreshTime.includes('required') && <Text style={styles.textError}>Refresh time is required</Text> }
-                                    { (formErrors.refreshTime.includes('min') || formErrors.refreshTime.includes('max')) && <Text style={styles.textError}>Range valid: 1-5000</Text> }
+                                <View style={tailwind('mt-1')}>
+                                    { formErrors.refreshTime.includes('required') && <Text style={tailwind('text-red-500 mt-1')}>Refresh time is required</Text> }
+                                    { (formErrors.refreshTime.includes('min') || formErrors.refreshTime.includes('max')) && <Text style={tailwind('text-red-500 mt-1')}>Range valid: 1-5000</Text> }
                                 </View>
                             )
                         }
                     </View>
 
                     <TouchableNativeFeedback disabled={Object.keys(formErrors).length} onPress={submit}>
-                        <View style={styles.button}>
-                            <Text style={styles.text}>Update</Text>
+                        <View style={tailwind('bg-gray-700 my-2 p-2.5')}>
+                            <Text style={tailwind('text-center text-white')}>Update</Text>
                         </View>
                     </TouchableNativeFeedback>
                 </ScrollView>
@@ -137,68 +138,6 @@ const Settings = (props) => {
         </MainContent>
     );
 }
-
-const styles = StyleSheet.create({
-    cont: {
-        flex: 1,
-        paddingHorizontal: 10,
-    },
-
-    inputContent: {
-        marginBottom: 20,
-    },
-
-    textLabel: {
-        color: '#FFFFFF',
-        marginBottom: 5,
-    },
-
-    input: {
-        backgroundColor: '#49464F',
-    },
-
-    errorContent: {
-        marginTop: 5,
-    },
-
-    textError: {
-        color: '#FF0000',
-        marginTop: 5,
-    },
-
-    button: {
-        backgroundColor: '#3F3A4A',
-        marginVertical: 10,
-        padding: 10,
-    },
-
-    text: {
-        textAlign: 'center',
-        color: '#FFFFFF',
-    },
-
-    modal: {
-        backgroundColor: '#000000CC',
-        justifyContent: 'center',
-        alignItems: 'center',
-        alignSelf: 'center',
-        borderRadius: 5,
-        width: '75%',
-        minWidth: 250,
-    },
-
-    modalText: {
-        marginVertical: 25,
-    },
-
-    modalButton: {
-        backgroundColor: '#3F3A4A',
-        padding: 15,
-        width: '100%',
-        borderBottomEndRadius: 5,
-        borderBottomStartRadius: 5,
-    }
-});
 
 const mapStateToProps = (state) => {
     return {

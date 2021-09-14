@@ -2,19 +2,26 @@ import { default as isIp } from 'is-ip';
 
 const min = (value, minValue) => {
     return value > minValue;
-};
+}
 
 const max = (value, maxValue) => {
     return value < maxValue;
-};
+}
 
 const required = (value) => {
     return value.toString().trim().length > 0;
-};
+}
 
 const isValidIp = (value) => {
     return isIp.v4(value);
-};
+}
+
+const rules = {
+    min,
+    max,
+    required,
+    isValidIp,
+}
 
 export default validateForm = (formData) => {
     const check = {};
@@ -27,7 +34,7 @@ export default validateForm = (formData) => {
         inputRules.forEach((rule) => {
             const ruleName = Object.keys(rule)[0];
             const ruleValue = Object.values(rule)[0];
-            const error = !eval(ruleName)(inputValue, ruleValue);
+            const error = !rules[ruleName](inputValue, ruleValue);
 
             if (error && check[inputName] === undefined) {
                 check[inputName] = [];
@@ -40,4 +47,4 @@ export default validateForm = (formData) => {
     });
 
     return check;
-};
+}

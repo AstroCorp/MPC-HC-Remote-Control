@@ -1,41 +1,17 @@
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View } from 'react-native';
+import tailwind from 'tailwind-rn';
 
 const StatusModal = (props) => (
-    <View style={[styles.syncView, props.message && styles.syncViewBackground]}>
+    <View style={tailwind('absolute mt-14 w-full h-full flex-1 justify-center items-center')}>
 		{
 			props.message && (
-				<View style={styles.syncBox}>
-            		<Text style={styles.syncText}>{ props.message }</Text>
+				<View style={tailwind('bg-black rounded p-5 -mt-28')}>
+            		<Text style={tailwind('text-white')}>{ props.message }</Text>
         		</View>
 			)
 		}
 	</View>
 );
-
-const styles = StyleSheet.create({
-    syncView: {
-		position: 'absolute',
-		height: '100%',
-		width: '100%',
-		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center',
-	},
-	
-	syncViewBackground: {
-		backgroundColor: '#00000080',
-	},
-    
-    syncBox: {
-        backgroundColor: '#000000CC',
-        padding: 20,
-        borderRadius: 5,
-    },
-
-	syncText: {
-		color: '#FFFFFF',
-	},
-});
 
 export default StatusModal;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
+import tailwind from 'tailwind-rn';
 import { Header, MediaInfoController, InfoPanel, VolumeController, TimeController, StatusModal, MainContent } from '../components';
 
 const Home = (props) => (
@@ -9,10 +10,10 @@ const Home = (props) => (
 
         <Header navigation={props.navigation} />
 
-        <View style={{ flex: 1 }}>
+        <View style={tailwind('flex-1')}>
             {
                 props.syncEnabled && props.mediaPlayerData && (
-                    <View style={{ flex: 1 }}>
+                    <View style={tailwind('flex-1')}>
                         <InfoPanel />
                         <TimeController />
                         <VolumeController />

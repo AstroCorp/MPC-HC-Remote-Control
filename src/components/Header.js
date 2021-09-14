@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, TouchableWithoutFeedback, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
+import tailwind from 'tailwind-rn';
 import { BackArrowIcon, SettingsIcon, EnableSyncIcon, DisableSyncIcon } from '../assets/icons';
 import { setMpcHcInfo, setSyncEnabled } from '../store/actions';
 
@@ -12,7 +13,7 @@ const Header = (props) => {
     }
 
     return (
-        <View style={{ height: 60 }}>
+        <View style={tailwind('h-14')}>
             <View style={styles.header}>
                 {props.title === 'Settings' && (
                     <TouchableWithoutFeedback onPress={() => props.navigation.goBack()}>

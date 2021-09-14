@@ -1,18 +1,11 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
 import SafeAreaView from 'react-native-safe-area-view';
+import tailwind from 'tailwind-rn';
 
 const MainContent = (props) => (
-    <SafeAreaView style={styles.content}>
+    <SafeAreaView style={tailwind('flex-1 bg-gray-900')}>
         { props.children }
     </SafeAreaView>
 );
-
-const styles = StyleSheet.create({
-    content: {
-        flex: 1, 
-        backgroundColor: '#1D1925',
-    },
-});
 
 export default MainContent;
