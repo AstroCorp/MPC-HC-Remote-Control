@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { connect } from 'react-redux';
 import { WebView } from 'react-native-webview';
+import tailwind from 'tailwind-rn';
 import { setMpcHcInfo } from '../store/actions';
 import { getVariables } from '../utils/variables';
 
@@ -22,7 +23,7 @@ const MediaInfoController = (props) => {
             <WebView
                 key={props.ip + ':' + props.port + '-' + props.refreshTime}
                 ref={webview}
-                containerStyle={{ display: 'none' }}
+                containerStyle={tailwind('hidden')}
                 source={{
                     uri: 'http://' + props.ip + ':' + props.port + '/variables.html'
                 }}

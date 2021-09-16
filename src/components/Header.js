@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TouchableWithoutFeedback, Text, StyleSheet } from 'react-native';
+import { View, TouchableWithoutFeedback, Text } from 'react-native';
 import { connect } from 'react-redux';
 import tailwind from 'tailwind-rn';
 import { BackArrowIcon, SettingsIcon, EnableSyncIcon, DisableSyncIcon } from '../assets/icons';
@@ -7,6 +7,7 @@ import { setMpcHcInfo, setSyncEnabled } from '../store/actions';
 
 const Header = (props) => {
     const title = props.title || props.ip + ':' + props.port;
+
     const toggleSync = () => {
         props.setSyncEnabled(!props.syncEnabled);
         props.setMpcHcInfo(null);
@@ -14,29 +15,29 @@ const Header = (props) => {
 
     return (
         <View style={tailwind('h-14')}>
-            <View style={styles.header}>
+            <View style={tailwind('px-3 flex-1 flex-row items-center')}>
                 {props.title === 'Settings' && (
                     <TouchableWithoutFeedback onPress={() => props.navigation.goBack()}>
-                        <View style={styles.icon}>
+                        <View style={tailwind('p-1')}>
                             <BackArrowIcon color="#FFFFFF" size="28" />
                         </View>
                     </TouchableWithoutFeedback>
                 )}
     
-                <Text style={[styles.title, props.title === 'Settings' && styles.titleSettings]}>
+                <Text style={tailwind('-mt-0.5 text-white text-lg' + (props.title === 'Settings' ? ' ml-3' : ''))}>
                     { title }
                 </Text>
     
                 {props.title !== 'Settings' && (
-                    <View style={styles.options}>
+                    <View style={tailwind('flex-1 flex-row-reverse justify-start')}>
                         <TouchableWithoutFeedback onPress={() => props.navigation.navigate('Settings')}>
-                            <View style={styles.icon}>
+                            <View style={tailwind('p-1')}>
                                 <SettingsIcon color="#FFFFFF" size="28" />
                             </View>
                         </TouchableWithoutFeedback>
     
                         <TouchableWithoutFeedback onPress={toggleSync}>
-                            <View style={[styles.icon, styles.syncIcon]}>
+                            <View style={tailwind('p-1 mr-1')}>
                                 {
                                     props.syncEnabled 
                                     ? 
@@ -52,40 +53,6 @@ const Header = (props) => {
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    header: {
-        height: 60,
-        paddingHorizontal: 15,
-        flex: 1,
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-
-    titleSettings: {
-        marginLeft: 15,
-    },
-
-    title: {
-        fontSize: 20,
-        marginTop: -2,
-        color: '#FFFFFF'
-    },
-
-    options: {
-        flex: 1,
-        flexDirection: 'row-reverse',
-        justifyContent: 'flex-start',
-    },
-
-    icon: {
-        padding: 5,
-    },
-
-    syncIcon: {
-        marginRight: 5,
-    }
-});
 
 const mapStateToProps = (state) => {
     return {
