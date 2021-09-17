@@ -1,7 +1,8 @@
 import React from 'react';
-import { Text, View, StyleSheet, TouchableNativeFeedback, Dimensions } from 'react-native';
+import { Text, View, TouchableNativeFeedback, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import Slider from '@react-native-community/slider';
+import tailwind from 'tailwind-rn';
 import { sendCommand } from '../store/actions';
 import { msToTime, msToPercent } from '../utils/extras';
 import { PlayArrowIcon, PauseIcon, FastForwardIcon, FastRewindIcon, SkipNextIcon, SkipPreviousIcon } from '../assets/icons';
@@ -9,15 +10,18 @@ import { timeCustom, togglePlayAndPause, decreaseRate, increaseRate, previous, n
 
 const TimeController = (props) => {
     return (
-        <View style={styles.timePanel}>
-            <View style={styles.times}>
-                <Text style={styles.timeText}>{ msToTime(props.mediaPlayerData?.position) }</Text>
-                <Text style={styles.timeText}>{ msToTime(props.mediaPlayerData?.duration) }</Text>
+        <View style={tailwind('px-2 mb-14')}>
+            <View style={tailwind('flex flex-row justify-between')}>
+                <Text style={tailwind('text-white')}>{ msToTime(props.mediaPlayerData?.position) }</Text>
+                <Text style={tailwind('text-white')}>{ msToTime(props.mediaPlayerData?.duration) }</Text>
             </View>
 
-            <View style={styles.centerCont}>
+            <View style={tailwind('flex flex-row justify-center')}>
                 <Slider
-                    style={styles.slider}
+                    style={{
+                        ...tailwind('my-5'),
+                        width: Dimensions.get('window').width,
+                    }}
                     minimumValue={0}
                     maximumValue={props.mediaPlayerData?.duration || 1}
                     minimumTrackTintColor="#1CD1FF"
@@ -36,12 +40,12 @@ const TimeController = (props) => {
                 />
             </View>
 
-            <View style={styles.centerCont}>
+            <View style={tailwind('flex flex-row justify-center')}>
                 <TouchableNativeFeedback onPress={() => props.sendCommand(
                     { ip: props.ip, port: props.port },
                     { code: previous }
                 )}>
-                    <View style={styles.timeButton}>
+                    <View style={tailwind('bg-gray-700 h-12 w-12 p-2.5 mx-1 rounded-full')}>
                         <SkipPreviousIcon color="#FFFFFF" size="28" />
                     </View>
                 </TouchableNativeFeedback>
@@ -50,7 +54,7 @@ const TimeController = (props) => {
                     { ip: props.ip, port: props.port },
                     { code: decreaseRate }
                 )}>
-                    <View style={styles.timeButton}>
+                    <View style={tailwind('bg-gray-700 h-12 w-12 p-2.5 mx-1 rounded-full')}>
                         <FastRewindIcon color="#FFFFFF" size="28" />
                     </View>
                 </TouchableNativeFeedback>
@@ -59,7 +63,7 @@ const TimeController = (props) => {
                     { ip: props.ip, port: props.port },
                     { code: togglePlayAndPause }
                 )}>
-                    <View style={styles.timeButton}>
+                    <View style={tailwind('bg-gray-700 h-12 w-12 p-2.5 mx-1 rounded-full')}>
                         {
                             (props.mediaPlayerData?.state === 1 || props.mediaPlayerData?.state === -1) && (
                                 <PlayArrowIcon color="#FFFFFF" size="28" />
@@ -78,7 +82,7 @@ const TimeController = (props) => {
                     { ip: props.ip, port: props.port },
                     { code: increaseRate }
                 )}>
-                    <View style={styles.timeButton}>
+                    <View style={tailwind('bg-gray-700 h-12 w-12 p-2.5 mx-1 rounded-full')}>
                         <FastForwardIcon color="#FFFFFF" size="28" />
                     </View>
                 </TouchableNativeFeedback>
@@ -87,7 +91,7 @@ const TimeController = (props) => {
                     { ip: props.ip, port: props.port },
                     { code: next }
                 )}>
-                    <View style={styles.timeButton}>
+                    <View style={tailwind('bg-gray-700 h-12 w-12 p-2.5 mx-1 rounded-full')}>
                         <SkipNextIcon color="#FFFFFF" size="28" />
                     </View>
                 </TouchableNativeFeedback>
@@ -95,43 +99,6 @@ const TimeController = (props) => {
         </View>
     );
 }
-
-const styles = StyleSheet.create({
-    timePanel: {
-        flex: 1,
-        paddingHorizontal: 10,
-        maxHeight: 119,
-        marginBottom: 50,
-    },
-
-    times : {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-    },
-
-    timeText: {
-        color: '#FFFFFF',
-    },
-
-    centerCont: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-    },
-
-    timeButton: {
-        backgroundColor: '#3F3A4A',
-        height: 50,
-        width: 50,
-        padding: 11,
-        marginHorizontal: 10,
-        borderRadius: 50,
-    },
-
-    slider: {
-        width: Dimensions.get('window').width, 
-        marginVertical: 5,
-    }
-});
 
 const mapStateToProps = (state) => {
     return {

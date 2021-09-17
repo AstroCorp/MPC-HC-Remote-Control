@@ -1,26 +1,30 @@
 import React from 'react';
-import { View, StyleSheet, TouchableNativeFeedback, Dimensions } from 'react-native';
+import { View, TouchableNativeFeedback, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import Slider from '@react-native-community/slider';
+import tailwind from 'tailwind-rn';
 import { sendCommand } from '../store/actions';
 import { volumeUp, volumeDown, volumeCustom } from '../utils/commands';
 import { VolumeDownIcon, VolumeUpIcon } from '../assets/icons';
 
 const VolumeController = (props) => {
     return (
-        <View style={styles.volumePanel}>
+        <View style={tailwind('flex flex-row justify-around px-2')}>
             <TouchableNativeFeedback onPress={() => props.sendCommand(
                 { ip: props.ip, port: props.port },
                 { code: volumeDown }
             )}>
-                <View style={styles.volumeButton}>
+                <View style={tailwind('bg-gray-700 h-12 w-12 p-2.5 mx-1 rounded-full')}>
                     <VolumeDownIcon color="#FFFFFF" size="28" />
                 </View>
             </TouchableNativeFeedback>
 
-            <View style={{ marginHorizontal: 20 }}>
+            <View style={tailwind('mx-3')}>
                 <Slider
-                    style={styles.slider}
+                    style={{
+                        ...tailwind('mt-3.5'),
+                        width: Dimensions.get('window').width - 125,
+                    }}
                     minimumValue={0}
                     maximumValue={100}
                     minimumTrackTintColor="#1CD1FF"
@@ -39,45 +43,13 @@ const VolumeController = (props) => {
                 { ip: props.ip, port: props.port },
                 { code: volumeUp }
             )}>
-                <View style={styles.volumeButton}>
+                <View style={tailwind('bg-gray-700 h-12 w-12 p-2.5 mx-1 rounded-full')}>
                     <VolumeUpIcon color="#FFFFFF" size="28" />
                 </View>
             </TouchableNativeFeedback>
         </View>
     );
 }
-
-const styles = StyleSheet.create({
-    volumePanel: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        paddingHorizontal: 10,
-        maxHeight: 50,
-    },
-
-    volumeButton: {
-        backgroundColor: '#3F3A4A',
-        height: 50,
-        width: 50,
-        padding: 11,
-        borderRadius: 50,
-    },
-
-    customLabel: {
-        position: 'absolute',
-        width: 40,
-        backgroundColor: '#1CD1FF',
-        color: '#FFFFFF',
-        textAlign: 'center',
-        marginTop: -6,
-    },
-
-    slider: {
-        width: Dimensions.get('window').width - 125, 
-        marginTop: 9,
-    }
-});
 
 const mapStateToProps = (state) => {
     return {

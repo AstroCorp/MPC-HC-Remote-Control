@@ -22,7 +22,7 @@ const App = () => {
 		<SafeAreaProvider>
 			<Provider store={store.store}>
 				<PersistGate loading={null} persistor={store.persistor}>
-					<StatusBar backgroundColor="#1D1925" />
+					<StatusBar backgroundColor="#111827" />
 
 					<NavigationContainer>
 						<Stack.Navigator 

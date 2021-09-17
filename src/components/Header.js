@@ -28,27 +28,29 @@ const Header = (props) => {
                     { title }
                 </Text>
     
-                {props.title !== 'Settings' && (
-                    <View style={tailwind('flex-1 flex-row-reverse justify-start')}>
-                        <TouchableWithoutFeedback onPress={() => props.navigation.navigate('Settings')}>
-                            <View style={tailwind('p-1')}>
-                                <SettingsIcon color="#FFFFFF" size="28" />
-                            </View>
-                        </TouchableWithoutFeedback>
-    
-                        <TouchableWithoutFeedback onPress={toggleSync}>
-                            <View style={tailwind('p-1 mr-1')}>
-                                {
-                                    props.syncEnabled 
-                                    ? 
-                                        <EnableSyncIcon color="#FFFFFF" size="28" />
-                                    :
-                                        <DisableSyncIcon color="#FFFFFF" size="28" />
-                                }
-                            </View>
-                        </TouchableWithoutFeedback>
-                    </View>
-                )}
+                {
+                    props.title !== 'Settings' && (
+                        <View style={tailwind('flex-1 flex-row-reverse justify-start')}>
+                            <TouchableWithoutFeedback onPress={() => props.navigation.navigate('Settings')}>
+                                <View style={tailwind('p-1')}>
+                                    <SettingsIcon color="#FFFFFF" size="28" />
+                                </View>
+                            </TouchableWithoutFeedback>
+        
+                            <TouchableWithoutFeedback onPress={toggleSync}>
+                                <View style={tailwind('p-1 mr-1')}>
+                                    {
+                                        props.syncEnabled ?  (
+                                            <EnableSyncIcon color="#FFFFFF" size="28" />
+                                        ) : (
+                                            <DisableSyncIcon color="#FFFFFF" size="28" />
+                                        )
+                                    }
+                                </View>
+                            </TouchableWithoutFeedback>
+                        </View>
+                    )
+                }
             </View>
         </View>
     );

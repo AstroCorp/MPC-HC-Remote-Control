@@ -5,7 +5,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import tailwind from 'tailwind-rn';
 
 const InfoPanel = (props) => (
-    <LinearGradient colors={['#1D1925', '#111827']} style={tailwind('h-1/4 justify-end mb-4')}>
+    <LinearGradient colors={['#111827', '#000000']} style={tailwind('h-1/4 justify-end mb-4')}>
     {
         props.mediaPlayerData && (
             <View style={tailwind('self-center mb-3')}>
