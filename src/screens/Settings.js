@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Text, View, ScrollView, KeyboardAvoidingView, TouchableNativeFeedback, TextInput } from 'react-native';
+import { Text, View, ScrollView, KeyboardAvoidingView, TouchableNativeFeedback, TouchableOpacity, TextInput } from 'react-native';
 import { Header, MainContent } from '../components';
 import Modal from 'react-native-modal';
 import tailwind from 'tailwind-rn';
@@ -133,6 +133,12 @@ const Settings = (props) => {
                             <Text style={tailwind('text-center text-white')}>Update</Text>
                         </View>
                     </TouchableNativeFeedback>
+
+                    <TouchableOpacity onPress={() => props.navigation.push('Tutorial')}>
+                        <View style={tailwind('my-2 p-1')}>
+                            <Text style={tailwind('text-center text-white text-sm underline')}>How to enable remote control in MPC-HC</Text>
+                        </View>
+                    </TouchableOpacity>
                 </ScrollView>
             </KeyboardAvoidingView>
         </MainContent>

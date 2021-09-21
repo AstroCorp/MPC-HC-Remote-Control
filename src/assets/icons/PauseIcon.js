@@ -1,5 +1,5 @@
-import * as React from "react"
-import Svg, { Path } from "react-native-svg"
+import React from 'react';
+import Svg, { Path } from 'react-native-svg';
 
 const PauseIcon = (props) => (
   	<Svg width={props.size} height={props.size} viewBox="0 0 24 24" {...props}>

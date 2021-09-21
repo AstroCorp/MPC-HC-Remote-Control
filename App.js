@@ -8,8 +8,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Home from './src/screens/Home';
-import Settings from './src/screens/Settings';
+import { Home, Settings, Tutorial } from './src/screens';
 import configureStore from './src/store/configureStore';
 
 const store = configureStore();
@@ -34,6 +33,13 @@ const App = () => {
 						>
 							<Stack.Screen name="Home" component={Home} />
 							<Stack.Screen name="Settings" component={Settings} />
+							<Stack.Screen 
+								name="Tutorial" 
+								component={Tutorial} 
+								options={{
+									animation: 'slide_from_bottom'
+								}}
+							/>
 						</Stack.Navigator>
 					</NavigationContainer>
 				</PersistGate>
