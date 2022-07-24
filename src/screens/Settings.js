@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 import { Text, View, ScrollView, KeyboardAvoidingView, TouchableNativeFeedback, TouchableOpacity, TextInput } from 'react-native';
 import { Header, MainContent } from '../components';
 import Modal from 'react-native-modal';
-import tailwind from 'tailwind-rn';
+import tailwind from '../utils/tailwind';
 import validateForm from '../utils/validation';
 import { setIp, setPort, setRefreshTime, setMpcHcInfo, setSyncEnabled } from '../store/actions';
 
 const Settings = (props) => {
-    const [ isVisible, setIsVisible ] = useState(false);
-    const [ formErrors, setFormErrors ] = useState({});
-    const [ formData, setFormData ] = useState({
+    const [isVisible, setIsVisible] = useState(false);
+    const [formErrors, setFormErrors] = useState({});
+    const [formData, setFormData] = useState({
         ip: {
             value: props.ip,
             rules: [{ required: true }, { isValidIp: true }],
@@ -43,7 +43,7 @@ const Settings = (props) => {
         if (Object.keys(formErrors).length) {
             return;
         }
-        
+
         props.setMpcHcInfo(null);
         props.setSyncEnabled(false);
 
@@ -84,8 +84,8 @@ const Settings = (props) => {
                         {
                             formErrors.ip && (
                                 <View style={tailwind('mt-1')}>
-                                    { formErrors.ip.includes('required') && <Text style={tailwind('text-red-500 mt-1')}>IP is required</Text> }
-                                    { formErrors.ip.includes('isValidIp') && <Text style={tailwind('text-red-500 mt-1')}>IP is not valid</Text> }
+                                    {formErrors.ip.includes('required') && <Text style={tailwind('text-red-500 mt-1')}>IP is required</Text>}
+                                    {formErrors.ip.includes('isValidIp') && <Text style={tailwind('text-red-500 mt-1')}>IP is not valid</Text>}
                                 </View>
                             )
                         }
@@ -102,8 +102,8 @@ const Settings = (props) => {
                         {
                             formErrors.port && (
                                 <View style={tailwind('mt-1')}>
-                                    { formErrors.port.includes('required') && <Text style={tailwind('text-red-500 mt-1')}>Port is required</Text> }
-                                    { (formErrors.port.includes('min') || formErrors.port.includes('max')) && <Text style={tailwind('text-red-500 mt-1')}>Range valid: 1-65535</Text> }
+                                    {formErrors.port.includes('required') && <Text style={tailwind('text-red-500 mt-1')}>Port is required</Text>}
+                                    {(formErrors.port.includes('min') || formErrors.port.includes('max')) && <Text style={tailwind('text-red-500 mt-1')}>Range valid: 1-65535</Text>}
                                 </View>
                             )
                         }
@@ -121,8 +121,8 @@ const Settings = (props) => {
                         {
                             formErrors.refreshTime && (
                                 <View style={tailwind('mt-1')}>
-                                    { formErrors.refreshTime.includes('required') && <Text style={tailwind('text-red-500 mt-1')}>Refresh time is required</Text> }
-                                    { (formErrors.refreshTime.includes('min') || formErrors.refreshTime.includes('max')) && <Text style={tailwind('text-red-500 mt-1')}>Range valid: 1-5000</Text> }
+                                    {formErrors.refreshTime.includes('required') && <Text style={tailwind('text-red-500 mt-1')}>Refresh time is required</Text>}
+                                    {(formErrors.refreshTime.includes('min') || formErrors.refreshTime.includes('max')) && <Text style={tailwind('text-red-500 mt-1')}>Range valid: 1-5000</Text>}
                                 </View>
                             )
                         }

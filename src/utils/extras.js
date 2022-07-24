@@ -23,7 +23,7 @@ export const msToTime = (ms) => {
     if (minutes < 10) {
         minutes = '0' + minutes;
     }
-    
+
     return hours + ':' + minutes + ':' + seconds;
 }
 

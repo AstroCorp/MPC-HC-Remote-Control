@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
-import tailwind from 'tailwind-rn';
+import tailwind from '../utils/tailwind';
 import { Header, MediaInfoController, InfoPanel, VolumeController, TimeController, StatusModal, MainContent } from '../components';
 
 const Home = (props) => (
@@ -20,17 +20,17 @@ const Home = (props) => (
                     </View>
                 )
             }
-            
+
             {
                 !props.mediaPlayerData && props.syncEnabled && (
                     <StatusModal message='Synchronizing with MPC-HC...' />
-		        )
+                )
             }
 
             {
                 !props.syncEnabled && (
                     <StatusModal message='Synchronization disabled' />
-		        )
+                )
             }
         </View>
 

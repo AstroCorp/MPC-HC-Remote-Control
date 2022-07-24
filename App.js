@@ -2,7 +2,7 @@ import 'react-native-gesture-handler';
 
 import React, { useEffect } from 'react';
 import { StatusBar } from 'react-native';
-import SplashScreen from 'react-native-splash-screen';
+//import RNBootSplash from "react-native-bootsplash";
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -15,7 +15,7 @@ const store = configureStore();
 const Stack = createNativeStackNavigator();
 
 const App = () => {
-	useEffect(() => SplashScreen.hide());
+	//useEffect(() => RNBootSplash.hide({ fade: true }));
 
 	return (
 		<SafeAreaProvider>
@@ -24,8 +24,8 @@ const App = () => {
 					<StatusBar backgroundColor="#111827" />
 
 					<NavigationContainer>
-						<Stack.Navigator 
-							screenOptions={{ 
+						<Stack.Navigator
+							screenOptions={{
 								headerShown: false,
 								animation: 'slide_from_right',
 								presentation: 'modal',
@@ -33,9 +33,9 @@ const App = () => {
 						>
 							<Stack.Screen name="Home" component={Home} />
 							<Stack.Screen name="Settings" component={Settings} />
-							<Stack.Screen 
-								name="Tutorial" 
-								component={Tutorial} 
+							<Stack.Screen
+								name="Tutorial"
+								component={Tutorial}
 								options={{
 									animation: 'slide_from_bottom'
 								}}

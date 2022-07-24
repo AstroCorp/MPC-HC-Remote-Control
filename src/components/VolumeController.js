@@ -2,7 +2,7 @@ import React from 'react';
 import { View, TouchableNativeFeedback, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import Slider from '@react-native-community/slider';
-import tailwind from 'tailwind-rn';
+import tailwind from '../utils/tailwind';
 import { sendCommand } from '../store/actions';
 import { volumeUp, volumeDown, volumeCustom } from '../utils/commands';
 import { VolumeDownIcon, VolumeUpIcon } from '../assets/icons';

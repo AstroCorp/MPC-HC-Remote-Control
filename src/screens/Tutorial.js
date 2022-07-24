@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image, View, TouchableNativeFeedback } from 'react-native';
-import tailwind from 'tailwind-rn';
+import tailwind from '../utils/tailwind';
 import Onboarding from 'react-native-onboarding-swiper';
 import { MainContent } from '../components';
 import { CloseIcon } from '../assets/icons';

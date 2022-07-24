@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, TouchableWithoutFeedback, Text } from 'react-native';
 import { connect } from 'react-redux';
-import tailwind from 'tailwind-rn';
+import tailwind from '../utils/tailwind';
 import { BackArrowIcon, SettingsIcon, EnableSyncIcon, DisableSyncIcon } from '../assets/icons';
 import { setMpcHcInfo, setSyncEnabled } from '../store/actions';
 
@@ -23,11 +23,11 @@ const Header = (props) => {
                         </View>
                     </TouchableWithoutFeedback>
                 )}
-    
+
                 <Text style={tailwind('-mt-0.5 text-white text-lg' + (props.title === 'Settings' ? ' ml-3' : ''))}>
-                    { title }
+                    {title}
                 </Text>
-    
+
                 {
                     props.title !== 'Settings' && (
                         <View style={tailwind('flex-1 flex-row-reverse justify-start')}>
@@ -36,11 +36,11 @@ const Header = (props) => {
                                     <SettingsIcon color="#FFFFFF" size="28" />
                                 </View>
                             </TouchableWithoutFeedback>
-        
+
                             <TouchableWithoutFeedback onPress={toggleSync}>
                                 <View style={tailwind('p-1 mr-1')}>
                                     {
-                                        props.syncEnabled ?  (
+                                        props.syncEnabled ? (
                                             <EnableSyncIcon color="#FFFFFF" size="28" />
                                         ) : (
                                             <DisableSyncIcon color="#FFFFFF" size="28" />

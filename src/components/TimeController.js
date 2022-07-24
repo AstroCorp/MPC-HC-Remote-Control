@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, TouchableNativeFeedback, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import Slider from '@react-native-community/slider';
-import tailwind from 'tailwind-rn';
+import tailwind from '../utils/tailwind';
 import { sendCommand } from '../store/actions';
 import { msToTime, msToPercent } from '../utils/extras';
 import { PlayArrowIcon, PauseIcon, FastForwardIcon, FastRewindIcon, SkipNextIcon, SkipPreviousIcon } from '../assets/icons';
@@ -12,8 +12,8 @@ const TimeController = (props) => {
     return (
         <View style={tailwind('px-2 mb-14')}>
             <View style={tailwind('flex flex-row justify-between')}>
-                <Text style={tailwind('text-white')}>{ msToTime(props.mediaPlayerData?.position) }</Text>
-                <Text style={tailwind('text-white')}>{ msToTime(props.mediaPlayerData?.duration) }</Text>
+                <Text style={tailwind('text-white')}>{msToTime(props.mediaPlayerData?.position)}</Text>
+                <Text style={tailwind('text-white')}>{msToTime(props.mediaPlayerData?.duration)}</Text>
             </View>
 
             <View style={tailwind('flex flex-row justify-center')}>

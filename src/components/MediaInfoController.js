@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { connect } from 'react-redux';
 import { WebView } from 'react-native-webview';
-import tailwind from 'tailwind-rn';
+import tailwind from '../utils/tailwind';
 import { setMpcHcInfo } from '../store/actions';
 import { getVariables } from '../utils/variables';
 
@@ -34,7 +34,7 @@ const MediaInfoController = (props) => {
                 onMessage={event => {
                     // Recibimos el contenido del webview
                     props.setMpcHcInfo(getVariables(event.nativeEvent.data));
-                    
+
                     // Recargamos para obtener nuevos datos
                     if (webview.current !== null && props.syncEnabled) {
                         webview.current.reload();
@@ -42,12 +42,12 @@ const MediaInfoController = (props) => {
                 }}
                 onLoadEnd={(syntheticEvent) => {
                     const { nativeEvent } = syntheticEvent;
-                
+
                     // Si ocurre un error al cargar eliminamos los datos
                     if (nativeEvent.description === "net::ERR_CONNECTION_REFUSED" || !nativeEvent.title.length) {
                         props.setMpcHcInfo(null);
                     }
-                
+
                     // Volvemos a intentar cargar los datos
                     setTimeout(() => {
                         if (webview.current !== null && props.syncEnabled) {
