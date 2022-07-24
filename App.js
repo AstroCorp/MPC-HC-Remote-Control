@@ -2,7 +2,7 @@ import 'react-native-gesture-handler';
 
 import React, { useEffect } from 'react';
 import { StatusBar } from 'react-native';
-//import RNBootSplash from "react-native-bootsplash";
+import RNBootSplash from "react-native-bootsplash";
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -15,7 +15,9 @@ const store = configureStore();
 const Stack = createNativeStackNavigator();
 
 const App = () => {
-	//useEffect(() => RNBootSplash.hide({ fade: true }));
+	useEffect(() => {
+		RNBootSplash.hide({ fade: true });
+	});
 
 	return (
 		<SafeAreaProvider>
