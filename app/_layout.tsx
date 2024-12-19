@@ -1,12 +1,13 @@
 import "@/global.css";
 import 'react-native-reanimated';
 import React from 'react';
+import * as SplashScreen from 'expo-splash-screen';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { useEffect } from 'react';
 import { useFonts } from 'expo-font';
-import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Tabs } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import * as SplashScreen from 'expo-splash-screen';
+import TabBar from "@/components/navigation/TabBar";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -30,8 +31,10 @@ export default function RootLayout() {
 		<>
 			<Tabs 
 				screenOptions={{ 
-					tabBarActiveTintColor: 'blue',
+					tabBarActiveTintColor: '#3B82F6',
+					tabBarInactiveTintColor: '#FFFFFF',
 				}}
+				tabBar={(props) => <TabBar {...props} />}
 			>
 				<Tabs.Screen
 					name="index"
