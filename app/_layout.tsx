@@ -1,13 +1,13 @@
 import "@/global.css";
 import 'react-native-reanimated';
 import React from 'react';
-import * as SplashScreen from 'expo-splash-screen';
-import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { useEffect } from 'react';
+import { View } from "react-native";
 import { useFonts } from 'expo-font';
-import { Tabs } from 'expo-router';
+import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import TabBar from "@/components/navigation/TabBar";
+import * as SplashScreen from 'expo-splash-screen';
+import HeaderOptions from "@/components/HeaderOptions";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -28,30 +28,33 @@ export default function RootLayout() {
 	}
 
 	return (
-		<>
-			<Tabs 
-				screenOptions={{ 
-					tabBarActiveTintColor: '#3B82F6',
-					tabBarInactiveTintColor: '#FFFFFF',
+		<View className="flex-1 bg-slate-700">
+			<Stack
+				screenOptions={{
+					headerStyle: {
+						backgroundColor: '#1e293b',
+					},
+					contentStyle: {
+						backgroundColor: '#334155',
+					},
+					headerTintColor: '#fff',
 				}}
-				tabBar={(props) => <TabBar {...props} />}
 			>
-				<Tabs.Screen
+				<Stack.Screen
 					name="index"
 					options={{
-						title: 'Home',
-						tabBarIcon: ({ color }) => <FontAwesome size={28} name="home" color={color} />,
+						title: 'MPC-HC Remote',
+						headerRight: HeaderOptions,
 					}}
 				/>
-				<Tabs.Screen
+				<Stack.Screen
 					name="settings"
 					options={{
 						title: 'Settings',
-						tabBarIcon: ({ color }) => <FontAwesome size={28} name="cog" color={color} />,
 					}}
 				/>
-			</Tabs>
+			</Stack>
 			<StatusBar style="auto" />
-		</>
+		</View>
 	);
 }
