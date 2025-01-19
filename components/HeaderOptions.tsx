@@ -1,14 +1,17 @@
 import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import { Link } from 'expo-router';
-import Ionicons from '@expo/vector-icons/Ionicons';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import SyncButton from '@/components/SyncButton';
 
 const HeaderOptions = () => {
     return (
-        <View>
-            <Link asChild href="/settings">
+        <View className='flex flex-row'>
+            <SyncButton />
+
+            <Link asChild href="/settings" className="ml-3">
                 <TouchableOpacity>
-                    <Ionicons name="settings-sharp" size={24} color="#FFFFFF" />
+                    <MaterialIcons name="settings" size={24} color="#FFFFFF" />
                 </TouchableOpacity>
             </Link>
         </View>

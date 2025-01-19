@@ -9,7 +9,7 @@ import { StatusBar } from 'expo-status-bar';
 import * as SplashScreen from 'expo-splash-screen';
 import HeaderOptions from "@/components/HeaderOptions";
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
+// Para evitar mostrar el contenido de la app antes de que se carguen las fuentes
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
