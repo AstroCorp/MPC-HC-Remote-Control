@@ -1,14 +1,22 @@
 import { create } from 'zustand';
 
 interface SettingsStore {
-    url: string;
-    updateUrl: (newUrl: string) => void;
+    ip: string;
+    port: string;
+    updateIp: (newIp: string) => void;
+    updatePort: (newPort: string) => void;
 }
 
-const useSettingsStore = create<SettingsStore>((set, get) => ({
-    url: 'http://192.168.0.14:13579',
+const DEFAULT_IP = '192.168.0.12';
+const DEFAULT_PORT = '13579';
 
-    updateUrl: (newUrl: string) => set(() => ({ url: newUrl })),
+const useSettingsStore = create<SettingsStore>((set) => ({
+    ip: DEFAULT_IP,
+    port: DEFAULT_PORT,
+
+    updateIp: (newIp: string) => set({ ip: newIp }),
+
+    updatePort: (newPort: string) => set({ port: newPort }),
 }));
 
 export default useSettingsStore;

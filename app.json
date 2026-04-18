@@ -7,9 +7,6 @@
     "icon": "./assets/images/icon.png",
     "scheme": "astrocorp",
     "userInterfaceStyle": "automatic",
-    "ios": {
-      "supportsTablet": true
-    },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
