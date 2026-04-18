@@ -3,6 +3,7 @@ import { Text, View } from 'react-native';
 import useSettingsStore from '@/stores/useSettingsStore';
 import useMpcStatusStore from '@/stores/useMpcStatusStore';
 import useSyncStore from '@/stores/useSyncStore';
+import SnapshotPreview from '@/components/player/SnapshotPreview';
 import VideoTimeline from '@/components/player/VideoTimeline';
 import PlaybackControls from '@/components/player/PlaybackControls';
 import VolumeControl from '@/components/player/VolumeControl';
@@ -20,6 +21,8 @@ export default function HomeScreen() {
 
     return (
         <View className="flex-1 p-5 gap-6 justify-center">
+            <SnapshotPreview ip={ip} port={port} isEnabled={isSyncActive} hasMedia={Boolean(status?.file)} />
+
             <Text className="text-white font-RobotoBold text-lg" numberOfLines={1}>
                 {(status?.file as string) ?? '—'}
             </Text>
