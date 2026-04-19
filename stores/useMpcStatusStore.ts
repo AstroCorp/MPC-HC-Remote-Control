@@ -1,10 +1,11 @@
 import { create } from 'zustand';
+import { getVariables } from '@/utils/common';
 
-type MpcStatus = Record<string, unknown> | null;
+export type MpcStatus = ReturnType<typeof getVariables>;
 
 interface MpcStatusStore {
-    status: MpcStatus;
-    updateStatus: (nextStatus: MpcStatus) => void;
+    status: MpcStatus | null;
+    updateStatus: (nextStatus: MpcStatus | null) => void;
     clearStatus: () => void;
 }
 
