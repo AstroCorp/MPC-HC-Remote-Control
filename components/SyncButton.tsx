@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Alert, AppState, ToastAndroid, TouchableOpacity } from 'react-native';
+import { AppState, ToastAndroid, TouchableOpacity } from 'react-native';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import useSettingsStore from '@/stores/useSettingsStore';
 import useMpcStatusStore from '@/stores/useMpcStatusStore';
@@ -132,11 +132,7 @@ const SyncButton = () => {
     const togglePolling = () => {
         if (!isActive) {
             if (!isMpcHcPollerAvailable) {
-                Alert.alert(
-                    'Modulo nativo no disponible',
-                    'Necesitas ejecutar npx expo prebuild y reconstruir la app con expo run:android para que el poller nativo se cargue.'
-                );
-
+                console.warn('[MPC-HC] Native Module Not Available, you need to run npx expo prebuild and rebuild the app with expo run:android so the native poller can load.');
                 return;
             }
 
